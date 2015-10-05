@@ -1,0 +1,67 @@
+<div class="navbar navbar-fixed-top " id="main-nav-bar">
+	<div class="container">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-menu" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#">Directory</a>
+		</div>
+		
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse" id="bs-menu">
+			<ul class="nav navbar-nav">
+				
+				<li class='divider-vertical'></li>
+				<li class="dropdown">
+					<a href="#nav-cats" data-toggle="collapse" href="#nav-cats" aria-expanded="false" aria-controls="nav-cats">
+						<i class="fa fa-tags"></i>
+						Categories </a>
+					
+				</li>
+				<li>
+					<a data-toggle="collapse" href="#nav-alpha" aria-expanded="false" aria-controls="nav-alpha"><i class="fa fa-sort-alpha-asc"></i> Alphabetically</a>
+				</li>
+				<li>
+					<a href="/submit"><i class="fa fa-plus-square"></i> Submit a listing</a>
+				</li>
+				
+				
+			</ul>
+			
+			<ul class="nav navbar-nav navbar-right">
+				<li class="divider-vertical"></li>
+				<li><a href="/about">About</a></li>
+				<li><a href="/contact">Contact</a></li>
+				<li>
+					<form class="navbar-form navbar-left" role="search">
+						<div class="form-group">
+							<input type="text" class="form-control" placeholder="Search">
+						</div>
+						<button type="submit" class="btn btn-default">Submit</button>
+					</form>
+				</li>
+				
+			</ul>
+		</div><!-- /.navbar-collapse -->
+	
+	
+
+<div class="clearfix"></div>
+	<div id="nav-alpha" class='collapse collapse-menu'  data-collapse-group='nav-menu'>
+		<ol class="breadcrumb "  >
+			<li><a href="#">other</a></li>
+			{% for letter in 'a'..'z' %}
+				<li><a href="#">{{ letter }}</a></li>
+			{% endfor %}
+		</ol>
+	</div>
+	<div class="collapse collapse-menu" id="nav-cats" data-collapse-group='nav-menu'>
+		categories
+	</div>
+	
+</div><!-- /.container-fluid -->
+</div>

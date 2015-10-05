@@ -1,0 +1,13 @@
+{
+  "name": "Directory",
+  "icons": [
+	{
+	  "src": "/app/_images/icons/36x36.png",
+	  "sizes": "36x36",
+	  "type": "image/png",
+	  "density": 0.75
+	}
+  ],
+  "start_url": "/",
+  "display": "standalone"
+}

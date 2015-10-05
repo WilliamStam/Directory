@@ -1,0 +1,57 @@
+form {
+	label {
+		.help-block {
+			font-weight: normal;
+			margin-top: 10px;
+		}
+	}
+	.admin-list-items {
+		margin-top: 30px;
+		margin-bottom: 30px;
+		&:empty {
+			text-align:center;
+			color: #ccc;
+			&:before {
+				content: 'empty';
+			}
+
+		}
+	}
+} 
+
+
+.item-attachment {
+	margin-top:20px;
+	margin-bottom:20px;
+	border-bottom:1px dotted #ccc;
+	padding-bottom:20px;
+	.filename-input {
+
+		border-top-left-radius: 0;
+		border-top-right-radius: 0;
+	}
+	.input-group {
+		margin-top:-1px;
+		.input-group-addon {
+			border-top-left-radius: 0;
+			font-size:12px;
+		}
+	}
+	
+	.cke_contents {
+		border-bottom-left-radius: 0;
+		border-bottom-right-radius: 0;
+	}
+	.cke_chrome {
+		padding-left:0;
+		padding-right:0;
+	}
+	img.page {
+		border:1px solid #ccc;
+	}
+}
+#form-user-company {
+	#admin-alert {
+display:none;
+	}
+}
