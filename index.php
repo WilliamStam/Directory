@@ -198,6 +198,120 @@ $f3->route("GET|POST /keepalive", function ($app, $params) {
 
 
 
+$f3->route("GET|POST /send", function ($app, $params) {
+	$path = './media/1/';
+	
+	$files = array(
+		//"test.jpg",
+			//"2019592250.jpg",
+			"AdbookerV3.pdf",
+			//"119356313115.jpg"
+	);
+
+// Helper function courtesy of https://github.com/guzzle/guzzle/blob/3a0787217e6c0246b457e637ddd33332efea1d2a/src/Guzzle/Http/Message/PostFile.php#L90
+	function getCurlValue($filename, $contentType, $postname)
+	{
+		// PHP 5.5 introduced a CurlFile object that deprecates the old @filename syntax
+		// See: https://wiki.php.net/rfc/curl-file-upload
+		if (function_exists('curl_file_create')) {
+			return curl_file_create($filename, $contentType, $postname);
+		}
+		
+		// Use the old style if using an older version of PHP
+		$value = "@{$this->filename};filename=" . $postname;
+		if ($contentType) {
+			$value .= ';type=' . $contentType;
+		}
+		
+		return $value;
+	}
+	$data = array(
+		"ID"=>"123",
+			"name"=>"william"
+	);
+	$web = new \Web();
+	$i = 0;
+	foreach ($files as $item){
+		$i = $i + 1;
+		$mime = $web->mime($item);
+		$cfile = getCurlValue($path.$item,$mime,$item);
+		$data["file$i"] = $cfile;
+	}
+	//test_array($data); 
+	//$filename = './media/1/test.jpg';
+	
+
+//NOTE: The top level key in the array is important, as some apis will insist that it is 'file'.
+	//$data = array('file' => $cfile);
+	
+	$ch = curl_init();
+	$options = array(CURLOPT_URL => 'http://directory.local/receive',
+			CURLOPT_RETURNTRANSFER => true,
+			CURLINFO_HEADER_OUT => true, //Request header
+			CURLOPT_HEADER => true, //Return header
+			CURLOPT_SSL_VERIFYPEER => false, //Don't veryify server certificate
+			CURLOPT_POST => true,
+			CURLOPT_POSTFIELDS => $data
+	);
+	
+	curl_setopt_array($ch, $options);
+	$result = curl_exec($ch);
+	$header_info = curl_getinfo($ch,CURLINFO_HEADER_OUT);
+	$header_size = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
+	$header = substr($result, 0, $header_size);
+	$body = substr($result, $header_size);
+	curl_close($ch);
+	//exit();
+	
+	test_array(array(
+		'header'=>array(
+			"sent"=>$header_info,
+			"recieved"=>$header
+		),
+		"body"=>$body
+	));
+	/*
+	echo " <p>Raw Result: {$result}
+    <p>Header Sent: {$header_info}</p>
+    <p>Header Received: {$header}</p>
+    <p>Body: {$body}</p>";
+	*/
+});
+
+
+$f3->route("GET|POST /receive", function ($app, $params) {
+	
+	//$folder = $app->get("MEDIA");
+	//$folder = $folder . "files/temp/";
+	$folder = './media/2/';
+	if (!file_exists($folder)) {
+		mkdir($folder, 0755, true);
+	}
+	
+	//test_array($_POST); 
+	
+	//test_array($_FILES); 
+	$return = array();
+	foreach ($_FILES as $key => $item){
+		$fileName = isset($item["name"]) ? $item["name"] : '';
+		//print_r($key);
+		//$_FILES['file'] = $item;
+		echo json_encode(upload($_POST['ID']."-".$fileName, $folder, $item));
+	}
+//	test_array($_POST); 
+	
+	//$result['return'] = $return;
+	//header("Content-Type: application/json");
+	//test_array($result); 
+	
+	
+	
+});
+
+
+
+
+
 
 
 
