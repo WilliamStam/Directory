@@ -25,7 +25,7 @@ module.exports = function(grunt) {
 					'vendor/moxiecode/plupload/js/jquery.plupload.queue/jquery.plupload.queue.js',
 					//'vendor/plupload/js/plupload.full.js',
 					//'vendor/plupload/js/jquery.plupload.queue/jquery.plupload.queue.js',
-					'vendor/ivaynberg/select2/select2.js',
+					'vendor/ivaynberg/select2/dist/js/select2.js',
 					'app/_js/plugins/jquery.getData.js',
 					'app/_js/plugins/jquery.ba-dotimeout.min.js',
 					'app/_js/plugins/jquery.ba-bbq.js',

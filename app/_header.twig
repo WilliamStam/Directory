@@ -1,4 +1,18 @@
-<div class="navbar navbar-fixed-top " id="main-nav-bar">
+<div class="container">
+	<div class="row">
+		<div id="nav-alpha" style="border-bottom:1px solid #ccc; margin-bottom:10px;">
+			<ol class="breadcrumb " style="margin:0;"  >
+				<li><a href="#">#</a></li>
+				{% for letter in 'A'..'Z' %}
+					<li><a href="#">{{ letter }}</a></li>
+				{% endfor %}
+				<li class="pull-right active">100000 items</li>
+			</ol>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+</div>
+<div class="navbar " id="">
 	<div class="container">
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header">
@@ -8,7 +22,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">Directory</a>
+			<a class="navbar-brand" href="#" style="margin-right:50px;">Directory</a>
 		</div>
 		
 		<!-- Collect the nav links, forms, and other content for toggling -->
@@ -17,51 +31,85 @@
 				
 				<li class='divider-vertical'></li>
 				<li class="dropdown">
-					<a href="#nav-cats" data-toggle="collapse" href="#nav-cats" aria-expanded="false" aria-controls="nav-cats">
+					<a id="dLabel" role="button" data-toggle="dropdown"  data-target="#" href="/list">
 						<i class="fa fa-tags"></i>
-						Categories </a>
+						Categories <span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+							<a class="trigger right-caret">Level 1.1</a>
+							<ul class="dropdown-menu sub-menu">
+								<li><a href="#">Level 2</a></li>
+								<li>
+									<a class="trigger right-caret">Level 2</a>
+									<ul class="dropdown-menu sub-menu">
+										<li><a href="#">Level 3</a></li>
+										<li><a href="#">Level 3</a></li>
+										<li>
+											<a class="trigger right-caret">Level 3</a>
+											<ul class="dropdown-menu sub-menu">
+												<li><a href="#">Level 4</a></li>
+												<li><a href="#">Level 4</a></li>
+												<li><a href="#">Level 4</a></li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+								<li><a href="#">Level 2</a></li>
+							</ul>
+						</li>
+						<li><a href="#">Level 1.2</a></li>
+						<li><a class="trigger right-caret">Level 1.3</a>
+							<ul class="dropdown-menu sub-menu">
+								<li><a href="#">Level 2</a></li>
+								<li>
+									<a class="trigger right-caret">Level 2</a>
+									<ul class="dropdown-menu sub-menu">
+										<li><a href="#">Level 3</a></li>
+										<li><a href="#">Level 3</a></li>
+										<li>
+											<a class="trigger right-caret">Level 3</a>
+											<ul class="dropdown-menu sub-menu">
+												<li><a href="#">Level 4</a></li>
+												<li><a href="#">Level 4</a></li>
+												<li><a href="#">Level 4</a></li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+								<li><a href="#">Level 2</a></li>
+							</ul></li>
+					</ul>
 					
 				</li>
 				<li>
-					<a data-toggle="collapse" href="#nav-alpha" aria-expanded="false" aria-controls="nav-alpha"><i class="fa fa-sort-alpha-asc"></i> Alphabetically</a>
+					<a href="/map">
+						<i class="fa fa-map-o"></i> Map
+					</a>
 				</li>
-				<li>
-					<a href="/submit"><i class="fa fa-plus-square"></i> Submit a listing</a>
-				</li>
+				
 				
 				
 			</ul>
 			
 			<ul class="nav navbar-nav navbar-right">
-				<li class="divider-vertical"></li>
 				<li><a href="/about">About</a></li>
 				<li><a href="/contact">Contact</a></li>
-				<li>
-					<form class="navbar-form navbar-left" role="search">
-						<div class="form-group">
-							<input type="text" class="form-control" placeholder="Search">
-						</div>
-						<button type="submit" class="btn btn-default">Submit</button>
-					</form>
+				
+				<li class="divider-vertical"></li><li>
+					<a href="/submit"><i class="fa fa-plus-square"></i> Submit a listing</a>
 				</li>
 				
+				
+				
+				
 			</ul>
+			
 		</div><!-- /.navbar-collapse -->
-	
-	
+		
+		
 
-<div class="clearfix"></div>
-	<div id="nav-alpha" class='collapse collapse-menu'  data-collapse-group='nav-menu'>
-		<ol class="breadcrumb "  >
-			<li><a href="#">other</a></li>
-			{% for letter in 'a'..'z' %}
-				<li><a href="#">{{ letter }}</a></li>
-			{% endfor %}
-		</ol>
-	</div>
-	<div class="collapse collapse-menu" id="nav-cats" data-collapse-group='nav-menu'>
-		categories
-	</div>
+
 	
 </div><!-- /.container-fluid -->
 </div>
