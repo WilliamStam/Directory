@@ -77,7 +77,7 @@ $uID = isset($_SESSION['uID']) ? $_SESSION['uID'] : "";
 $username = isset($_REQUEST['login_email']) ? $_REQUEST['login_email'] : "";
 $password = isset($_REQUEST['login_password']) ? $_REQUEST['login_password'] : "";
 
-//$userO = new \models\user();
+$userO = new \models\user();
 //$uID = "2";
 
 
