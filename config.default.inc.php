@@ -9,7 +9,7 @@ $cfg['contact'] = "team@meetpad.org";
 $cfg['DB']['host'] = "localhost";
 $cfg['DB']['username'] = "";
 $cfg['DB']['password'] = "";
-$cfg['DB']['database'] = "Directory";
+$cfg['DB']['database'] = "directory";
 
 $cfg['git'] = array(
 	'username'=>"",
