@@ -2,7 +2,7 @@
 	<![CDATA[
 	
 	
-	<section class="scroll-pane" style="left:10px;">
+	<section >
 		
 		left
 
@@ -14,6 +14,10 @@
 <script type="text/x-jqote-template" id="template-right">
 	<![CDATA[
 
-	right
+	<section>right
+		<div style="height: 700px;"></div>
+	</section>
+	
+	
 	]]>
 </script>

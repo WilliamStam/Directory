@@ -3,10 +3,18 @@
 
 #left-area{
 	background-color: #fff;
-	
+	box-shadow: 0px 0px 10px rgba(150, 150, 150, 0.3),0px 0px 10px rgba(150, 150, 150, 0.2)inset;
 	overflow-y: auto;
-	border-right:1px solid #ccc;
+	border:1px solid #ccc;
+	-webkit-border-radius :5px;
+	-moz-border-radius    :5px;
+	border-radius         :5px;
 	
+	
+	
+	#left-area-content {
+		padding:10px;
+	}
 }
 
 #left-area.affix-top {
@@ -16,17 +24,27 @@
 
 #left-area.affix {
 	position: fixed;
-	top:40px;
-	bottom:0;
+	top:100px;
+	bottom:50px;
 	max-width:395px;
 	width:100%;
 }
 
 
 #right-area {
-	background-color: #fff;
 	position:relative;
-	padding-left:10px;
+	padding-left:8px;
+	#right-area-content-area {
+		background-color: #fff;
+		box-shadow: 0px 0px 10px rgba(150, 150, 150, 0.3),0px 0px 10px rgba(150, 150, 150, 0.2)inset;
+		border:1px solid #ccc;
+		-webkit-border-radius :5px;
+		-moz-border-radius    :5px;
+		border-radius         :5px;
+		#right-area-content {
+			padding:10px;
+		}
+	}
 }
 .offcanvas-btn-show {
 	display:block;
@@ -105,43 +123,5 @@
 		position: absolute;
 		top: 0;
 		max-width: 395px; 
-	}
-}
-
-#left-area {
-	h1 {
-		margin-bottom: 19px;
-	}
-	.table th{
-		font-weight:bold;
-		font-size:16px;
-		padding-top:15px;
-	}
-}
-#meeting-date-line {
-	border-bottom:1px solid #ddd;
-	margin-top:-5px;
-	padding-bottom:3px;
-}
-.ggg {
-	background-color: red;
-}
-.groups-access {
-	margin-bottom:10px;
-	.label-default {
-		background-color: #f1f1f1;
-		color: #ccc;
-
-	}
-}
-
-
-.meeting-block {
-	border-bottom:3px solid #ccc;
-	padding:10px;
-	margin-bottom:20px;
-	h4 {
-		border-bottom:1px dotted #ccc;
-		padding:5px 0;
 	}
 }

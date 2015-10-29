@@ -102,13 +102,15 @@ function getData() {
 			
 
 		})
-		resize()
 		
 		
 
 	});
-
-
+	
+	$(window).scroll(function (event) {
+		scroll();
+		// Do something
+	});
 }
 
 
@@ -121,10 +123,11 @@ var settings = {
 function resize() {
 	//console.log($("#left-area").height())
 	$("#right-area").css({minHeight: $("#left-area").height() - 2 + "px"});
+	//$("#footer-nav-bar").css("margin-bottom",$("#search-bar").height())
+	
+	scroll();
 
-
-
-
+/*
 	$.each($('.scroll-pane'), function () {
 		var api = $(this).data('jsp');
 		if (api) {
@@ -134,10 +137,56 @@ function resize() {
 		}
 
 	});
-
+*/
 
 
 
 }
-
+function scroll(){
+	
+	var scroll = $(window).scrollTop();
+	
+	var pageContentPosition = $("#page-content").position();
+	var topForLeft = pageContentPosition.top - scroll;
+	topForLeft = topForLeft>0?topForLeft:0;
+	
+	var $mobilemenu = $("#mobile-menu");
+	var $pagecontent = $("#page-content");
+	var $rightArea = $("#right-area");
+	
+	var bodyHeight = $("body").height();
+	var windowHeight = $(window).height();
+	var contentHeight = $pagecontent.height()
+	var contentTop = $pagecontent.position().top
+	var footerHeight = $("#footer-nav-bar").outerHeight(true)
+	var footerTop = $("#footer-nav-bar").position().top
+	var searchBarHeight = $("#search-bar").height();
+	
+	var offset =  (((((windowHeight + scroll)) - bodyHeight) + footerHeight) ) 
+	
+	
+	
+	var bottomForLeft = offset<searchBarHeight?searchBarHeight:offset;
+	//console.log(bottomForLeft)
+	
+	$("#footer-nav-bar .navbar-inverse ").css("padding-bottom",searchBarHeight);
+	
+	console.log("window height: "+windowHeight+" | content height: "+contentHeight+" | content top:"+contentTop+" | scroll:"+scroll+" | body height:"+bodyHeight+" | footer height:"+footerHeight+" | footer top:"+footerTop+" | search height:"+searchBarHeight+" | offset:"+offset+" | "+bottomForLeft)
+	
+	console.log(bottomForLeft+" | "+offset)
+	
+	
+	
+	if ($mobilemenu.is(":visible")){
+		$rightArea.css("margin-top",44);
+		topForLeft = 44
+	} else {
+		$rightArea.css("margin-top",0);
+	}
+	
+	$("#left-area").css({
+		"top":topForLeft,
+		"bottom":bottomForLeft
+	});
+}
 

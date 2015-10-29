@@ -1,37 +1,108 @@
-<div class="container">
-	<div class="row">
-		<div id="nav-alpha" style="border-bottom:1px solid #ccc; margin-bottom:10px;">
-			<ol class="breadcrumb " style="margin:0;"  >
-				<li><a href="#">#</a></li>
-				{% for letter in 'A'..'Z' %}
-					<li><a href="#">{{ letter }}</a></li>
-				{% endfor %}
-				<li class="pull-right active">100000 items</li>
-			</ol>
-			<div class="clearfix"></div>
+<section id="main-nav-bar">
+	
+	
+	<div class="container hidden-xs hidden-sm">
+		<div class="row">
+			<div id="nav-alpha" style="border-bottom:1px solid #ccc; margin-bottom:10px;">
+				<ol class="breadcrumb " style="margin:0;">
+					<li><a href="#">#</a></li>
+					{% for letter in 'A'..'Z' %}
+						<li><a href="#">{{ letter }}</a></li>
+					{% endfor %}
+					<li class="pull-right active">100000 items</li>
+				</ol>
+				<div class="clearfix"></div>
+			</div>
 		</div>
 	</div>
-</div>
-<div class="navbar " id="">
-	<div class="container">
-		<!-- Brand and toggle get grouped for better mobile display -->
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-menu" aria-expanded="false">
-				<span class="sr-only">Toggle navigation</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="#" style="margin-right:50px;">Directory</a>
-		</div>
+	
+	<div class="navbar navbar-fixed-top navbar-inverse visible-xs" style="z-index: 99999;" id="mobile-menu">
+		<div class="container">
+			<div class="navbar-header dropdown">
+				<div class="dropdown">
+					<button type="button" class="dropdown-toggle btn-default navbar-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+						<i class="fa fa-bars"></i>
+					</button>
+					
+						<ul class="dropdown-menu dropdown-menu-right" style="top:44px;z-index: 99;">
+							<li><a href="/about">About</a></li>
+							<li><a href="/contact">Contact</a></li>
+						</ul>
+				
+				</div>
+				
+				<a class="navbar-brand" href="#" style="margin-right:50px;">Directory</a>
+				
+				<ul class="nav nav-pills pull-right" style="margin-top:3px;">
+					<li role="presentation" ><a href="#" class=" collapsed" data-toggle="collapse" data-target="#bs-mobile-menu-categories">Categories</a></li>
+					<li role="presentation"><a href="#">Map</a></li>
+				</ul>
+			</div>
+			
+			<div class="collapse navbar-collapse" id="bs-mobile-menu-categories">
+				<ul class="nav navbar-nav">
+					<li>
+						<a class="trigger right-caret">Level 1.1</a>
+						<ul class="dropdown-menu sub-menu">
+							<li><a href="#">Level 2</a></li>
+							<li>
+								<a class="trigger right-caret">Level 2</a>
+								<ul class="dropdown-menu sub-menu">
+									<li><a href="#">Level 3</a></li>
+									<li><a href="#">Level 3</a></li>
+									<li>
+										<a class="trigger right-caret">Level 3</a>
+										<ul class="dropdown-menu sub-menu">
+											<li><a href="#">Level 4</a></li>
+											<li><a href="#">Level 4</a></li>
+											<li><a href="#">Level 4</a></li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+							<li><a href="#">Level 2</a></li>
+						</ul>
+					</li>
+					<li><a href="#">Level 1.2</a></li>
+					<li><a class="trigger right-caret">Level 1.3</a>
+						<ul class="dropdown-menu sub-menu">
+							<li><a href="#">Level 2</a></li>
+							<li>
+								<a class="trigger right-caret">Level 2</a>
+								<ul class="dropdown-menu sub-menu">
+									<li><a href="#">Level 3</a></li>
+									<li><a href="#">Level 3</a></li>
+									<li>
+										<a class="trigger right-caret">Level 3</a>
+										<ul class="dropdown-menu sub-menu">
+											<li><a href="#">Level 4</a></li>
+											<li><a href="#">Level 4</a></li>
+											<li><a href="#">Level 4</a></li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+							<li><a href="#">Level 2</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
 		
-		<!-- Collect the nav links, forms, and other content for toggling -->
-		<div class="collapse navbar-collapse" id="bs-menu">
+		</div>
+	</div>
+	<div class="navbar hidden-xs" style="margin-bottom:10px;">
+		<div class="container">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#" style="margin-right:50px;">Directory</a>
+			</div>
+			
+			<!-- Collect the nav links, forms, and other content for toggling -->
 			<ul class="nav navbar-nav">
 				
 				<li class='divider-vertical'></li>
 				<li class="dropdown">
-					<a id="dLabel" role="button" data-toggle="dropdown"  data-target="#" href="/list">
+					<a id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="/list">
 						<i class="fa fa-tags"></i>
 						Categories <span class="caret"></span>
 					</a>
@@ -78,38 +149,33 @@
 									</ul>
 								</li>
 								<li><a href="#">Level 2</a></li>
-							</ul></li>
+							</ul>
+						</li>
 					</ul>
-					
+				
 				</li>
 				<li>
 					<a href="/map">
 						<i class="fa fa-map-o"></i> Map
 					</a>
 				</li>
-				
-				
-				
+			
+			
 			</ul>
 			
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="/about">About</a></li>
 				<li><a href="/contact">Contact</a></li>
 				
-				<li class="divider-vertical"></li><li>
+				<li class="divider-vertical"></li>
+				<li>
 					<a href="/submit"><i class="fa fa-plus-square"></i> Submit a listing</a>
 				</li>
-				
-				
-				
-				
-			</ul>
 			
-		</div><!-- /.navbar-collapse -->
+			
+			</ul>
 		
 		
-
-
-	
-</div><!-- /.container-fluid -->
-</div>
+		</div><!-- /.container-fluid -->
+	</div>
+</section>
