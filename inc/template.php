@@ -67,8 +67,10 @@ class template {
 		$this->vars['_isAjax'] = is_ajax();
 
 
+		$categories = models\categories::getInstance()->getAll("","category ASC");
+		$this->vars['_categories'] = $categories;
 
-
+		//test_array($categories); 
 		
 
 	}

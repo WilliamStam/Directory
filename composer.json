@@ -85,6 +85,18 @@
           "reference": "origin/master"
         }
       }
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "components/smartmenus",
+        "version": "dev-master",
+        "source": {
+          "url": "https://github.com/vadikom/smartmenus",
+          "type": "git",
+          "reference": "origin/master"
+        }
+      }
     }
   ],
   "require": {
@@ -107,6 +119,7 @@
     "components/jquery-cookie": "*",
     "timrwood/moment": "2.*",
     "ckeditor/ckeditor": "4.*",
-    "cogpowered/finediff": "*"
+    "cogpowered/finediff": "*",
+    "components/smartmenus":"dev-master"
   }
 }

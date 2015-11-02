@@ -1,3 +1,48 @@
+{% macro categoryWeb(data) %}
+	{% import _self as macro %}
+	{% for row in data %}
+		<li>
+			
+			
+			<a href="/{{ row['url'] }}">
+				
+				{% if row['children']|length %}
+					<span class="pull-right" style="margin-right:-15px;"><i class="fa fa-caret-right"></i></span>
+				{% endif %}
+				{{ row['category'] }}
+			</a>
+			
+			{% if row['children']|length %}
+				<ul class="">
+					{{ macro.categoryWeb(row['children']) }}
+				</ul>
+			{% endif %}
+		</li>
+	{% endfor %}
+{% endmacro %}
+{% macro categoryMobile(data) %}
+	{% import _self as macro %}
+	{% for row in data %}
+		<li>
+			
+			
+			<a href="/{{ row['url'] }}">
+				
+				
+				{{ row['category'] }}
+			</a>
+			
+			{% if row['children']|length %}
+				<ul class="nav sub-menu" style="display: block; margin-left:30px; border-left:1px solid #ccc; ">
+					{{ macro.categoryMobile(row['children']) }}
+				</ul>
+			{% endif %}
+		</li>
+	{% endfor %}
+{% endmacro %}
+	
+	{% import _self as macro %}
+
 <section id="main-nav-bar">
 	
 	
@@ -24,72 +69,33 @@
 						<i class="fa fa-bars"></i>
 					</button>
 					
-						<ul class="dropdown-menu dropdown-menu-right" style="top:44px;z-index: 99;">
-							<li><a href="/about">About</a></li>
-							<li><a href="/contact">Contact</a></li>
-						</ul>
+					<ul class="dropdown-menu dropdown-menu-right" style="top:44px;z-index: 99;">
+						<li><a href="/about">About</a></li>
+						<li><a href="/contact">Contact</a></li>
+					</ul>
 				
 				</div>
 				
 				<a class="navbar-brand" href="#" style="margin-right:50px;">Directory</a>
 				
 				<ul class="nav nav-pills pull-right" style="margin-top:3px;">
-					<li role="presentation" ><a href="#" class=" collapsed" data-toggle="collapse" data-target="#bs-mobile-menu-categories">Categories</a></li>
+					<li role="presentation">
+						<a href="#" class=" collapsed" data-toggle="collapse" data-target="#bs-mobile-menu-categories">Categories</a>
+					</li>
 					<li role="presentation"><a href="#">Map</a></li>
 				</ul>
 			</div>
 			
 			<div class="collapse navbar-collapse" id="bs-mobile-menu-categories">
 				<ul class="nav navbar-nav">
-					<li>
-						<a class="trigger right-caret">Level 1.1</a>
-						<ul class="dropdown-menu sub-menu">
-							<li><a href="#">Level 2</a></li>
-							<li>
-								<a class="trigger right-caret">Level 2</a>
-								<ul class="dropdown-menu sub-menu">
-									<li><a href="#">Level 3</a></li>
-									<li><a href="#">Level 3</a></li>
-									<li>
-										<a class="trigger right-caret">Level 3</a>
-										<ul class="dropdown-menu sub-menu">
-											<li><a href="#">Level 4</a></li>
-											<li><a href="#">Level 4</a></li>
-											<li><a href="#">Level 4</a></li>
-										</ul>
-									</li>
-								</ul>
-							</li>
-							<li><a href="#">Level 2</a></li>
-						</ul>
-					</li>
-					<li><a href="#">Level 1.2</a></li>
-					<li><a class="trigger right-caret">Level 1.3</a>
-						<ul class="dropdown-menu sub-menu">
-							<li><a href="#">Level 2</a></li>
-							<li>
-								<a class="trigger right-caret">Level 2</a>
-								<ul class="dropdown-menu sub-menu">
-									<li><a href="#">Level 3</a></li>
-									<li><a href="#">Level 3</a></li>
-									<li>
-										<a class="trigger right-caret">Level 3</a>
-										<ul class="dropdown-menu sub-menu">
-											<li><a href="#">Level 4</a></li>
-											<li><a href="#">Level 4</a></li>
-											<li><a href="#">Level 4</a></li>
-										</ul>
-									</li>
-								</ul>
-							</li>
-							<li><a href="#">Level 2</a></li>
-						</ul>
-					</li>
+					{{ macro.categoryMobile(_categories) }}
 				</ul>
 			</div>
 		
 		</div>
 	</div>
+	
+	
 	<div class="navbar hidden-xs" style="margin-bottom:10px;">
 		<div class="container">
 			<!-- Brand and toggle get grouped for better mobile display -->
@@ -102,55 +108,14 @@
 				
 				<li class='divider-vertical'></li>
 				<li class="dropdown">
-					<a id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="/list">
+					<a class="dropdown-toggle" data-toggle="dropdown" >
 						<i class="fa fa-tags"></i>
 						Categories <span class="caret"></span>
 					</a>
-					<ul class="dropdown-menu">
-						<li>
-							<a class="trigger right-caret">Level 1.1</a>
-							<ul class="dropdown-menu sub-menu">
-								<li><a href="#">Level 2</a></li>
-								<li>
-									<a class="trigger right-caret">Level 2</a>
-									<ul class="dropdown-menu sub-menu">
-										<li><a href="#">Level 3</a></li>
-										<li><a href="#">Level 3</a></li>
-										<li>
-											<a class="trigger right-caret">Level 3</a>
-											<ul class="dropdown-menu sub-menu">
-												<li><a href="#">Level 4</a></li>
-												<li><a href="#">Level 4</a></li>
-												<li><a href="#">Level 4</a></li>
-											</ul>
-										</li>
-									</ul>
-								</li>
-								<li><a href="#">Level 2</a></li>
-							</ul>
-						</li>
-						<li><a href="#">Level 1.2</a></li>
-						<li><a class="trigger right-caret">Level 1.3</a>
-							<ul class="dropdown-menu sub-menu">
-								<li><a href="#">Level 2</a></li>
-								<li>
-									<a class="trigger right-caret">Level 2</a>
-									<ul class="dropdown-menu sub-menu">
-										<li><a href="#">Level 3</a></li>
-										<li><a href="#">Level 3</a></li>
-										<li>
-											<a class="trigger right-caret">Level 3</a>
-											<ul class="dropdown-menu sub-menu">
-												<li><a href="#">Level 4</a></li>
-												<li><a href="#">Level 4</a></li>
-												<li><a href="#">Level 4</a></li>
-											</ul>
-										</li>
-									</ul>
-								</li>
-								<li><a href="#">Level 2</a></li>
-							</ul>
-						</li>
+					<ul id="category-drop-down" class="sm sm-vertical sm-simple dropdown-menu" >
+						{{ macro.categoryWeb(_categories) }}
+						
+						
 					</ul>
 				
 				</li>

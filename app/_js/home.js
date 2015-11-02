@@ -1,6 +1,11 @@
 var left = $("#left-area .scroll-pane");
 
 $(document).ready(function () {
+	
+	$("#category-drop-down").smartmenus({
+		keepInViewport:true
+	});
+	
 	$(document).on('click', '[data-toggle="offcanvas"]', function () {
 		$('#right-area').toggleClass('active')
 	});

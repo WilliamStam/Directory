@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "421941d8051067d4cf7ec986ace5ba7f",
-    "content-hash": "3b3898d2e6fd868a9a1a0c72e96383c8",
+    "hash": "9df29537099ee661176b7301ce37b983",
+    "content-hash": "ca25662b1896423ec59b548e87d81778",
     "packages": [
         {
             "name": "bcosca/fatfree",
@@ -555,6 +555,17 @@
             "time": "2014-10-08 13:59:52"
         },
         {
+            "name": "components/smartmenus",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/vadikom/smartmenus",
+                "reference": "origin/master"
+            },
+            "type": "library",
+            "time": "2015-07-02 08:56:10"
+        },
+        {
             "name": "ivaynberg/select2",
             "version": "4.0.0",
             "source": {
@@ -756,23 +767,20 @@
         },
         {
             "name": "symfony/process",
-            "version": "v2.7.5",
+            "version": "v2.7.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
-                "reference": "b27c8e317922cd3cdd3600850273cf6b82b2e8e9"
+                "reference": "4a959dd4e19c2c5d7512689413921e0a74386ec7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/process/zipball/b27c8e317922cd3cdd3600850273cf6b82b2e8e9",
-                "reference": "b27c8e317922cd3cdd3600850273cf6b82b2e8e9",
+                "url": "https://api.github.com/repos/symfony/process/zipball/4a959dd4e19c2c5d7512689413921e0a74386ec7",
+                "reference": "4a959dd4e19c2c5d7512689413921e0a74386ec7",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.9"
-            },
-            "require-dev": {
-                "symfony/phpunit-bridge": "~2.7"
             },
             "type": "library",
             "extra": {
@@ -801,7 +809,7 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
-            "time": "2015-09-19 19:59:23"
+            "time": "2015-10-23 14:47:27"
         },
         {
             "name": "timrwood/moment",
@@ -859,16 +867,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v1.22.3",
+            "version": "v1.23.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "ebfc36b7e77b0c1175afe30459cf943010245540"
+                "reference": "5868cd822fd6cf626d5f805439575f9c323cee2a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/ebfc36b7e77b0c1175afe30459cf943010245540",
-                "reference": "ebfc36b7e77b0c1175afe30459cf943010245540",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/5868cd822fd6cf626d5f805439575f9c323cee2a",
+                "reference": "5868cd822fd6cf626d5f805439575f9c323cee2a",
                 "shasum": ""
             },
             "require": {
@@ -881,7 +889,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.22-dev"
+                    "dev-master": "1.23-dev"
                 }
             },
             "autoload": {
@@ -916,7 +924,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2015-10-13 07:07:02"
+            "time": "2015-10-29 23:29:01"
         }
     ],
     "packages-dev": [],
@@ -929,7 +937,8 @@
         "components/jquery-jscrollpane": 20,
         "components/jquery-mousewheel": 20,
         "components/jqote2": 20,
-        "components/touchswipe-jquery-plugin": 20
+        "components/touchswipe-jquery-plugin": 20,
+        "components/smartmenus": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
