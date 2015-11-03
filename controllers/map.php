@@ -23,7 +23,7 @@ class map extends _ {
 				"title"=> "Directory | Map",
 			),
 			"css"=>"",
-			"js"=>"",
+			"js"=>"http://maps.google.com/maps/api/js?sensor=false",
 		);
 		$tmpl->output();
 	}
