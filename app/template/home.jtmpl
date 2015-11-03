@@ -5,8 +5,16 @@
 	<section >
 		
 		<h3>Suggested</h3>
+		<a href="/place/1/this-is-my-place">
 		<div style="background-color: #e1e1e1; border:1px solid #ccc; width:360px; height:200px;"></div>
-
+		<h5>THis is my place</h5>
+		</a>
+		<div class="clearfix" style="height:30px;"></div>
+		<h4>Recently Added</h4>
+		
+		
+		
+		<div class="clearfix" style="height:30px;"></div>
 		<div style="position: absolute; bottom:5px; left:10px; right:10px;" class="c">
 			Know a place that's not listed? let us know <a href="/submit"><i class="fa fa-plus-square" style="margin-left:10px;"></i> Submit a listing</a>
 		
@@ -18,7 +26,23 @@
 </script>
 <script type="text/x-jqote-template" id="template-right">
 	<![CDATA[
-
+	<h1>Search</h1>
+	<section id="inline-search-block">
+		
+		<form role="search"  class="form-inline c" action="/search" >
+			
+			
+			<div class="form-group">
+				<input type="text" class="form-control" placeholder="let us help you find it">
+			</div>
+			<button type="submit" class="btn btn-default">Search</button>
+		</form>
+	
+		
+		
+	</section>
+	<p class="alert alert-info">Search for "electrical" to return categories that include the word </p>
+	
 	<section id="category-list-blocks" >
 		{% for row in _categories %}
 			<a href="/list/{{ row['ID'] }}/{{ row['url'] }}">
