@@ -55,7 +55,7 @@ class categories extends _ {
 		}
 		
 		$sql = "
-			SELECT *
+			SELECT *, (SELECT count(ID) FROM dir_items INNER JOIN dir_item_category ON dir_item_category.itemID = dir_items.ID WHERE catID = dir_categories.ID) AS itemCount
 			 FROM dir_categories
 			 
 			WHERE $where
@@ -130,7 +130,7 @@ class categories extends _ {
 		
 		
 		foreach ($data as $item) {
-			
+			$item['url'] = toAscii($item['category']);
 			$n[] = $item;
 		}
 		

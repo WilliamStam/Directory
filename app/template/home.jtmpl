@@ -4,8 +4,13 @@
 	
 	<section >
 		
-		left
+		<h3>Suggested</h3>
+		<div style="background-color: #e1e1e1; border:1px solid #ccc; width:360px; height:200px;"></div>
 
+		<div style="position: absolute; bottom:5px; left:10px; right:10px;">
+			Know a place thats not listed? let us know <a href="/submit"><i class="fa fa-plus-o"></i> Submit a listing</a>
+		
+		</div>
 	</section>
 
 	<section class="content-footer"></section>
@@ -14,8 +19,17 @@
 <script type="text/x-jqote-template" id="template-right">
 	<![CDATA[
 
-	<section>right
-		<div style="height: 900px;"></div>
+	<section id="category-list-blocks" >
+		{% for row in _categories %}
+			<a href="/list/{{ row['ID'] }}/{{ row['url'] }}">
+				{% if row['itemCount'] %}
+				<span class="badge pull-right">{{ row['itemCount'] }}</span>	
+				{% endif %}
+				{{ row['category'] }}
+			
+			</a>
+		{% endfor %}
+		<div class="clearfix"></div>
 	</section>
 	
 	

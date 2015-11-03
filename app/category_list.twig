@@ -1,0 +1,27 @@
+{% macro categoryMobile(data) %}
+	{% import _self as macro %}
+	{% for row in data %}
+		<li>
+			
+			
+			<a href="/list/{{ row['ID'] }}/{{ row['url'] }}">
+				{% if row['itemCount'] %}
+					<span class="badge pull-right">{{ row['itemCount'] }}</span>
+				{% endif %}
+				{{ row['category'] }}
+			</a>
+			
+			{% if row['children']|length %}
+				<ul class="nav sub-menu" style="display: block; margin-left:30px; border-left:1px solid #ccc; ">
+					{{ macro.categoryMobile(row['children']) }}
+				</ul>
+			{% endif %}
+		</li>
+	{% endfor %}
+{% endmacro %}
+	
+	{% import _self as macro %}
+
+<ul class="nav">
+	{{ macro.categoryMobile(_categories) }}
+</ul>

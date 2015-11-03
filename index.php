@@ -125,6 +125,7 @@ $f3->route('GET /txt', function ($f3) {
 
 $f3->route('GET|POST /login', 'controllers\login->page');
 $f3->route('GET|POST /', 'controllers\home->page');
+$f3->route('GET|POST /list', 'controllers\category_list->page');
 
 
 
