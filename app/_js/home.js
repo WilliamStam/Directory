@@ -1,83 +1,7 @@
-var left = $("#left-area .scroll-pane");
 
 $(document).ready(function () {
 	
-	$("#category-drop-down").smartmenus({
-		keepInViewport:true
-	});
 	
-	$(document).on('click', '[data-toggle="offcanvas"]', function () {
-		$('#right-area').toggleClass('active')
-	});
-	
-	$(document).on('click', '.pagination li a', function (e) {
-		e.preventDefault();
-		var page = $(this).attr("data-page");
-		$.bbq.pushState({"page":page});
-		getData();
-	});
-
-	$(window).resize(function () {
-		$.doTimeout('resize', 250, function () {
-			resize();
-		});
-	});
-	resize();
-
-	
-	$(document).on('hide.bs.modal', "#form-modal", function () {
-		getData();
-	});
-	$(document).on('submit', "#add-to-company", function (e) {
-		e.preventDefault();
-		
-		var $this = $(this);
-		var data = $this.serialize();
-		
-		$.post("/save/company/invitecode",data,function(r){
-			var data = r.data;
-			if (data.company.ID){
-				$.bbq.pushState({"invite":data.company.company});
-			}
-			validationErrors(data, $this);
-			if ($.isEmptyObject(data['errors'])) {
-				getData();
-			}
-		})
-		
-	});
-
-	$("#right-area").swipe({
-		//Generic swipe handler for all directions
-		swipe: function (event, direction, distance, duration, fingerCount, fingerData) {
-
-			switch (direction) {
-				case "right":
-					$(this).addClass("active");
-					break;
-				case "left":
-					$(this).removeClass("active");
-					break;
-			}
-
-
-		}, //Default is 75px, set to 0 for demo so any distance triggers swipe
-		threshold: 75, allowPageScroll: "auto"
-	});
-	$("#left-area").swipe({
-		//Generic swipe handler for all directions
-		swipe: function (event, direction, distance, duration, fingerCount, fingerData) {
-
-			switch (direction) {
-
-				case "left":
-					$("#right-area").removeClass("active");
-					break;
-			}
-
-		}, //Default is 75px, set to 0 for demo so any distance triggers swipe
-		threshold: 75, allowPageScroll: "auto"
-	}).addClass("affix-bottom");
 
 	getData();
 
@@ -103,7 +27,7 @@ function getData() {
 
 
 		$.doTimeout(400,function(){
-			resize();
+			page_resize();
 			
 
 		})
@@ -112,86 +36,6 @@ function getData() {
 
 	});
 	
-	$(window).scroll(function (event) {
-		scroll();
-		// Do something
-	});
-}
-
-
-var settings = {
-	maintainPosition: true,
-	arrowButtonSpeed: 1,
-	showArrows: false,
-};
-
-function resize() {
-	//console.log($("#left-area").height())
-	$("#right-area").css({minHeight: $("#left-area").height() - 2 + "px"});
-	//$("#footer-nav-bar").css("margin-bottom",$("#search-bar").height())
 	
-	scroll();
-
-/*
-	$.each($('.scroll-pane'), function () {
-		var api = $(this).data('jsp');
-		if (api) {
-			api.reinitialise();
-		} else {
-			$(this).jScrollPane(settings);
-		}
-
-	});
-*/
-
-
-
-}
-function scroll(){
-	
-	var scroll = $(window).scrollTop();
-	
-	var pageContentPosition = $("#page-content").position();
-	var topForLeft = pageContentPosition.top - scroll;
-	topForLeft = topForLeft>0?topForLeft:0;
-	
-	var $mobilemenu = $("#mobile-menu");
-	var $pagecontent = $("#page-content");
-	var $rightArea = $("#right-area");
-	
-	var bodyHeight = $("body").height();
-	var windowHeight = $(window).height();
-	var contentHeight = $pagecontent.height()
-	var contentTop = $pagecontent.position().top
-	var footerHeight = $("#footer-nav-bar").outerHeight(true)
-	var footerTop = $("#footer-nav-bar").position().top
-	var searchBarHeight = $("#search-bar").height();
-	
-	var offset =  (((((windowHeight + scroll)) - bodyHeight) + footerHeight) ) 
-	
-	
-	
-	var bottomForLeft = offset<searchBarHeight?searchBarHeight:offset;
-	//console.log(bottomForLeft)
-	
-	$("#footer-nav-bar .navbar-inverse ").css("padding-bottom",searchBarHeight);
-	
-	console.log("window height: "+windowHeight+" | content height: "+contentHeight+" | content top:"+contentTop+" | scroll:"+scroll+" | body height:"+bodyHeight+" | footer height:"+footerHeight+" | footer top:"+footerTop+" | search height:"+searchBarHeight+" | offset:"+offset+" | "+bottomForLeft)
-	
-	console.log(bottomForLeft+" | "+offset)
-	
-	
-	
-	if ($mobilemenu.is(":visible")){
-		$rightArea.css("margin-top",44);
-		topForLeft = 44
-	} else {
-		$rightArea.css("margin-top",0);
-	}
-	
-	$("#left-area").css({
-		"top":topForLeft,
-		"bottom":bottomForLeft
-	});
 }
 

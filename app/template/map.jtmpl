@@ -1,0 +1,19 @@
+<script type="text/x-jqote-template" id="template-left">
+	<![CDATA[
+	
+	
+	<section >
+		
+		left
+	</section>
+
+	<section class="content-footer"></section>
+	]]>
+</script>
+<script type="text/x-jqote-template" id="template-right">
+	<![CDATA[
+	right
+	
+	
+	]]>
+</script>
