@@ -125,8 +125,10 @@ $f3->route('GET /txt', function ($f3) {
 
 $f3->route('GET|POST /login', 'controllers\login->page');
 $f3->route('GET|POST /', 'controllers\home->page');
-$f3->route('GET|POST /list', 'controllers\category_list->page');
+$f3->route('GET|POST /list', 'controllers\categories->page');
 $f3->route('GET|POST /map', 'controllers\map->page');
+$f3->route('GET|POST /list/@letter', 'controllers\list_alphabet->page');
+$f3->route('GET|POST /list/@catID/@url', 'controllers\list_category->page');
 
 
 

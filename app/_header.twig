@@ -1,7 +1,7 @@
-{% macro categoryWeb(data) %}
+{% macro categoryWeb(data,category) %}
 	{% import _self as macro %}
 	{% for row in data %}
-		<li>
+		<li {% if category['ID']==row['ID'] %} class="active"{% endif %}>
 			
 			
 			<a href="/list/{{ row['ID'] }}/{{ row['url'] }}" {% if row['itemCount'] %}  data-toggle="tooltip" data-placement="left" title="{{ row['itemCount'] }}"{% endif %}>
@@ -14,13 +14,13 @@
 			
 			{% if row['children']|length %}
 				<ul class="">
-					{{ macro.categoryWeb(row['children']) }}
+					{{ macro.categoryWeb(row['children'],category) }}
 				</ul>
 			{% endif %}
 		</li>
 	{% endfor %}
 {% endmacro %}
-{% macro categoryMobile(data) %}
+{% macro categoryMobile(data,category) %}
 	{% import _self as macro %}
 	{% for row in data %}
 		<li>
@@ -35,7 +35,7 @@
 			
 			{% if row['children']|length %}
 				<ul class="nav sub-menu" style="display: block; margin-left:30px; border-left:1px solid #ccc; ">
-					{{ macro.categoryMobile(row['children']) }}
+					{{ macro.categoryMobile(row['children'],category) }}
 				</ul>
 			{% endif %}
 		</li>
@@ -51,9 +51,9 @@
 		<div class="row">
 			<div id="nav-alpha" style="border-bottom:1px solid #ccc; margin-bottom:10px;">
 				<ol class="breadcrumb " style="margin:0;">
-					<li><a href="#">#</a></li>
-					{% for letter in 'A'..'Z' %}
-						<li><a href="#">{{ letter }}</a></li>
+					<li {% if letter == 'other' %}class="active"{% endif %}><a href="/list/other">#</a></li>
+					{% for item in 'A'..'Z' %}
+						<li {% if letter == item %}class="active"{% endif %}><a href="/list/{{ item }}">{{ item }}</a></li>
 					{% endfor %}
 					<li class="navbar-right active">100000 items</li>
 				</ol>
@@ -89,7 +89,7 @@
 			
 			<div class="collapse navbar-collapse" id="bs-mobile-menu-categories">
 				<ul class="nav navbar-nav">
-					{{ macro.categoryMobile(_categories) }}
+					{{ macro.categoryMobile(_categories,category) }}
 				</ul>
 			</div>
 		
@@ -114,7 +114,7 @@
 						Categories <span class="caret"></span>
 					</a>
 					<ul id="category-drop-down" class="sm sm-vertical sm-simple dropdown-menu" >
-						{{ macro.categoryWeb(_categories) }}
+						{{ macro.categoryWeb(_categories,category) }}
 						
 						
 					</ul>

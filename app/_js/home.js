@@ -3,7 +3,7 @@ $(document).ready(function () {
 	
 	
 
-	getData();
+	//getData();
 
 });
 function getData() {
