@@ -16,7 +16,7 @@ class list_alphabet extends _ {
 		
 		$tmpl = new \template("template.twig");
 		$tmpl->page = array(
-			"section"    => "categories",
+			"section"    => "alphabet",
 			"sub_section"=> "$letter",
 			"template"   => "list_alphabet",
 			"meta"       => array(

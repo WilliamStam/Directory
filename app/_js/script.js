@@ -317,7 +317,7 @@ function scroll(){
 	var $rightArea = $("#right-area") ;
 	var $wholeArea = $("#whole-area") ;
 	var searchBarHeight = $("#search-bar").height();
-	searchBarHeight = searchBarHeight + 13;
+	searchBarHeight = searchBarHeight + 8;
 	var scroll = $(window).scrollTop();
 	
 	var pageContentPosition = $("#page-content").position();
