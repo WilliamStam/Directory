@@ -29,24 +29,19 @@
 		</div>
 		<section id="right-area-content-area">
 			<section id="right-area-content" class="content">
-				<h1>Search</h1>
-				<section id="inline-search-block">
-					
-					<form role="search"  class="form-inline c" action="/search" >
-						
-						
-						<div class="form-group">
-							<input type="text" class="form-control" placeholder="let us help you find it">
-						</div>
-						<button type="submit" class="btn btn-default">Search</button>
-					</form>
+				<h3>Welcome to our Information Directory, your online guide to local business.</h3>
 				
 				
+				<p style="margin:20px 0;">
+					Browse through the list of categories, or search for a specific company below. You can also use the map to find a specific business.
+				</p> 
 				
-				</section>
-				<p class="alert alert-info">Search for "electrical" to return categories that include the word </p>
+				<h4>421 Businesses listed and counting...</h4>
+				<p>
+				</p>
 				
-				<section id="category-list-blocks" >
+				
+				<section id="category-list-blocks" style="margin-top:50px;">
 					{% for row in _categories %}
 						<a href="/list/{{ row['ID'] }}/{{ row['url'] }}">
 							{% if row['itemCount'] %}
