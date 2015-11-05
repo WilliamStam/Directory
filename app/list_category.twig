@@ -30,7 +30,7 @@
 				{% for row in category['children'] %}
 				<li>
 					<a href="/list/{{ row['ID'] }}/{{ row['url'] }}">
-						<span class="badge pull-right">{{ row['itemCount'] }}</span>
+						<span class="badge pull-right" style="margin-right:-10px;">{{ row['itemCount'] }}</span>
 						{{ row['category'] }}
 					</a>
 				</li>
