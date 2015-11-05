@@ -70,6 +70,7 @@ class template {
 		
 		
 		$this->vars['_categories'] = models\categories::format($this->f3->get('categories'),true);;
+		$this->vars['_itemCount'] = $this->f3->get('itemCount');;
 
 		//test_array($categories); 
 		

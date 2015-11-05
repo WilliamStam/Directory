@@ -55,7 +55,7 @@
 					{% for item in 'A'..'Z' %}
 						<li {% if letter == item %}class="active"{% endif %}><a href="/list/{{ item }}">{{ item }}</a></li>
 					{% endfor %}
-					<li class="navbar-right active">100000 items</li>
+					<li class="navbar-right active">{{ _itemCount }} items</li>
 				</ol>
 				<div class="clearfix"></div>
 			</div>

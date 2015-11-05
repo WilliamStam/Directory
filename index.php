@@ -114,6 +114,7 @@ if (isset($_GET['auID']) && $user['su']=='1'){
 $f3->set('user', $user);
 $f3->set('session', $SID);
 $f3->set('categories', models\categories::getInstance()->getAll("","category ASC"));
+$f3->set('itemCount', count(models\items::getInstance()->getAll("")));
 
 
 
