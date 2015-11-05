@@ -167,6 +167,11 @@ var ckeditor_config_small = {
 		keepInViewport:true
 	});
 	
+	//$('#category-drop-down').smartmenus('itemActivate', $('li.active a'));
+	
+	
+	
+	
 	$(document).on('click', '[data-toggle="offcanvas"]', function () {
 		$('#right-area').toggleClass('active')
 	});

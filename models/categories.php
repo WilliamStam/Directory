@@ -25,6 +25,9 @@ class categories extends _ {
 		$result = $this->f3->get("DB")->exec($sql);
 		if (count($result)) {
 			$return = $result[0];
+			$return['children'] = self::format($this->getAll("parentID='{$return['ID']}'","category ASC"));;
+			
+			
 		} else {
 			$return = parent::dbStructure("dir_categories");
 		}
@@ -72,7 +75,7 @@ class categories extends _ {
 		//test_array($result); 
 		$return = $result;
 		$timer->_stop(__NAMESPACE__, __CLASS__, __FUNCTION__, func_get_args());
-		return self::format($return);
+		return ($return);
 		
 	}
 	
@@ -114,7 +117,7 @@ class categories extends _ {
 	
 	
 	
-	static function format($data) {
+	static function format($data,$childrenGrouping=false) {
 		$timer = new timer();
 		$single = false;
 		//	test_array($items); 
@@ -138,7 +141,7 @@ class categories extends _ {
 		
 		
 		$records = $n;
-		if (count($records)&&!isset($n['ID'])){
+		if (count($records)&&!isset($n['ID']) && $childrenGrouping){
 			$rows = array();
 			
 			foreach ($records as $row) {

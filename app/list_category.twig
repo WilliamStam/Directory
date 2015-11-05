@@ -1,7 +1,45 @@
 <div class="row" style="position: relative;">
 	<div class="col-md-4 affix affix-top  sidebar-offcanvas" id="left-area">
 		<section id="left-area-content" class="content">
+			
+			<ol class="breadcrumb">
+				<li class="active">
+					<i class="fa fa-chevron-right"></i>
+				</li>
+				{% for row in breadcrumb %}
+					{% if loop.last %}
+						<li class="active">{{ row['category'] }}</li>
+					{% else %}
+						<li>
+							<a href="/list/{{ row['ID'] }}/{{ row['url'] }}">{{ row['category'] }}</a>
+						</li>
+					{% endif %}
+				{% endfor %}
+			</ol>
 			<h1>{{ category['category'] }}</h1>
+			
+			<div style="background-color: #e1e1e1; border:1px solid #ccc; width:370px; height:200px;"></div>
+			
+			<p style="margin-top:20px; text-align: justify">
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aliquid autem doloribus, ducimus eligendi esse inventore officiis repellat sapiente tempora! Aliquid aut blanditiis cupiditate dolores inventore ipsum natus quae quos.
+			</p>
+			
+			{% if category['children']|length %}
+			<h4 style="margin-top:40px;">Sub Categories</h4>
+			<ul class="nav nav-pills nav-stacked">
+				{% for row in category['children'] %}
+				<li>
+					<a href="/list/{{ row['ID'] }}/{{ row['url'] }}">
+						<span class="badge pull-right">{{ row['itemCount'] }}</span>
+						{{ row['category'] }}
+					</a>
+				</li>
+				{% endfor %}
+			</ul>
+			{% endif %}
+			
+			
+			
 		</section>
 	</div>
 	<div class="col-md-7 col-md-offset-5 row-offcanvas row-offcanvas-left match-height" id="right-area">
@@ -12,9 +50,9 @@
 			<section id="right-area-content" class="content">
 				right
 			</section>
-			
+		
 		</section>
 	
 	</div>
-	
+
 </div>

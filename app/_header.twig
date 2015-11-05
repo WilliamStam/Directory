@@ -1,7 +1,7 @@
 {% macro categoryWeb(data,category) %}
 	{% import _self as macro %}
 	{% for row in data %}
-		<li {% if category['ID']==row['ID'] %} class="active"{% endif %}>
+		<li {% if row['ID'] in category['parentIDs'] %} class="active"{% endif %}>
 			
 			
 			<a href="/list/{{ row['ID'] }}/{{ row['url'] }}" {% if row['itemCount'] %}  data-toggle="tooltip" data-placement="left" title="{{ row['itemCount'] }}"{% endif %}>
@@ -13,7 +13,7 @@
 			</a>
 			
 			{% if row['children']|length %}
-				<ul class="">
+				<ul class="nav">
 					{{ macro.categoryWeb(row['children'],category) }}
 				</ul>
 			{% endif %}
@@ -108,8 +108,9 @@
 			<ul class="nav navbar-nav">
 				
 				<li class='divider-vertical'></li>
-				<li class="dropdown {% if page['section']=='categories' %} active{% endif %}">
-					<a class="dropdown-toggle" data-toggle="dropdown" style="cursor:pointer;" >
+				<li class="dropdown ">
+					
+					<a class="dropdown-toggle {% if page['section']=='categories' %} active{% endif %}" data-toggle="dropdown" style="cursor:pointer;" >
 						<i class="fa fa-tags"></i>
 						Categories <span class="caret"></span>
 					</a>
