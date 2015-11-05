@@ -33,8 +33,8 @@ class list_category extends _ {
 		
 		
 		$items = array(
-			"suggested"=>models\items::getInstance()->getAll("catID='{$category['ID']}' AND recommended='1'", "name ASC"),
-			"other"=>models\items::getInstance()->getAll("catID='{$category['ID']}' AND recommended='0'", "name ASC"),
+			"suggested"=>models\items::format(models\items::getInstance()->getAll("catID='{$category['ID']}' AND recommended='1'", "name ASC")),
+			"other"=>models\items::format(models\items::getInstance()->getAll("catID='{$category['ID']}' AND recommended='0'", "name ASC")),
 		);
 		
 		

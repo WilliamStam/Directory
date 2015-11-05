@@ -63,7 +63,7 @@
 							<div  style="padding-left:10px;" >
 								<h4>
 									{% if row['recommended']=='1' %}
-										<a href="/directory/item/{{ row['ID'] }}/{{ row['url'] }}">{{ row['name'] }}</a>
+										<a href="/item/{{ row['ID'] }}/{{ row['url'] }}">{{ row['name'] }}</a>
 									{% else %}
 										{{ row['name'] }}
 									{% endif %}
@@ -107,7 +107,7 @@
 							<div  style="padding-left:10px;" >
 								<h4>
 									{% if row['recommended']=='1' %}
-										<a href="/directory/item/{{ row['ID'] }}/{{ row['url'] }}">{{ row['name'] }}</a>
+										<a href="/item/{{ row['ID'] }}/{{ row['url'] }}">{{ row['name'] }}</a>
 									{% else %}
 										{{ row['name'] }}
 									{% endif %}
