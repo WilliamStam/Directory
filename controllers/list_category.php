@@ -32,7 +32,10 @@ class list_category extends _ {
 	//	test_array($c); 
 		
 		
-		
+		$items = array(
+			"suggested"=>models\items::getInstance()->getAll("catID='{$category['ID']}' AND recommended='1'", "name ASC"),
+			"other"=>models\items::getInstance()->getAll("catID='{$category['ID']}' AND recommended='0'", "name ASC"),
+		);
 		
 		
 		
@@ -64,6 +67,7 @@ class list_category extends _ {
 		);
 		$tmpl->breadcrumb = $this->breadcrumb;
 		$tmpl->category = $category;
+		$tmpl->items = $items;
 		$tmpl->output();
 	}
 	function catparents($current,$categoryList){

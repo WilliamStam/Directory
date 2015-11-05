@@ -134,6 +134,75 @@ $f3->route('GET|POST /list/@catID/@url', 'controllers\list_category->page');
 
 
 
+$f3->route('GET /thumbnail/@width/@height', function ($f3, $params) {
+	$file = (isset($_GET['file'])) ? $_GET['file'] : "";
+	$crop = (isset($_GET['crop'])) ? $_GET['crop'] : "";
+	$enlarge = (isset($_GET['enlarge'])) ? $_GET['enlarge'] : "";
+	
+	if ($crop=="true"){
+		$crop = true;
+	} else {
+		$crop=false;
+	}
+	if ($enlarge=="true"){
+		$enlarge = true;
+	} else {
+		$enlarge = false;
+	}
+	
+	$width = $params['width'];
+	$height = $params['height'];
+	
+	
+	
+	$cfg = $f3->get("cfg");
+	$folder = $cfg['media'];
+	
+	$path = $folder . $file;
+	$path = $f3->fixslashes($path);
+	$path = str_replace("//","/",$path);
+	
+	//test_string($path);
+	
+	
+	$mime = mime_content_type($path);
+	
+	
+
+	
+	if ($mime=="application/pdf"){
+		$thumb = DIRECTORY_SEPARATOR . str_replace(".pdf", "_thumb.png", $file);
+		
+		//test_array($thumb); 
+		
+		
+		if (!file_exists($folder . $thumb) && file_exists($folder . $file)) {
+			$exportPath = $folder . $thumb;
+			$res = "96";
+			$pdf = $folder . $file;
+			
+			$str = "gs -dCOLORSCREEN -dNOPAUSE -box -sDEVICE=png16m -dUseCIEColor -dTextAlphaBits=4 -dFirstPage=1 -dLastPage=1 -dGraphicsAlphaBits=4 -o$exportPath -r$res  $pdf";
+			
+			exec($str);
+			
+			\general::remove_white($folder . $thumb);
+		}
+		
+		$file = DIRECTORY_SEPARATOR . str_replace(".pdf", ".png", $file);
+	}
+
+//test_array($file); 
+	
+	if ($file) {
+		$gen = new \general();
+		$gen->thumbnail($file, $width, $height, $crop, $enlarge);
+	}
+	
+	
+});
+
+
+
 
 
 $f3->route('GET|POST /logout', function ($f3, $params) use ($user) {

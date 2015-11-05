@@ -48,9 +48,97 @@
 		</div>
 		<section id="right-area-content-area">
 			<section id="right-area-content" class="content">
-				right
+				<h3>Our Recommendations:</h3>
+				{% for row in items['suggested'] %}
+					<article class="directory-item" data-title="{{ row['name'] }}" data-id="{{ row['ID'] }}" data-gps-lat="{{ row['gps_lat'] }}" data-gps-lng="{{ row['gps_lng'] }}">
+						<div >
+							
+							
+							<div class="" style=" float:left;margin-right:10px;" >
+								{% if row["photo"] %}
+									<img alt="" src="/thumbnail/110/90?crop=false&file=/files/{{ row['photo'] }}" style="margin-left:10px; margin-top:0px;" class="photo-image" />
+								{% endif %}
+								<div>&nbsp;</div>
+							</div>
+							<div  style="padding-left:10px;" >
+								<h4>
+									{% if row['recommended']=='1' %}
+										<a href="/directory/item/{{ row['ID'] }}/{{ row['url'] }}">{{ row['name'] }}</a>
+									{% else %}
+										{{ row['name'] }}
+									{% endif %}
+								</h4>
+								<div class="item-sub">
+									{% if row['phone']!="" %}
+										<span class="item-sub-phone">
+								<i class="fa fa-phone" ></i> {{ row['phone'] }}
+							</span>
+									{% endif %}
+									{% if row['website']!="" %}
+										<span class="item-sub-website">
+								<a href="{{ row['website'] }}" target="_blank">{{ row['website'] }}</a> 
+							</span>
+									{% endif %}
+									
+								</div>
+								{% if row['synopsis'] %}
+									<div class="item-text">
+										{{ row['synopsis'] }}
+									</div>
+								{% endif %}
+							</div>
+						</div>
+						<div class="clearfix"></div>
+					</article>
+				{% endfor %}
+				<h3>Also Try These:</h3>
+				{% for row in items['other'] %}
+					<article class="directory-item" data-title="{{ row['name'] }}" data-id="{{ row['ID'] }}" data-gps-lat="{{ row['gps_lat'] }}" data-gps-lng="{{ row['gps_lng'] }}">
+						<div >
+							
+							
+							<div class="" style=" float:left;margin-right:10px;" >
+								{% if row["photo"] %}
+									<img alt="" src="/thumbnail/110/90?crop=false&file=/files/{{ row['photo'] }}" style="margin-left:10px; margin-top:0px;" />
+								{% endif %}
+								<div>&nbsp;</div>
+							</div>
+							<div  style="padding-left:10px;" >
+								<h4>
+									{% if row['recommended']=='1' %}
+										<a href="/directory/item/{{ row['ID'] }}/{{ row['url'] }}">{{ row['name'] }}</a>
+									{% else %}
+										{{ row['name'] }}
+									{% endif %}
+								</h4>
+								<div class="item-sub">
+									{% if row['phone']!="" %}
+										<span class="item-sub-phone">
+								<i class="icon-phone" ></i> {{ row['phone'] }}
+							</span>
+									{% endif %}
+									{% if row['website']!="" %}
+										<span class="item-sub-website">
+								<i class="icon-cloud"></i> <a href="{{ row['website'] }}" target="_blank">{{ row['website'] }}</a> 
+							</span>
+									{% endif %}
+									{% if row['comment_count']>0 %}
+										<span class="item-sub-comment">
+								<i class="icon-comment-alt"></i> {{ row['comment_count'] }}
+							</span>
+									{% endif %}
+								</div>
+								{% if row['synopsis'] %}
+									<div class="item-text">
+										{{ row['synopsis'] }}
+									</div>
+								{% endif %}
+							</div>
+						</div>
+						<div class="clearfix"></div>
+					</article>
+				{% endfor %}
 			</section>
-		
 		</section>
 	
 	</div>
