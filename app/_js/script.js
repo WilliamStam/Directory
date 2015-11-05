@@ -97,6 +97,7 @@ var ckeditor_config_small = {
 	
 	$.fn.keepAlive();
 	
+	$("#footer-nav-bar-red").removeClass("navbar-fixed-bottom")
 
 
 	$('[data-toggle="tooltip"]').tooltip();
