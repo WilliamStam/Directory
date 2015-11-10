@@ -7,6 +7,11 @@
 			
 			<img alt="" src="/thumbnail/350/350?crop=false&file=/files/{{ details['photo'] }}" style="" class="img-thumbnail" />
 			
+			<ul class="nav nav-pills ">
+				{% for row in categories %}
+				<li><a href="/list/{{ row['ID'] }}/{{ row['url'] }}">{{ row['category'] }}</a></li>
+				{% endfor %}
+			</ul>
 			
 			<p style="margin-top:20px; text-align: justify">
 			<address>
@@ -24,14 +29,14 @@
 				<strong>Address:</strong><br>
 				{{ details['address'] }}
 			</address>
-			
+			{% if details['gps_long']!="" and details['gps_lat']!="" %}
 			<address>
 				<strong>GPS:</strong><br>
 				<em>Lng:</em>
 				{{ details['gps_long'] }} &nbsp;&nbsp;&nbsp; <em>Lat:</em>
 				{{ details['gps_lat'] }}
 			</address>
-				
+				{% endif %}
 				
 				
 			</p>
@@ -70,20 +75,20 @@
 				</section>
 				
 				
-				
+				{% if details['photos']|length %}
 				<h4>Photos / Images</h4>
 				<section id="details-photos">
-					
-					<img alt="" src="/thumbnail/200/200?crop=false&file=/files/{{ details['photo'] }}" style="" class="img-thumbnail" />
-					<img alt="" src="/thumbnail/200/200?crop=false&file=/files/{{ details['photo'] }}" style="" class="img-thumbnail" />
-					<img alt="" src="/thumbnail/200/200?crop=false&file=/files/{{ details['photo'] }}" style="" class="img-thumbnail" />
+					{% for row in details['photos'] %}
+					<img alt="" src="/thumbnail/200/200?crop=false&file=/files/{{ row['photo'] }}" style="" class="img-thumbnail" />
+					{% endfor %}
 				</section>
-				
+				{% endif %}
+				{% if details['gps_long']!="" and details['gps_lat']!="" %}
 				<h4>Location Map</h4>
 				<section id="details-map">
 					<div id="map-canvas"></div>
 				</section>
-			
+				{% endif %}
 			</section>
 		</section>
 	

@@ -9003,6 +9003,20 @@ body.modal-open.sbhide #footer-nav-bar {
 .loadingmask.bar {
   background: rgba(250, 250, 250, 0.7) url(/app/_images/loading-wide.gif) no-repeat center center;
 }
+#system-timer-btn {
+  position: fixed;
+  left: 10px;
+  bottom: 20px;
+  max-width: 30px;
+  z-index: 999999;
+}
+#system-timer-btn a {
+  opacity: 0.5;
+  color: #000;
+}
+#system-timer-btn a:hover {
+  opacity: 1;
+}
 #systemTimers-container .btn-row-details {
   cursor: pointer;
 }

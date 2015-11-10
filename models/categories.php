@@ -65,6 +65,15 @@ class categories extends _ {
 			$orderby
 			$limit
 		";
+		$sql = "
+			SELECT  dir_categories.*, COUNT(dir_items.ID) as itemCount
+			FROM (dir_categories LEFT JOIN dir_item_category ON dir_categories.ID = dir_item_category.catID) INNER JOIN dir_items ON dir_item_category.itemID = dir_items.ID
+			WHERE $where
+			GROUP BY dir_categories.ID
+			$orderby
+			$limit
+			
+		";
 		
 		
 		//test_string($sql); 

@@ -4,7 +4,7 @@
 		<li {% if row['ID'] in category['parentIDs'] %} class="active"{% endif %}>
 			
 			
-			<a href="/list/{{ row['ID'] }}/{{ row['url'] }}" {% if row['itemCount'] %}  data-toggle="tooltip" data-placement="left" title="{{ row['itemCount'] }}"{% endif %}>
+			<a href="/list/{{ row['ID'] }}/{{ row['url'] }}" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="left" data-content="{% if row['photo'] %}<div class='c'><img src='/thumbnail/200/200?crop=false&file=/categories/{{ row['photo'] }}'  class='img-thumbnail' /></div>{% endif %}<div class='text-justify s'>{{ row['text'] }}</div>" data-html="true"  data-placement="left" title="{{ row['category'] }} {% if row['itemCount'] %}<span class='pull-right badge' >{{ row['itemCount'] }}</span>{% endif %}">
 				
 				{% if row['children']|length %}
 					<span class="pull-right" style="margin-right:-15px;"><i class="fa fa-caret-right"></i></span>

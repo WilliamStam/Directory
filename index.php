@@ -307,9 +307,7 @@ $pageTime = $GLOBALS['page_execute_timer']->stop("Page Execute");
 
 $GLOBALS["output"]['timer'] = $GLOBALS['timer'];
 
-if ($user['global_admin']=='1'){
-	$GLOBALS["output"]['models'] = $models;
-}
+$GLOBALS["output"]['models'] = $models;
 
 
 
@@ -336,7 +334,7 @@ if (($f3->get("AJAX") && ($f3->get("__runTemplate")==false) || $f3->get("__runJS
 
 	echo '
 					<script type="text/javascript">
-				    //  updatetimerlist(' . json_encode($GLOBALS["output"]) . ');
+				      updatetimerlist(' . json_encode($GLOBALS["output"]) . ');
 					</script>
 					</body>
 </html>';

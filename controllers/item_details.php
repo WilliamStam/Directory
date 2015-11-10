@@ -15,7 +15,7 @@ class item_details extends _ {
 		$details = models\items::getInstance()->get($ID);
 		$details = models\items::format($details);
 		
-		
+		$categories = models\categories::getInstance()->getAll("dir_items.ID='{$details['ID']}'","category ASC");
 		
 		
 	//	test_array($category); 
@@ -33,6 +33,7 @@ class item_details extends _ {
 				"js"=>"http://maps.google.com/maps/api/js?sensor=false",
 		);
 		$tmpl->details = $details;
+		$tmpl->categories = $categories;
 		$tmpl->output();
 	}
 	

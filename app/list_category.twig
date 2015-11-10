@@ -17,13 +17,14 @@
 				{% endfor %}
 			</ol>
 			<h1>{{ category['category'] }}</h1>
-			
-			<div style="background-color: #e1e1e1; border:1px solid #ccc; width:370px; height:200px;"></div>
-			
+			{% if category['photo'] %}
+			<img alt="" src="/thumbnail/350/350?crop=false&file=/categories/{{ category['photo'] }}" style="" class="img-thumbnail" />
+			{% endif %}
+			{% if category['text'] %}
 			<p style="margin-top:20px; text-align: justify">
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aliquid autem doloribus, ducimus eligendi esse inventore officiis repellat sapiente tempora! Aliquid aut blanditiis cupiditate dolores inventore ipsum natus quae quos.
+				{{ category['text'] }}
 			</p>
-			
+			{% endif %}
 			{% if category['children']|length %}
 			<h4 style="margin-top:40px;">Sub Categories</h4>
 			<ul class="nav nav-pills nav-stacked">

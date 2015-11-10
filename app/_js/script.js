@@ -101,6 +101,7 @@ var ckeditor_config_small = {
 
 
 	$('[data-toggle="tooltip"]').tooltip();
+	$('[data-toggle="popover"]').popover();
 	
 	$("[data-collapse-group]").on('show.bs.collapse', function () {
 		var $this = $(this);
