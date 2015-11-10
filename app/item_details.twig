@@ -62,13 +62,27 @@
 			<section id="right-area-content" class="content">
 				<h1 class="">{{ details['name'] }}</h1>
 				
-				{{ details['text']|raw }}
 				
-				<img alt="" src="/thumbnail/200/200?crop=false&file=/files/{{ details['photo'] }}" style="" class="img-thumbnail" />
+			
+				
+				<section id="details-text" >
+					{{ details['text']|raw }}
+				</section>
 				
 				
 				
+				<h4>Photos / Images</h4>
+				<section id="details-photos">
+					
+					<img alt="" src="/thumbnail/200/200?crop=false&file=/files/{{ details['photo'] }}" style="" class="img-thumbnail" />
+					<img alt="" src="/thumbnail/200/200?crop=false&file=/files/{{ details['photo'] }}" style="" class="img-thumbnail" />
+					<img alt="" src="/thumbnail/200/200?crop=false&file=/files/{{ details['photo'] }}" style="" class="img-thumbnail" />
+				</section>
 				
+				<h4>Location Map</h4>
+				<section id="details-map">
+					<div id="map-canvas"></div>
+				</section>
 			
 			</section>
 		</section>

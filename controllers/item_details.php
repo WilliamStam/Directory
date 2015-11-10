@@ -30,7 +30,7 @@ class item_details extends _ {
 				"title"=> "Directory | {$details['name']}",
 			),
 			"css"=>"",
-			"js"=>"",
+				"js"=>"http://maps.google.com/maps/api/js?sensor=false",
 		);
 		$tmpl->details = $details;
 		$tmpl->output();

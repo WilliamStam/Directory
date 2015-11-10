@@ -3,3 +3,24 @@
   box-shadow: 0 0 15px rgba(100, 100, 100, 0.5);
   margin: 10px;
 }
+#details-text {
+  margin-top: 20px;
+  text-align: justify;
+}
+#details-photos > * {
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+#details-map {
+  background-color: #fcfcfc;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+  padding: 4px;
+  transition: all 0.2s ease-in-out 0s;
+}
+#map-canvas {
+  height: 300px;
+}
+#right-area h4 {
+  margin-top: 30px;
+}
