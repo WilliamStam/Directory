@@ -7,11 +7,7 @@
 			
 			<img alt="" src="/thumbnail/350/350?crop=false&file=/files/{{ details['photo'] }}" style="" class="img-thumbnail" />
 			
-			<ul class="nav nav-pills ">
-				{% for row in categories %}
-				<li><a href="/list/{{ row['ID'] }}/{{ row['url'] }}">{{ row['category'] }}</a></li>
-				{% endfor %}
-			</ul>
+			
 			
 			<p style="margin-top:20px; text-align: justify">
 			<address>
@@ -41,20 +37,18 @@
 				
 			</p>
 			
-			{% if category['children']|length %}
-			<h4 style="margin-top:40px;">Sub Categories</h4>
+			<h4>Categories</h4>
+			
 			<ul class="nav nav-pills nav-stacked">
-				{% for row in category['children'] %}
-				<li>
-					<a href="/list/{{ row['ID'] }}/{{ row['url'] }}">
-						<span class="badge pull-right" style="margin-right:-10px;">{{ row['itemCount'] }}</span>
-						{{ row['category'] }}
-					</a>
-				</li>
+				{% for row in categories %}
+					<li  data-trigger="hover" data-container="body" data-toggle="popover" data-placement="right" data-content="{% if row['photo'] %}<div class='c'><img src='/thumbnail/200/200?crop=false&file=/categories/{{ row['photo'] }}'  class='img-thumbnail' /></div>{% endif %}<div class='text-justify s'>{{ row['text'] }}</div>" data-html="true"  data-placement="left" title="{{ row['category'] }} ">
+						<a href="/list/{{ row['ID'] }}/{{ row['url'] }}">
+							
+							{{ row['category'] }}
+						</a>
+					</li>
 				{% endfor %}
 			</ul>
-			{% endif %}
-			
 			
 			
 		</section>

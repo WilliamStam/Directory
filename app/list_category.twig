@@ -29,7 +29,7 @@
 			<h4 style="margin-top:40px;">Sub Categories</h4>
 			<ul class="nav nav-pills nav-stacked">
 				{% for row in category['children'] %}
-				<li>
+				<li  data-trigger="hover" data-container="body" data-toggle="popover" data-placement="right" data-content="{% if row['photo'] %}<div class='c'><img src='/thumbnail/200/200?crop=false&file=/categories/{{ row['photo'] }}'  class='img-thumbnail' /></div>{% endif %}<div class='text-justify s'>{{ row['text'] }}</div>" data-html="true"  data-placement="left" title="{% if row['itemCount'] %}<span class='pull-right badge' style='margin-left:10px;'>{{ row['itemCount'] }}</span>{% endif %}{{ row['category'] }} ">
 					<a href="/list/{{ row['ID'] }}/{{ row['url'] }}">
 						<span class="badge pull-right" style="margin-right:-10px;">{{ row['itemCount'] }}</span>
 						{{ row['category'] }}

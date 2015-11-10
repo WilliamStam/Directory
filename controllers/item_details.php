@@ -15,7 +15,7 @@ class item_details extends _ {
 		$details = models\items::getInstance()->get($ID);
 		$details = models\items::format($details);
 		
-		$categories = models\categories::getInstance()->getAll("dir_items.ID='{$details['ID']}'","category ASC");
+		$categories = models\categories::format(models\categories::getInstance()->getAll("dir_items.ID='{$details['ID']}'","category ASC"));
 		
 		
 	//	test_array($category); 
