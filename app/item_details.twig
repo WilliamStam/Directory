@@ -1,0 +1,71 @@
+<div class="row" style="position: relative;">
+	<div class="col-md-4 affix affix-top  sidebar-offcanvas" id="left-area">
+		<section id="left-area-content" class="content">
+			
+			
+			<h1>{{ details['name'] }}</h1>
+			
+			<img alt="" src="/thumbnail/350/350?crop=false&file=/files/{{ details['photo'] }}" style="" class="photo-image" />
+			
+			
+			<p style="margin-top:20px; text-align: justify">
+			<address>
+				<strong>Phone:</strong><br>
+				{{ details['phone'] }}
+			</address>
+				
+			
+			<address>
+				<strong>Website:</strong><br>
+				{{ details['website'] }}
+			</address>
+			
+			<address>
+				<strong>Address:</strong><br>
+				{{ details['address'] }}
+			</address>
+			
+			<address>
+				<strong>GPS:</strong><br>
+				<em>Lng:</em>
+				{{ details['gps_long'] }} &nbsp;&nbsp;&nbsp; <em>Lat:</em>
+				{{ details['gps_lat'] }}
+			</address>
+				
+				
+				
+			</p>
+			
+			{% if category['children']|length %}
+			<h4 style="margin-top:40px;">Sub Categories</h4>
+			<ul class="nav nav-pills nav-stacked">
+				{% for row in category['children'] %}
+				<li>
+					<a href="/list/{{ row['ID'] }}/{{ row['url'] }}">
+						<span class="badge pull-right" style="margin-right:-10px;">{{ row['itemCount'] }}</span>
+						{{ row['category'] }}
+					</a>
+				</li>
+				{% endfor %}
+			</ul>
+			{% endif %}
+			
+			
+			
+		</section>
+	</div>
+	<div class="col-md-7 col-md-offset-5 row-offcanvas row-offcanvas-left match-height" id="right-area">
+		<div data-toggle="offcanvas" class="offcanvas visible-sm-block visible-xs-block">
+			<i class="fa fa-ellipsis-v"></i>
+		</div>
+		<section id="right-area-content-area">
+			<section id="right-area-content" class="content">
+				<h1 class="visible-xs">{{ details['name'] }}</h1>
+			
+			
+			</section>
+		</section>
+	
+	</div>
+
+</div>

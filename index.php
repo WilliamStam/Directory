@@ -132,6 +132,7 @@ $f3->route('GET|POST /list', 'controllers\categories->page');
 $f3->route('GET|POST /map', 'controllers\map->page');
 $f3->route('GET|POST /list/@letter', 'controllers\list_alphabet->page');
 $f3->route('GET|POST /list/@catID/@url', 'controllers\list_category->page');
+$f3->route('GET|POST /item/@ID/@url', 'controllers\item_details->page');
 
 
 
