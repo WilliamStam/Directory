@@ -277,7 +277,8 @@ function updatetimerlist(d, page_size) {
 
 function validationErrors(data, $form) {
 	if (!$.isEmptyObject(data['errors'])) {
-		var i = 0;console.log(data.errors);
+		var i = 0;
+		//console.log(data.errors);
 		$.each(data.errors, function (k, v) {
 			i = i + 1;
 			var $field = $("#" + k);

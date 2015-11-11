@@ -62,7 +62,7 @@ $(document).ready(function () {
 		$("#left-area .loadingmask").show();
 		$.post("/admin/save/categories/_save/?ID=" + ID, data, function (r) {
 			var data = r.data;
-			console.log(data)
+			//console.log(data)
 			validationErrors(data, $this);
 			if ($.isEmptyObject(data['errors'])) {
 				$.bbq.pushState({"msg":"Record Saved"})

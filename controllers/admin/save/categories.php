@@ -40,13 +40,44 @@ class categories extends _ {
 		$result['data'] = array();
 		
 		if (!count($errors)) {
-			//$result['data'] = array("ID" => models\categories::save($ID, $values));
+			$result['data'] = array("ID" => models\categories::save($ID, $values));
 		}
 		
 		
 		return $GLOBALS["output"]['data'] = $result;
 	}
-
+	function order() {
+		$return = "";
+		$domain = $this->f3->get("domain");
+		//$ID = (isset($_GET['ID'])) ? $_GET['ID'] : "";
+		
+		$f3 = \Base::instance();
+		
+		$list = $_POST['id'];
+		
+		
+		$a = new \DB\SQL\Mapper($f3->get("DB"), "dir_categories");
+		
+		$sort = array();
+		foreach ($list as $id => $parentId) {
+			
+			$a->load("ID='$id'");
+			$a->parentID = $parentId;
+			if (!$a->dry()){
+				$a->save();
+			}
+			
+			
+			$a->reset();
+			
+		}
+		
+		
+		test_array($sort);
+		
+		
+		return $GLOBALS["output"]['data'] = $return;
+	}
 	
 
 
