@@ -7,9 +7,9 @@
 			{% if category['photo'] %}
 			<img alt="" src="/thumbnail/350/350?crop=false&file=/categories/{{ category['photo'] }}" style="" class="img-thumbnail" />
 			{% endif %}
-			{% if category['text']|raw %}
+			{% if category['text'] %}
 			<p style="margin-top:20px; text-align: justify">
-				{{ category['text'] }}
+				{{ category['text']|raw }}
 			</p>
 			{% endif %}
 			
