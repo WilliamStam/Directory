@@ -67,6 +67,7 @@ class list_category extends _ {
 		);
 		$tmpl->breadcrumb = $this->breadcrumb;
 		$tmpl->category = $category;
+		$tmpl->related = $category['children'];
 		$tmpl->items = $items;
 		$tmpl->output();
 	}
