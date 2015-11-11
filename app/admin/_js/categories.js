@@ -108,7 +108,7 @@ function getData() {
 		
 		CKEDITOR.replace('text',ckeditor_config);
 		
-		
+		uploader()
 		$(".loadingmask").fadeOut();
 
 	},"data");
@@ -143,4 +143,50 @@ function sort(){
 		}
 		
 	});
+}
+function uploader() {
+	
+	var uploader = new plupload.Uploader({
+		runtimes : 'html5,flash,silverlight,html4',
+		
+		browse_button : 'item-uploader', // you can pass in id...
+		container: document.getElementById('item-uploader-container'), // ... or DOM Element itself
+		
+		url: '/admin/save/categories/upload',
+		
+		chunk_size: '30mb',
+		unique_names: true,
+		multiple_queues: true,
+		
+		
+		init: {
+			PostInit: function() {
+				
+			},
+			
+			FilesAdded: function(up, files) {
+				setTimeout(function () { up.start(); }, 100);
+			},
+			
+			UploadProgress: function(up, file) {
+				$("#item-upload-info").html('<div class="progress"><div class="progress-bar" role="progressbar" aria-valuenow="2" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: '+file.percent+'%;">'+file.percent+'%</div></div>');
+				//document.getElementById(file.id).getElementsByTagName('b')[0].innerHTML = '<span>' + file.percent + "%</span>";
+			},
+			FileUploaded: function (up, file, info) {
+				//file.target_name
+				$("#item-upload-info").html('<img alt="" src="/thumbnail/300/300?crop=false&file=/categories/'+file.target_name+'" style="" class="img-thumbnail" />');
+				
+				$("#photo").val(file.target_name);
+			},
+			Error: function(up, err) {
+				document.getElementById('console').innerHTML += "\nError #" + err.code + ": " + err.message;
+			}
+		}
+	});
+	
+	uploader.init();
+	
+	
+	//$("#item-upload-info").html('<img alt="" src="/thumbnail/300/300?crop=false&file=/categories/<%= this.photo||'' %>" style="" class="img-thumbnail" />')
+	
 }

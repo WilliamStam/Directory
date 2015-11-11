@@ -78,7 +78,15 @@ class categories extends _ {
 		
 		return $GLOBALS["output"]['data'] = $return;
 	}
-	
+	function upload(){
+		$return = "";
+		
+		$filename = isset($_REQUEST['name'])?$_REQUEST['name']:"";
+		
+		
+		$return = $this->uploader("categories",$filename);
+		return $GLOBALS["output"]['data'] = $return;
+	}
 
 
 

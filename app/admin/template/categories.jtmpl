@@ -36,10 +36,19 @@
 			</div>
 			<div class="form-group">
 				<label for="picture" class="col-sm-2 control-label">Picture</label>
-				<div class="col-sm-10">
-					<input type="text" class="form-control" id="photo" name="photo" placeholder="Photo" value="<%= this.photo||'' %>">
+				<div class="col-sm-8" id="item-upload-info" >
+					<% if (this.photo){ %>
+					<img alt="" src="/thumbnail/300/300?crop=false&file=/categories/<%= this.photo||'' %>" style="" class="img-thumbnail" />
+					<% } else { %>
+					<p class="form-control-static g">No picture added yet</p>
+					<% } %>
 				</div>
+				<div class="col-sm-2" id="item-uploader-container"  >
+					<button class="btn btn-default col-sm-12" id="item-uploader" type="button" style="line-height:18px; border-color:#ddd; "><i class="fa fa-upload"></i></button>
+				</div>
+				
 			</div>
+			<input type="hidden" id="photo" name="photo"  value="<%= this.photo||'' %>">
 			<div class="form-group">
 				<textarea name="text" id="text" cols="30" rows="10"><%= this.text||'' %></textarea>	
 			</div>

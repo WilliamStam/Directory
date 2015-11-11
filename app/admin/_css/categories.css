@@ -28,3 +28,7 @@ fieldset legend {
   overflow-y: auto;
   overflow-x: hidden;
 }
+#item-upload-info .progress {
+  margin-top: 8px;
+  margin-bottom: 0;
+}
