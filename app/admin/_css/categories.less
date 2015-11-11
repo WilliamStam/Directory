@@ -1,0 +1,28 @@
+#cat-list-area {
+  >ol {
+	margin-left:0;
+  }
+  ol {
+	
+	li {
+	  padding: 0;
+	  list-style: none;
+	  list-style-position: outside;
+	  border-top: 1px dotted #ccc;
+	  div {
+		padding: 5px 5px 5px 10px;
+		margin:0;
+		&:hover {
+		  background-color: #deebff;
+		  cursor: pointer;
+		}
+	  }
+	  &.active {
+		> div {
+		  background-color: #deebff;
+		}
+		
+	  }
+	}
+  }
+}

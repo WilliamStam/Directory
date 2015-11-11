@@ -97,6 +97,18 @@
           "reference": "origin/master"
         }
       }
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "components/nestedSortable",
+        "version": "dev-master",
+        "source": {
+          "url": "https://github.com/ilikenwf/nestedSortable.git",
+          "type": "git",
+          "reference": "origin/2.0alpha"
+        }
+      }
     }
   ],
   "require": {
@@ -120,6 +132,7 @@
     "timrwood/moment": "2.*",
     "ckeditor/ckeditor": "4.*",
     "cogpowered/finediff": "*",
-    "components/smartmenus":"dev-master"
+    "components/smartmenus":"dev-master",
+    "components/nestedSortable":"dev-master"
   }
 }

@@ -277,7 +277,7 @@ function updatetimerlist(d, page_size) {
 
 function validationErrors(data, $form) {
 	if (!$.isEmptyObject(data['errors'])) {
-		var i = 0;
+		var i = 0;console.log(data.errors);
 		$.each(data.errors, function (k, v) {
 			i = i + 1;
 			var $field = $("#" + k);
@@ -286,6 +286,8 @@ function validationErrors(data, $form) {
 
 			$block.addClass("has-error");
 			if ($field.parent().hasClass("input-group")) $field = $field.parent();
+			
+			
 			if (v != "") {
 				
 				$field.after('<span class="help-block s form-validation">' + v + '</span>');
@@ -296,7 +298,6 @@ function validationErrors(data, $form) {
 
 
 		});
-		$(".has-error").get(0).scrollIntoView();
 		$("button[type='submit']", $form).addClass("btn-danger").html("(" + i + ") Error(s) Found");
 
 	} 

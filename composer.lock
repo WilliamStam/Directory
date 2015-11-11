@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "9df29537099ee661176b7301ce37b983",
-    "content-hash": "ca25662b1896423ec59b548e87d81778",
+    "hash": "6620a80a030af938b12b778f9aeb9838",
+    "content-hash": "b78888d3bad548f400f82c668a997633",
     "packages": [
         {
             "name": "bcosca/fatfree",
@@ -555,6 +555,17 @@
             "time": "2014-10-08 13:59:52"
         },
         {
+            "name": "components/nestedSortable",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ilikenwf/nestedSortable.git",
+                "reference": "origin/2.0alpha"
+            },
+            "type": "library",
+            "time": "2015-07-24 19:14:02"
+        },
+        {
             "name": "components/smartmenus",
             "version": "dev-master",
             "source": {
@@ -938,7 +949,8 @@
         "components/jquery-mousewheel": 20,
         "components/jqote2": 20,
         "components/touchswipe-jquery-plugin": 20,
-        "components/smartmenus": 20
+        "components/smartmenus": 20,
+        "components/nestedsortable": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

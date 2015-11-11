@@ -136,6 +136,42 @@ $f3->route('GET|POST /item/@ID/@url', 'controllers\item_details->page');
 
 
 
+
+
+
+
+$f3->route('GET|POST /admin', 'controllers\admin\home->page');
+$f3->route('GET|POST /admin/items', 'controllers\admin\items->page');
+$f3->route('GET|POST /admin/categories', 'controllers\admin\categories->page');
+$f3->route('GET|POST /admin/users', 'controllers\admin\users->page');
+
+
+
+$f3->route("GET|POST /admin/save/@function", function ($app, $params) {
+	$app->call("controllers\\admin\\save\\save->" . $params['function']);
+}
+);
+$f3->route("GET|POST /admin/save/@class/@function", function ($app, $params) {
+	$app->call("controllers\\admin\\save\\" . $params['class'] . "->" . $params['function']);
+}
+);
+$f3->route("GET|POST /admin/save/@folder/@class/@function", function ($app, $params) {
+	$app->call("controllers\\admin\\save\\" . $params['folder'] . "\\" . $params['class'] . "->" . $params['function']);
+}
+);
+$f3->route("GET|POST /admin/data/@function", function ($app, $params) {
+	$app->call("controllers\\admin\\data\\data->" . $params['function']);
+}
+);
+$f3->route("GET|POST /admin/data/@class/@function", function ($app, $params) {
+	$app->call("controllers\\admin\\data\\" . $params['class'] . "->" . $params['function']);
+}
+);
+$f3->route("GET|POST /admin/data/@folder/@class/@function", function ($app, $params) {
+	$app->call("controllers\\admin\\data\\" . $params['folder'] . "\\" . $params['class'] . "->" . $params['function']);
+}
+);
+
 $f3->route('GET /thumbnail/@width/@height', function ($f3, $params) {
 	$file = (isset($_GET['file'])) ? $_GET['file'] : "";
 	$crop = (isset($_GET['crop'])) ? $_GET['crop'] : "";

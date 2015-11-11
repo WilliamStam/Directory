@@ -1,0 +1,223 @@
+{% macro category_checkboxes(data) %}
+	{% import _self as macro %}
+	
+	<ul>
+	{% for row in data %}
+		<li>
+			<label class="checkbox">
+				<input type="checkbox" value="{{ row['ID'] }}" id="categoryID[]" name="categoryID[]" <% if ($.inArray("{{ row['ID'] }}",this.categories.split(","))!=-1) { %>checked="checked"<% } %> >
+				{{ row['category'] }} 
+				{% if row['itemCount'] %}
+				<span class="pull-right badge">{{ row['itemCount'] }} </span>
+				{%  endif  %}
+				
+			</label>
+			{{ macro.category_checkboxes(row['children']) }}
+		</li>
+	{% endfor %}
+	</ul>
+	
+{% endmacro %}
+{% import _self as macro %}
+
+
+<script type="text/x-jqote-template" id="template-list">
+	<![CDATA[
+
+	<tr class="record" data-id="<%= this.ID %>">
+		<td>
+			<%= this.name %>
+		</td>
+		
+		<td class="r">
+			<% if (this.labelClass) { %><span class="label <%= this.labelClass %> pull-right" style="width:10px;">&nbsp;</span><% } %>
+		</td>
+	</tr>
+
+	]]>
+</script>
+<script type="text/x-jqote-template" id="template-details">
+	<![CDATA[
+
+	<form method="post" id="capture-form" class="form-horizontal">
+		<fieldset style="margin-top:0;">
+			<legend><% if (this.ID) { %>Edit<% } else { %>Add<% } %> - Record
+			
+				<small class="pull-right s g">
+					Stats: 
+					<strong><%= this.stats.itemsCount||'' %> </strong> 
+					Items | <strong><%= this.stats.categoriesCount||'' %> </strong> 
+					Categories
+				</small>
+			
+			</legend>
+			
+			<div id="errorArea"></div>
+			<div class="control-group">
+				<label class="control-label" for="name">Name</label>
+				<div class="controls">
+					<input type="text" id="name" name="name" value="<%= this.name||'' %>" class="span6">
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="email">Email</label>
+				<div class="controls">
+					<input type="text" id="email" name="email" value="<%= this.email||'' %>" class="span4">
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="phone">Phone</label>
+				<div class="controls">
+					<input type="text" id="phone" name="phone" value="<%= this.phone||'' %>" class="span4">
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="phone_alt">Phone (alt)</label>
+				<div class="controls">
+					<input type="text" id="phone_alt" name="phone_alt" value="<%= this.phone_alt||'' %>" class="span4">
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="website">Website</label>
+				<div class="controls">
+					<input type="text" id="website" name="website" value="<%= this.website||'' %>" class="span4">
+					<div class="help-block s g" style="margin-top:0;">Please include the http://</div>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="website">Website (alt)</label>
+				<div class="controls">
+					<input type="text" id="website" name="website_alt" value="<%= this.website_alt||'' %>" class="span4">
+					<div class="help-block s g" style="margin-top:0;">Please include the http:// (this is for an alternative link)</div>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="synopsis">Intro</label>
+				<div class="controls">
+					<textarea name="synopsis" id="synopsis" cols="30" rows="5" class="span6"><%= this.synopsis||'' %></textarea>
+				</div>
+			</div>
+
+			<div class="control-group">
+				
+				<label class="control-label" for="text">Body Text</label>
+				<div class="clearfix"></div>
+					<textarea name="text" id="text" cols="60" rows="10" class="span9"><%= this.text||'' %></textarea>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="photo">Photo</label>
+				<div class="controls" id="photo-upload-container">
+					<button id="photo-upload-btn" class="btn" style="width:110px;" type="button">Browse</button>
+					<span id="photo-upload-label" class="help-inline" style="padding-top:3px;"><% if (this.photo=="") { %>No file selected<% } %></span>
+					<div class="progress progress-striped" style="margin-top:10px;" >
+						<div class="bar" style="width: 0%;"></div>
+					</div>
+					<div id="photo-upload-photo" style="margin-top:10px;">
+						<% if (this.photo!="") { %>
+						<img src="/thumbnail/200/200?file=/directory/{{ _domain['ID'] }}/<%= this.photo||'' %>&crop=false" alt=""/>
+						<% } %>
+					</div>
+					<input type="hidden" id="photo" name="photo" value="<%= this.photo||'' %>"  />
+					
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="photo">Photo (alt)</label>
+				<div class="controls" id="photo-upload-container-alt">
+					<button id="photo-upload-btn-alt" class="btn" style="width:110px;" type="button">Browse</button>
+					<span id="photo-upload-label-alt" class="help-inline" style="padding-top:3px;"><% if (this.photo_alt=="") { %>No file selected<% } %></span>
+					<div class="progress progress-striped" style="margin-top:10px;" >
+						<div class="bar" style="width: 0%;"></div>
+					</div>
+					<div id="photo-upload-photo-alt" style="margin-top:10px;">
+						<% if (this.photo_alt!="") { %>
+						<img src="/thumbnail/200/200?file=/directory/{{ _domain['ID'] }}/<%= this.photo_alt||'' %>&crop=false" alt=""/>
+						<% } %>
+					</div>
+					<input type="hidden" id="photo_alt" name="photo_alt" value="<%= this.photo_alt||'' %>"  />
+
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="address">Address</label>
+				<div class="controls">
+					<textarea name="address" id="address" cols="10" rows="5" class="span4"><%= this.address||'' %></textarea>
+				</div>
+			</div>
+			
+			
+			
+			<div class="control-group">
+				<label class="control-label" for="gps_lat">GPS Latitude</label>
+				<div class="controls">
+					<input type="text" id="gps_lat" name="gps_lat" value="<%= this.gps_lat||'' %>" class="span2">
+					
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="gps_long">GPS Longitude</label>
+				<div class="controls">
+					<input type="text" id="gps_long" name="gps_long" value="<%= this.gps_long||'' %>" class="span2">
+
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="recommended">Recommended</label>
+				<div class="controls">
+					<label class="checkbox active">
+						<input type="checkbox" <% if (this.recommended=='1') { %> checked="checked"<% } %> name="recommended" id="recommended" value="1" >Recommended Listing 
+					</label>
+					
+				</div>
+			</div>
+			
+			<div class="control-group" id="cat-list-area" style="margin-top: 30px;" >
+				{{ macro.category_checkboxes(categories) }}
+			</div>
+
+			<div class="clearfix"></div>
+		</fieldset>
+
+		
+		<div class="form-actions fixed">
+			<div class="container">
+				<div class="pull-left">
+
+				</div>
+				<div class="pull-right">
+					<% if (this.ID){ %>
+					<a href="javascript:void(0)" style="width:20px;" data-id="5" id="btn-delete" class="btn "><i class="icon-trash"></i></a>
+					<a href="javascript:void(0)" style="width:100px;" id="btn-new" class="btn btn-link ">New</a>
+					<% } %>
+					<button data-loading-text="Saving..." style="width:150px;" class="btn btn-primary" type="submit">Save changes</button>
+				</div>
+			</div>
+		</div>
+		
+		
+	</form>
+
+	]]>
+</script>
+
+<script type="text/x-jqote-template" id="template-pagination">
+	<![CDATA[
+	<div >
+		<ul>
+			<li data-page="1"
+			<% if ('1'==this.current) { %>class="disabled"<% } %>>
+			<a href="#">«</a>        </li>        <% for(var i in this.pages) { %>
+			<li data-page="<%= this.pages[i].p %>" class="<% if (this.current==this.pages[i].p) { %>active<% } %>">
+				<a href="#"><%= this.pages[i].p %></a></li>
+			<% } %>
+			<li data-page="<%= this.last %>"
+			<% if (this.last==this.current) { %>class="disabled"<% } %>> <a href="#">»</a>        </li>
+
+		</ul>
+	</div>
+	<div id="pagination-info" style="">
+		<%= this.info %>
+	</div>
+
+	]]>
+</script>
