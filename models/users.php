@@ -161,7 +161,16 @@ class users extends _ {
 		$timer->_stop(__NAMESPACE__, __CLASS__, __FUNCTION__, func_get_args());
 		return $ID;
 	}
-	
+	static function remove($ID){
+		$timer = new timer();
+		$f3 = \base::instance();
+		//	test_array($values); 
+		$art = new \DB\SQL\Mapper($f3->get("DB"), "dir_users");
+		$art->load("ID='$ID'");
+		$art->erase();
+		$timer->_stop(__NAMESPACE__, __CLASS__, __FUNCTION__, func_get_args());
+		return "done";
+	}
 	
 	static function format($data){
 		$timer = new timer();

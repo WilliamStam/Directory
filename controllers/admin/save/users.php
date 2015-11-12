@@ -56,8 +56,9 @@ class users extends _ {
 		
 		return $GLOBALS["output"]['data'] = $result;
 	}
-	
-
-
-
+	function _delete() {
+		$ID = (isset($_GET['ID']) && $_GET['ID']) ? $_GET['ID'] : "";
+		
+		return $GLOBALS["output"]['data'] = models\users::remove($ID);
+	}
 }

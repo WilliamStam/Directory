@@ -27,8 +27,9 @@ $(document).ready(function () {
 		var ID = $.bbq.getState("ID");
 		if (confirm("Are you sure you want to delete this record?")) {
 			$("#left-area .loadingmask").show();
-			$.post("/admin/save/users/_delete/?ID=" + ID, function (r) {
+			$.post("/admin/save/users/_delete/?ID=" + ID,{'r':Math.random()}, function (r) {
 				$.bbq.removeState("ID");
+				$.bbq.pushState({"msg":"Record Deleted"})
 				getData();
 			});
 		}
@@ -69,12 +70,17 @@ function getData() {
 	var search = $("#search").val();
 	var catID = $("#search-catID").val();
 
+	var msg = $.bbq.getState("msg");
+	$.bbq.removeState("msg");
 	
 	$(".loadingmask").show();
 	$.getData("/admin/data/users/data?ID="+ID, {"search":search,"catID":catID}, function (data) {
-
 		
+		if (msg){
+			data.details.msg = msg;
+		}
 		
+		//console.log(data.msg)
 		
 		var $recordsList = $("#cat-list-area").html("");
 		

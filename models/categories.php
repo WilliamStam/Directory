@@ -122,6 +122,18 @@ class categories extends _ {
 		$timer->_stop(__NAMESPACE__, __CLASS__, __FUNCTION__, func_get_args());
 		return $ID;
 	}
+	static function remove($ID){
+		$timer = new timer();
+		$f3 = \base::instance();
+		$user = $f3->get("user");
+		//	test_array($values); 
+		$IDorig = $ID;$changes = array();
+		$art = new \DB\SQL\Mapper($f3->get("DB"), "dir_categories");
+		$art->load("ID='$ID'");
+		$art->erase();
+		$timer->_stop(__NAMESPACE__, __CLASS__, __FUNCTION__, func_get_args());
+		return "done";
+	}
 	
 	
 	
