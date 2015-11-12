@@ -8,8 +8,9 @@
 		<li class="<% if (this.details.ID == this.records[i].ID){ %>active<% } %>" data-id="<%= this.records[i].ID %>" id="id-<%= this.records[i].ID %>" >
 			<div>
 				
+				
+				<span class="s g pull-right"><%= this.records[i].lastLogin %></span>
 				<%= this.records[i].name %>
-			
 			</div>
 			
 		</li>
