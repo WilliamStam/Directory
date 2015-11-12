@@ -46,6 +46,11 @@ class categories extends _ {
 		
 		return $GLOBALS["output"]['data'] = $result;
 	}
+	function _delete() {
+		$ID = (isset($_GET['ID']) && $_GET['ID']) ? $_GET['ID'] : "";
+		
+		return $GLOBALS["output"]['data'] = models\categories::remove($ID);
+	}
 	function order() {
 		$return = "";
 		$domain = $this->f3->get("domain");
