@@ -180,6 +180,7 @@ class users extends _ {
 		//test_array($items); 
 
 		foreach ($data as $item){
+			unset($item['password']);
 			$n[] = $item;
 		}
 
