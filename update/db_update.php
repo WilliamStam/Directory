@@ -14,7 +14,8 @@ $sql = array(
 	 */
 	"ALTER TABLE  `dir_categories` ADD  `text` TEXT NULL DEFAULT NULL AFTER  `category`;", 
 		"ALTER TABLE  `dir_categories` ADD  `photo` VARCHAR( 50 ) NULL DEFAULT NULL AFTER  `text`;",
-		"RENAME TABLE  `tb_users` TO  `dir_users` ;"
+		"RENAME TABLE  `tb_users` TO  `dir_users` ;",
+		"ALTER TABLE  `dir_users` CHANGE  `lastActivity`  `lastLogin` DATETIME NULL DEFAULT NULL;"
 )
 
 ?>

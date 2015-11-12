@@ -144,6 +144,7 @@ $f3->route('GET|POST /admin/users', 'controllers\admin\users->page');
 
 
 
+
 $f3->route("GET|POST /admin/save/@function", function ($app, $params) {
 	$app->call("controllers\\admin\\save\\save->" . $params['function']);
 }

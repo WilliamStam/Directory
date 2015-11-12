@@ -110,7 +110,7 @@ class users extends _ {
 			if ($ID!=""){
 				$art = new \DB\SQL\Mapper($this->f3->get("DB"), "dir_users");
 				$art->load("ID = '{$ID}'");
-				$art->lastLoggedin = date("Y-m-d H:i:s");
+				$art->lastLogin = date("Y-m-d H:i:s");
 				$art->save();
 			}
 			

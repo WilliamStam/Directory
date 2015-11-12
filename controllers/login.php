@@ -1,52 +1,30 @@
 <?php
 namespace controllers;
-
-class login {
+use \timer as timer;
+use \models as models;
+class login extends _ {
 	function __construct(){
-		$this->f3 = \base::instance();
+		parent::__construct();
 	}
 	function page(){
 		$user = $this->f3->get("user");
+		
+		
+		
+		
+		
+		
 		$tmpl = new \template("template.twig");
 		$tmpl->page = array(
 			"section"    => "login",
-			"sub_section"=> "form",
+			"sub_section"=> "login",
 			"template"   => "login",
 			"meta"       => array(
-				"title"=> "Login",
+				"title"=> "Directory | Admin | Login",
 			),
 			"css"=>"",
-			"js"=>""
+			"js"=>"",
 		);
-
-
-		
-		
-
-		
-		
-		$username = isset($_POST['login_email']) ? $_POST['login_email'] : "";
-		$password = isset($_POST['login_password']) ? $_POST['login_password'] : "";
-
-		$msg = "Please Login";
-		if (($username && $password) ){
-			if (isset($user['ID']) && $user['ID']) {
-				$this->f3->reroute("/?to=".(isset($_GET['to'])?$_GET['to']:''));
-			} else {
-				$msg = "Login Failed";
-			}
-
-		}
-		if (!$username) $username = isset($_COOKIE['username']) ? $_COOKIE['username'] : "";
-
-		if (isset($user['ID'])&&$user['ID']) $msg = "Already logged in";
-
-		$tmpl->msg = $msg;
-		$tmpl->user = $user;
-		$tmpl->username = $username ;
 		$tmpl->output();
-
 	}
-
-
 }

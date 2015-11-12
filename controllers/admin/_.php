@@ -8,6 +8,9 @@ class _ {
 		$this->f3 = \base::instance();
 		$this->user = $this->f3->get("user");
 
+		if ($this->user['ID']==""){
+			$this->f3->reroute("/login?msg=Login+Failed");
+		}
 		
 		
 	}

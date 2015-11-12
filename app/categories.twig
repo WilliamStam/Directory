@@ -9,7 +9,7 @@
 					<span class="badge pull-right">{{ row['itemCount'] }}</span>
 				{% endif %}
 				{% if row['photo'] %}
-					<img alt="" src="/thumbnail/35/35?crop=false&file=/categories/{{ row['photo'] }}" style="margin-top:-10px;margin-bottom:-10px;"  />
+					<img alt="" src="/thumbnail/35/35?crop=false&file=/categories/{{ row['photo'] }}" style="margin-top:-10px;margin-bottom:-10px;"/>
 				{% endif %}
 				{{ row['category'] }}
 			</a>
@@ -25,6 +25,10 @@
 	
 	{% import _self as macro %}
 
-<ul class="nav">
-	{{ macro.categoryMobile(_categories) }}
-</ul>
+<div class="row">
+	<div class="" id="whole-area">
+		<ul class="nav">
+			{{ macro.categoryMobile(_categories) }}
+		</ul>
+	</div>
+</div>
