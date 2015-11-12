@@ -77,7 +77,7 @@ $uID = isset($_SESSION['uID']) ? $_SESSION['uID'] : "";
 $username = isset($_REQUEST['login_email']) ? $_REQUEST['login_email'] : "";
 $password = isset($_REQUEST['login_password']) ? $_REQUEST['login_password'] : "";
 
-$userO = new \models\user();
+$userO = new \models\users();
 //$uID = "2";
 
 
@@ -105,10 +105,7 @@ if ($username && $password) {
 	$f3->reroute($url);
 }
 $user = $userO->get($uID);
-if (isset($_GET['auID']) && $user['su']=='1'){
-	$_SESSION['uID'] = $_GET['auID'];
-	$user = $userO->get($_GET['auID']);
-}
+
 
 
 $f3->set('user', $user);

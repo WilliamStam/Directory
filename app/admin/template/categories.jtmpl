@@ -63,12 +63,14 @@
 		<div class="form-actions">
 			<div>
 				<div class="pull-left">
-
+					<% if (this.ID){ %>
+					<a href="javascript:void(0)" id="btn-delete" class="btn"><i class="fa fa-trash"></i></a>
+					<% } %>
 				</div>
 				<div class="pull-right">
 					<% if (this.ID){ %>
-					<a href="javascript:void(0)" style="width:20px;" data-id="5" id="btn-delete" class="btn "><i class="icon-trash"></i></a>
-					<a href="javascript:void(0)" style="width:100px;" id="btn-new" class="btn btn-link ">New</a>
+					
+					<a href="javascript:void(0)"  id="btn-new" class="btn btn-link ">New</a>
 					<% } %>
 					<button data-loading-text="Saving..." style="width:150px;" class="btn btn-primary" type="submit">Save changes</button>
 				</div>
