@@ -317,13 +317,13 @@ function validationErrors(data, $form) {
 
 	} 
 
-	submitBtnCounter($form);
+	//submitBtnCounter($form);
 	
 	
 }
 
 function submitBtnCounter($form) {
-	var c = $(".form-group.has-error").length;
+	var c = $(".has-error",$form).length;
 	var $btn = $("button[type='submit']", $form);
 	if (c) {
 		$btn.addClass("btn-danger").html("(" + c + ") Error(s) Found");

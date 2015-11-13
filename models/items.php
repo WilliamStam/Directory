@@ -55,10 +55,14 @@ class items extends _ {
 		}
 		
 		$sql = "
-			SELECT DISTINCT dir_items.*
-			 FROM dir_items INNER JOIN dir_item_category ON dir_item_category.itemID = dir_items.ID
+			SELECT dir_items.*, COUNT(dir_categories .ID) as categoriesCount
+		
+			 
+			FROM (dir_categories INNER JOIN dir_item_category ON dir_categories.ID = dir_item_category.catID) RIGHT JOIN dir_items ON dir_item_category.itemID = dir_items.ID
+			 
 			 
 			WHERE $where
+			GROUP BY dir_items.ID
 			$orderby
 			$limit
 		";
@@ -102,8 +106,19 @@ class items extends _ {
 				
 		$art->save();
 		$ID = ($art->ID) ? $art->ID : $art->_id;
-					
 		
+		if (isset($values['categoryID'])){
+			$f3->get("DB")->exec("DELETE FROM dir_item_category WHERE itemID = '$ID';");
+			if (count($values['categoryID'])){
+				foreach ((array)$values['categoryID'] as $item){
+					$f3->get("DB")->exec("INSERT INTO dir_item_category  (itemID, catID) VALUES ('$ID','$item');");
+				}
+			}
+			
+			
+			
+			
+		}
 		
 		$timer->_stop(__NAMESPACE__, __CLASS__, __FUNCTION__, func_get_args());
 		return $ID;

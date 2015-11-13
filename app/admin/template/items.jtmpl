@@ -1,223 +1,208 @@
-{% macro category_checkboxes(data) %}
-	{% import _self as macro %}
-	
-	<ul>
-	{% for row in data %}
-		<li>
-			<label class="checkbox">
-				<input type="checkbox" value="{{ row['ID'] }}" id="categoryID[]" name="categoryID[]" <% if ($.inArray("{{ row['ID'] }}",this.categories.split(","))!=-1) { %>checked="checked"<% } %> >
-				{{ row['category'] }} 
-				{% if row['itemCount'] %}
-				<span class="pull-right badge">{{ row['itemCount'] }} </span>
-				{%  endif  %}
-				
-			</label>
-			{{ macro.category_checkboxes(row['children']) }}
-		</li>
-	{% endfor %}
-	</ul>
-	
-{% endmacro %}
-{% import _self as macro %}
 
 
 <script type="text/x-jqote-template" id="template-list">
 	<![CDATA[
-
-	<tr class="record" data-id="<%= this.ID %>">
-		<td>
-			<%= this.name %>
-		</td>
-		
-		<td class="r">
-			<% if (this.labelClass) { %><span class="label <%= this.labelClass %> pull-right" style="width:10px;">&nbsp;</span><% } %>
-		</td>
-	</tr>
-
+	
+	
+	
+	<ol>
+		<% for (var i in this.records){ %>
+		<li class="<% if (this.details.ID == this.records[i].ID){ %>active<% } %>" data-id="<%= this.records[i].ID %>" id="id-<%= this.records[i].ID %>" >
+			<div>
+				
+				<% if(this.records[i].recommended=='1'){ %>
+				<span class="pull-right label label-info">Rec</span>
+				<% } %>
+				
+				<%= this.records[i].name %>
+			
+			</div>
+		</li>
+		<% } %>
+	</ol>	
+			
+			
 	]]>
 </script>
+
 <script type="text/x-jqote-template" id="template-details">
 	<![CDATA[
-
-	<form method="post" id="capture-form" class="form-horizontal">
-		<fieldset style="margin-top:0;">
-			<legend><% if (this.ID) { %>Edit<% } else { %>Add<% } %> - Record
-			
-				<small class="pull-right s g">
-					Stats: 
-					<strong><%= this.stats.itemsCount||'' %> </strong> 
-					Items | <strong><%= this.stats.categoriesCount||'' %> </strong> 
-					Categories
-				</small>
-			
-			</legend>
-			
-			<div id="errorArea"></div>
-			<div class="control-group">
-				<label class="control-label" for="name">Name</label>
-				<div class="controls">
-					<input type="text" id="name" name="name" value="<%= this.name||'' %>" class="span6">
+	<form class="form-horizontal" id="capture-form" >
+		
+		<fieldset>
+			<legend><% if (this.details.ID) { %>Edit<% } else { %>Add<% } %> - Record</legend>
+			<% if(this.msg){ %>
+			<div class="alert alert-info" role="alert">
+				<p><%= this.msg %></p>
+			</div>
+			<% } %>
+			<div class="form-group">
+				<label for="name" class="col-sm-2 control-label">Name</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="name" name="name" placeholder="Listing Name" value="<%= this.details.name||'' %>">
 				</div>
 			</div>
-			<div class="control-group">
-				<label class="control-label" for="email">Email</label>
-				<div class="controls">
-					<input type="text" id="email" name="email" value="<%= this.email||'' %>" class="span4">
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" name="recommended" id="recommended" value="1" <% if(this.details.recommended=='1'){ %>checked="checked"<% } %> >Recommended Listing
+						</label>
+					</div>
 				</div>
 			</div>
-			<div class="control-group">
-				<label class="control-label" for="phone">Phone</label>
-				<div class="controls">
-					<input type="text" id="phone" name="phone" value="<%= this.phone||'' %>" class="span4">
+			<div class="form-group">
+				<label for="picture" class="col-sm-2 control-label">Picture</label>
+				<div class="col-sm-8" id="item-upload-info" >
+					<% if (this.details.photo){ %>
+					<img alt="" src="/thumbnail/300/300?crop=false&file=/files/<%= this.details.photo||'' %>" style="" class="img-thumbnail" />
+					<% } else { %>
+					<p class="form-control-static g">No picture added yet</p>
+					<% } %>
 				</div>
-			</div>
-			<div class="control-group">
-				<label class="control-label" for="phone_alt">Phone (alt)</label>
-				<div class="controls">
-					<input type="text" id="phone_alt" name="phone_alt" value="<%= this.phone_alt||'' %>" class="span4">
+				<div class="col-sm-2" id="item-uploader-container"  >
+					<button class="btn btn-default col-sm-12" id="item-uploader" type="button" style="line-height:18px; border-color:#ddd; "><i class="fa fa-upload"></i></button>
 				</div>
-			</div>
-			<div class="control-group">
-				<label class="control-label" for="website">Website</label>
-				<div class="controls">
-					<input type="text" id="website" name="website" value="<%= this.website||'' %>" class="span4">
-					<div class="help-block s g" style="margin-top:0;">Please include the http://</div>
-				</div>
-			</div>
-			<div class="control-group">
-				<label class="control-label" for="website">Website (alt)</label>
-				<div class="controls">
-					<input type="text" id="website" name="website_alt" value="<%= this.website_alt||'' %>" class="span4">
-					<div class="help-block s g" style="margin-top:0;">Please include the http:// (this is for an alternative link)</div>
-				</div>
-			</div>
-			<div class="control-group">
-				<label class="control-label" for="synopsis">Intro</label>
-				<div class="controls">
-					<textarea name="synopsis" id="synopsis" cols="30" rows="5" class="span6"><%= this.synopsis||'' %></textarea>
-				</div>
-			</div>
-
-			<div class="control-group">
 				
-				<label class="control-label" for="text">Body Text</label>
-				<div class="clearfix"></div>
-					<textarea name="text" id="text" cols="60" rows="10" class="span9"><%= this.text||'' %></textarea>
-			</div>
-			<div class="control-group">
-				<label class="control-label" for="photo">Photo</label>
-				<div class="controls" id="photo-upload-container">
-					<button id="photo-upload-btn" class="btn" style="width:110px;" type="button">Browse</button>
-					<span id="photo-upload-label" class="help-inline" style="padding-top:3px;"><% if (this.photo=="") { %>No file selected<% } %></span>
-					<div class="progress progress-striped" style="margin-top:10px;" >
-						<div class="bar" style="width: 0%;"></div>
-					</div>
-					<div id="photo-upload-photo" style="margin-top:10px;">
-						<% if (this.photo!="") { %>
-						<img src="/thumbnail/200/200?file=/directory/{{ _domain['ID'] }}/<%= this.photo||'' %>&crop=false" alt=""/>
-						<% } %>
-					</div>
-					<input type="hidden" id="photo" name="photo" value="<%= this.photo||'' %>"  />
-					
-				</div>
-			</div>
-			<div class="control-group">
-				<label class="control-label" for="photo">Photo (alt)</label>
-				<div class="controls" id="photo-upload-container-alt">
-					<button id="photo-upload-btn-alt" class="btn" style="width:110px;" type="button">Browse</button>
-					<span id="photo-upload-label-alt" class="help-inline" style="padding-top:3px;"><% if (this.photo_alt=="") { %>No file selected<% } %></span>
-					<div class="progress progress-striped" style="margin-top:10px;" >
-						<div class="bar" style="width: 0%;"></div>
-					</div>
-					<div id="photo-upload-photo-alt" style="margin-top:10px;">
-						<% if (this.photo_alt!="") { %>
-						<img src="/thumbnail/200/200?file=/directory/{{ _domain['ID'] }}/<%= this.photo_alt||'' %>&crop=false" alt=""/>
-						<% } %>
-					</div>
-					<input type="hidden" id="photo_alt" name="photo_alt" value="<%= this.photo_alt||'' %>"  />
-
-				</div>
-			</div>
-			<div class="control-group">
-				<label class="control-label" for="address">Address</label>
-				<div class="controls">
-					<textarea name="address" id="address" cols="10" rows="5" class="span4"><%= this.address||'' %></textarea>
-				</div>
 			</div>
 			
 			
-			
-			<div class="control-group">
-				<label class="control-label" for="gps_lat">GPS Latitude</label>
-				<div class="controls">
-					<input type="text" id="gps_lat" name="gps_lat" value="<%= this.gps_lat||'' %>" class="span2">
-					
-				</div>
+			<input type="hidden" id="photo" name="photo"  value="<%= this.details.photo||'' %>">
+			<div class="form-group">
+				<label for="synopsis">Synopsis</label>
+				<textarea name="synopsis" id="synopsis" cols="30" rows="10"><%= this.details.synopsis||'' %></textarea>	
 			</div>
-			<div class="control-group">
-				<label class="control-label" for="gps_long">GPS Longitude</label>
-				<div class="controls">
-					<input type="text" id="gps_long" name="gps_long" value="<%= this.gps_long||'' %>" class="span2">
-
-				</div>
-			</div>
-			<div class="control-group">
-				<label class="control-label" for="recommended">Recommended</label>
-				<div class="controls">
-					<label class="checkbox active">
-						<input type="checkbox" <% if (this.recommended=='1') { %> checked="checked"<% } %> name="recommended" id="recommended" value="1" >Recommended Listing 
-					</label>
-					
-				</div>
+			<div class="form-group">
+				<label for="synopsis">Main body Text</label>
+				<textarea name="text" id="text" cols="30" rows="10"><%= this.details.text||'' %></textarea>	
 			</div>
 			
-			<div class="control-group" id="cat-list-area" style="margin-top: 30px;" >
-				{{ macro.category_checkboxes(categories) }}
+			<fieldset>
+				<legend>Contact Details</legend>
+				<div class="form-group">
+					<label for="email" class="col-sm-2 control-label">Email</label>
+					<div class="col-sm-10">
+						<input type="email" class="form-control" id="email" name="email" placeholder="Email" value="<%= this.details.email||'' %>">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="phone" class="col-sm-2 control-label">Phone</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="phone" name="phone" placeholder="Phone Number" value="<%= this.details.phone||'' %>">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="phone_alt" class="col-sm-2 control-label">Phone (alt)</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="phone_alt" name="phone_alt" placeholder="Phone Number (alt)" value="<%= this.details.phone_alt||'' %>">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="website" class="col-sm-2 control-label">Website</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="website" name="website" placeholder="Website" value="<%= this.details.website||'' %>">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="website_alt" class="col-sm-2 control-label">Website (alt)</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="website_alt" name="website_alt" placeholder="Website (alt)" value="<%= this.details.website_alt||'' %>">
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label for="address" class="col-sm-2 control-label">Address</label>
+					<div class="col-sm-10">
+						<textarea name="address" id="address" cols="10" rows="5" class="form-control"><%= this.details.address||'' %></textarea>
+						<button class="btn btn-info" style="margin-top:20px;">Lookup GPS co-ordinates</button>
+					</div>
+				</div>
+				
+				
+				<div class="form-group">
+					<label for="gps_lat" class="col-sm-2 control-label">GPS Latitude</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="gps_lat" name="gps_lat" placeholder="GPS Latitude" value="<%= this.details.gps_lat||'' %>">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="gps_long" class="col-sm-2 control-label">GPS Longitude</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="gps_long" name="gps_long" placeholder="GPS Longitude" value="<%= this.details.gps_long||'' %>">
+					</div>
+				</div>
+			
+				
+				
+				
+			
+				
+				
+				
+				
+				
+			</fieldset>
+			<fieldset>
+				<legend>Photos</legend>
+				
+				
+			</fieldset>
+			
+			{% macro category_checkboxes(data) %}
+				{% import _self as macro %}
+				
+				<ul>
+					{% for row in data %}
+						<li>
+							
+								<label class="checkbox">
+									<input type="checkbox" value="{{ row['ID'] }}" id="categoryID[]" name="categoryID[]" <% if ($.inArray("{{ row['ID'] }}",this.details['categories'].split(","))!=-1) { %>checked="checked"<% } %> >
+									{{ row['category'] }}
+									{% if row['itemCount'] %}
+										<span class="pull-right badge">{{ row['itemCount'] }} </span>
+									{%  endif  %}
+								</label>
+						
+							{{ macro.category_checkboxes(row['children']) }}
+						</li>
+					{% endfor %}
+				</ul>
+			
+			{% endmacro %}
+			{% import _self as macro %}
+			<fieldset>
+				<legend>Categories</legend>
+			
+			
+			<div class="control-group" id="cat-list-area-checkboxes" style="margin-top: 30px;" >
+				{{ macro.category_checkboxes(_categories) }}
 			</div>
-
+		
+		</fieldset>
 			<div class="clearfix"></div>
 		</fieldset>
 
-		
-		<div class="form-actions fixed">
-			<div class="container">
+		<div class="clearfix"></div>
+		<div class="form-actions" style="margin-top:40px;padding-bottom:40px;">
+			<div>
 				<div class="pull-left">
-
+					<% if (this.details.ID){ %>
+					<a href="javascript:void(0)" id="btn-delete" class="btn"><i class="fa fa-trash"></i></a>
+					<% } %>
 				</div>
 				<div class="pull-right">
-					<% if (this.ID){ %>
-					<a href="javascript:void(0)" style="width:20px;" data-id="5" id="btn-delete" class="btn "><i class="icon-trash"></i></a>
-					<a href="javascript:void(0)" style="width:100px;" id="btn-new" class="btn btn-link ">New</a>
+					<% if (this.details.ID){ %>
+					
+					<a href="javascript:void(0)"  id="btn-new" class="btn btn-link ">New</a>
 					<% } %>
 					<button data-loading-text="Saving..." style="width:150px;" class="btn btn-primary" type="submit">Save changes</button>
 				</div>
 			</div>
 		</div>
-		
+		<div class="clearfix" style="height: 40px;;"></div>
 		
 	</form>
 
 	]]>
 </script>
 
-<script type="text/x-jqote-template" id="template-pagination">
-	<![CDATA[
-	<div >
-		<ul>
-			<li data-page="1"
-			<% if ('1'==this.current) { %>class="disabled"<% } %>>
-			<a href="#">«</a>        </li>        <% for(var i in this.pages) { %>
-			<li data-page="<%= this.pages[i].p %>" class="<% if (this.current==this.pages[i].p) { %>active<% } %>">
-				<a href="#"><%= this.pages[i].p %></a></li>
-			<% } %>
-			<li data-page="<%= this.last %>"
-			<% if (this.last==this.current) { %>class="disabled"<% } %>> <a href="#">»</a>        </li>
-
-		</ul>
-	</div>
-	<div id="pagination-info" style="">
-		<%= this.info %>
-	</div>
-
-	]]>
-</script>
