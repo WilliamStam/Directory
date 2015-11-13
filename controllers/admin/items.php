@@ -23,7 +23,7 @@ class items extends _ {
 				"title"=> "Directory | Admin | Items",
 			),
 			"css"=>"",
-			"js"=>"",
+				"js"=>"http://maps.google.com/maps/api/js",
 		);
 		$tmpl->output();
 	}

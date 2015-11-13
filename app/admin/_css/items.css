@@ -45,3 +45,6 @@ fieldset legend {
 #cat-list-area-checkboxes label:hover {
   background-color: #deebff;
 }
+#map-area {
+  height: 170px;
+}

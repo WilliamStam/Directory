@@ -114,23 +114,35 @@
 					<label for="address" class="col-sm-2 control-label">Address</label>
 					<div class="col-sm-10">
 						<textarea name="address" id="address" cols="10" rows="5" class="form-control"><%= this.details.address||'' %></textarea>
-						<button class="btn btn-info" style="margin-top:20px;">Lookup GPS co-ordinates</button>
+						
 					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-6">
+						
+						<button class="btn btn-info col-sm-8 col-sm-offset-4" id="lookup-coords-btn" type="button" style="margin-bottom:20px;">Lookup co-ordinates</button>
+						
+						<div class="form-group">
+							<label for="gps_lat" class="col-sm-4 control-label">GPS Latitude</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" id="gps_lat" name="gps_lat" placeholder="GPS Latitude" value="<%= this.details.gps_lat||'' %>">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="gps_long" class="col-sm-4 control-label">GPS Longitude</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" id="gps_long" name="gps_long" placeholder="GPS Longitude" value="<%= this.details.gps_long||'' %>">
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div id="map-area"></div>
+					</div>	
 				</div>
 				
 				
-				<div class="form-group">
-					<label for="gps_lat" class="col-sm-2 control-label">GPS Latitude</label>
-					<div class="col-sm-10">
-						<input type="text" class="form-control" id="gps_lat" name="gps_lat" placeholder="GPS Latitude" value="<%= this.details.gps_lat||'' %>">
-					</div>
-				</div>
-				<div class="form-group">
-					<label for="gps_long" class="col-sm-2 control-label">GPS Longitude</label>
-					<div class="col-sm-10">
-						<input type="text" class="form-control" id="gps_long" name="gps_long" placeholder="GPS Longitude" value="<%= this.details.gps_long||'' %>">
-					</div>
-				</div>
+				
+				
 			
 				
 				

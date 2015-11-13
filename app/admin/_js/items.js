@@ -25,6 +25,12 @@ $(document).ready(function () {
 		return false;
 		
 	});
+	$(document).on("click", "#lookup-coords-btn", function (e) {
+		e.preventDefault();
+		getCoords();
+		return false;
+		
+	});
 	
 	$(document).on("click", "#list-action-awaiting", function (e) {
 		e.preventDefault();
@@ -84,7 +90,10 @@ $(document).ready(function () {
 		
 	});
 	
-
+	
+	$(document).on("change","#gps_long, #gps_lat",function(){
+		gps_changes()
+	})
 });
 
 function getData() {
@@ -108,7 +117,6 @@ function getData() {
 		$("#record-details").jqotesub($("#template-details"), data);
 		
 	
-
 		
 		
 		//console.log(data.details.ID)
@@ -116,7 +124,8 @@ function getData() {
 		if ($("#text").length) CKEDITOR.replace('text',ckeditor_config);
 		if ($("#synopsis").length) CKEDITOR.replace('synopsis',ckeditor_config);
 		categories_active()
-		uploader()
+		uploader();
+		gps_changes();
 		$(".loadingmask").fadeOut();
 
 	},"data");
@@ -176,4 +185,51 @@ function uploader() {
 		$(this).closest("label").addClass("active")
 		
 	})
+}
+function getCoords(){
+	var address = $("#address").val();
+	var geocoder = new google.maps.Geocoder();
+	geocoder.geocode({
+		"address": address
+	}, function(results) {
+		var lng = results[0].geometry.location.lng();
+		var lat = results[0].geometry.location.lat();
+		//console.log(results[0].geometry.location); //LatLng
+		$("#gps_long").val(lng)
+		$("#gps_lat").val(lat)
+		initialize_map(results[0].geometry.location);
+	});
+	
+	console.log(address)
+}
+function initialize_map(position) {
+	var mapOptions = {
+		zoom  :15,
+		center:position,
+		mapTypeId:google.maps.MapTypeId.ROADMAP,
+		disableDefaultUI:true
+	};
+	geocoder = new google.maps.Geocoder();
+	map = new google.maps.Map(document.getElementById("map-area"), mapOptions);
+	
+	var marker = new google.maps.Marker({
+		position: position,
+		map: map
+	});
+	
+	
+	
+}
+
+function gps_changes(){
+	var gps_long = $("#gps_long").val();
+	var gps_lat = $("#gps_lat").val();
+	
+	
+	if (gps_long && gps_lat){
+		var position = new google.maps.LatLng(gps_lat,gps_long);
+		initialize_map(position)
+	}
+	
+	
 }
