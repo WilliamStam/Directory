@@ -156,7 +156,10 @@
 			</fieldset>
 			<fieldset>
 				<legend>Photos</legend>
-				
+				<div id="uploader">
+					<p>Your browser doesn't have Flash, Silverlight or HTML5 support.</p>
+				</div>
+				<div id="new-file-area"></div>
 				
 			</fieldset>
 			
@@ -218,3 +221,18 @@
 	]]>
 </script>
 
+<script type="text/x-jqote-template" id="template-form-files">
+	<![CDATA[
+	
+	<div style="width:160px; margin:6px;" class="pull-left">
+		<img alt="" src="/thumbnail/150/150?crop=false&file=/files/<%= this.file||'' %>" style="" class="img-thumbnail" />
+		<div class="btn-group btn-group-justified" role="group">
+			<button class="btn btn-default" type="button" style="width:81px;" ><i class="fa fa-trash"></i></button>
+			<button class="btn btn-default" type="button" style="width:80px;" ><i class="fa fa-exchange"></i></button>
+		</div>	
+	
+	</div>
+	
+	
+	]]>
+</script>

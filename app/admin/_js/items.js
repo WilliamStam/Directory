@@ -125,6 +125,7 @@ function getData() {
 		if ($("#synopsis").length) CKEDITOR.replace('synopsis',ckeditor_config);
 		categories_active()
 		uploader();
+		otherUploader();
 		gps_changes();
 		$(".loadingmask").fadeOut();
 
@@ -145,6 +146,13 @@ function uploader() {
 		chunk_size: '30mb',
 		unique_names: true,
 		multiple_queues: true,
+		
+		resize : {
+			width : 1000,
+			height : 1000,
+			quality : 90,
+			
+		},
 		
 		
 		init: {
@@ -179,7 +187,58 @@ function uploader() {
 	
 	//$("#item-upload-info").html('<img alt="" src="/thumbnail/300/300?crop=false&file=/items/<%= this.photo||'' %>" style="" class="img-thumbnail" />')
 	
-}function categories_active(){
+}
+
+function otherUploader(){
+	$("#uploader").plupload({
+		runtimes : 'html5,flash,silverlight,html4',
+		
+		
+		
+		url: '/admin/save/items/upload',
+		
+		chunk_size         : '30mb',
+		unique_names       : true,
+		multiple_queues    : true,
+		
+		
+		// Resize images on clientside if we can
+		resize             : {width: 1000, height: 1000, quality: 90},
+		
+		// Specify what files to browse for
+	
+		
+		// Enable ability to drag'n'drop files onto the widget (currently only HTML5 supports that)
+		init: {
+			FilesAdded    : function (up, files) {
+				up.refresh();
+				up.start();
+			},
+			FilesRemoved  : function (up, files) {
+				
+			},
+			FileUploaded  : function (up, file, info) {
+				
+				console.log(file)
+				
+				var data = [{
+					"file": file.target_name
+				}];
+								
+				$("#new-file-area").jqotepre($("#template-form-files"), data);
+			//	CKEDITOR.replace('file-description-' + file.id, file_description_boxes);
+				
+				
+				
+				
+			},
+		}
+		
+	});
+}
+
+
+function categories_active(){
 	$("#cat-list-area-checkboxes label.active").removeClass("active");
 	$("#cat-list-area-checkboxes input:checkbox:checked").each(function(){
 		$(this).closest("label").addClass("active")
