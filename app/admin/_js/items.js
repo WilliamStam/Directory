@@ -93,7 +93,42 @@ $(document).ready(function () {
 	
 	$(document).on("change","#gps_long, #gps_lat",function(){
 		gps_changes()
-	})
+	});
+	
+	$(document).on("click",".photo-remove-btn",function(){
+		var $this = $(this);
+		var ID = $this.attr("data-id");
+		
+		if (confirm("Are you sure you want to remove this record?")){
+			$.post("/admin/save/items/photo_delete?ID="+ID,{"ID":ID},function(){
+				$this.closest(".photo-item").remove();
+			});
+		}
+		
+	});
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 });
 
 function getData() {
@@ -115,6 +150,7 @@ function getData() {
 		
 		$("#cat-list-area").jqotesub($("#template-list"), data);
 		$("#record-details").jqotesub($("#template-details"), data);
+		$("#new-file-area").jqotesub($("#template-form-files"), data.details.photos);
 		
 	
 		
@@ -222,7 +258,8 @@ function otherUploader(){
 				console.log(file)
 				
 				var data = [{
-					"file": file.target_name
+					"ID": "new-"+$("#new-file-area > div").length,
+					"photo": file.target_name
 				}];
 								
 				$("#new-file-area").jqotepre($("#template-form-files"), data);

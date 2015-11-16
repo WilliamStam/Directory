@@ -113,7 +113,7 @@
 								</div>
 								{% if row['synopsis'] %}
 									<div class="item-text">
-										{{ row['synopsis'] }}
+										{{ row['synopsis']|raw }}
 									</div>
 								{% endif %}
 							</div>
@@ -178,7 +178,7 @@
 								</div>
 								{% if row['synopsis'] %}
 									<div class="item-text">
-										{{ row['synopsis'] }}
+										{{ row['synopsis']|raw }}
 									</div>
 								{% endif %}
 							</div>

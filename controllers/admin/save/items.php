@@ -41,20 +41,35 @@ class items extends _ {
 				"gps_long" => $this->post("gps_long"),
 				"gps_lat" => $this->post("gps_lat"),
 				"recommended" => $this->post("recommended"),
+				
 		
 		);
 		
 		//test_array($values); 
-		
-		
-		
-		
+	//	test_array($_POST); 
 		
 		$errors = $this->errors;
+		$photos = array();
 		
+		 // photos-new-6  photos-1
+		foreach($_POST as $key=>$value){
+			if (substr($key,0,7)=="photos-"){
+				$key = str_replace("photos-","",$key);
+				
+				if (substr($key,0,4)=="new-"){
+					$key = "";
+				} 
+				$item = array(
+						"ID"=>$key,
+						"photo"=>$value
+				);
+				$photos[] = $item;
+			}
+			
+		}
 		
-		
-		
+				
+		$values['photos'] = $photos;
 		
 		$result = array();
 		$result['errors'] = $errors;
@@ -80,6 +95,21 @@ class items extends _ {
 		
 		
 		$return = $this->uploader("files",$filename);
+		return $GLOBALS["output"]['data'] = $return;
+	}
+	
+	function photo_delete(){
+		$return = "done";
+		
+		$ID = isset($_REQUEST['ID'])?$_REQUEST['ID']:"";
+		
+		
+		$art = new \DB\SQL\Mapper($this->f3->get("DB"), "dir_items_photos");
+		$art->load("ID='$ID'");
+		$art->erase();
+		
+		
+		
 		return $GLOBALS["output"]['data'] = $return;
 	}
 
