@@ -29,6 +29,7 @@
   margin: 9px 0;
   text-align: left;
   font-size: 18px;
+  font-variant: normal;
 }
 .carousel-inner a.item .img-thumbnail {
   margin-top: 10px;
