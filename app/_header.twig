@@ -134,12 +134,14 @@
 				<li {% if page['section']=='about' %} class="active"{% endif %}><a href="/about">About</a></li>
 				<li {% if page['section']=='contact' %} class="active"{% endif %}><a href="/contact">Contact</a></li>
 				
-				<li class="divider-vertical"></li>
+				
+				<!--
 				<li {% if page['section']=='submit' %} class="active"{% endif %}>
 					<a href="/submit"><i class="fa fa-plus-square"></i> Submit a listing</a>
 				</li>
-			
+			-->	
 				{% if _user['ID'] %}
+					<li class="divider-vertical"></li>
 				<li>
 					<a href="/admin"><i class="fa fa-gears"></i></a>
 				</li>
