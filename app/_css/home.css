@@ -28,6 +28,7 @@
 .carousel-caption h3 {
   margin: 9px 0;
   text-align: left;
+  font-size: 18px;
 }
 .carousel-inner a.item .img-thumbnail {
   margin-top: 10px;
