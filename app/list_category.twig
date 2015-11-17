@@ -122,12 +122,15 @@
 					</article>
 				{% endfor %}
 				
-				{% if related|length %}
+				{% if related|length or category['children']|length %}
 					<div class="well well-lg" style="margin-top:50px;">
 						<h4 style="margin:0 0 20px 0;">
 							You might also be interested in these categories:
 						</h4>
 						<ul class="nav nav-pills">
+							{% for row in category['children'] %}
+								<li><a href="/list/{{ row['ID'] }}/{{ row['url'] }}">{{ row['category'] }}</a></li>
+							{% endfor %}
 							{% for row in related %}
 								<li><a href="/list/{{ row['ID'] }}/{{ row['url'] }}">{{ row['category'] }}</a></li>
 							{% endfor %}

@@ -112,6 +112,10 @@ function getData() {
 		
 		CKEDITOR.replace('text',ckeditor_config);
 		
+		
+		$("#relationship").select2();
+		
+		
 		uploader()
 		$(".loadingmask").fadeOut();
 

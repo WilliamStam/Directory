@@ -138,7 +138,7 @@ $f3->route('GET|POST /contact', 'controllers\contact->page');
 
 
 
-$f3->route('GET|POST /admin', 'controllers\admin\home->page');
+$f3->route('GET|POST /admin', 'controllers\admin\items->page');
 $f3->route('GET|POST /admin/items', 'controllers\admin\items->page');
 $f3->route('GET|POST /admin/categories', 'controllers\admin\categories->page');
 $f3->route('GET|POST /admin/users', 'controllers\admin\users->page');

@@ -16,7 +16,8 @@ $sql = array(
 		"ALTER TABLE  `dir_categories` ADD  `photo` VARCHAR( 50 ) NULL DEFAULT NULL AFTER  `text`;",
 		"RENAME TABLE  `tb_users` TO  `dir_users` ;",
 		"ALTER TABLE  `dir_users` CHANGE  `lastActivity`  `lastLogin` DATETIME NULL DEFAULT NULL;",
-		"CREATE TABLE IF NOT EXISTS `dir_items_photos` (  `ID` int(6) NOT NULL AUTO_INCREMENT,  `itemID` int(6) DEFAULT NULL,  `photo` varchar(50) DEFAULT NULL,  PRIMARY KEY (`ID`),  KEY `itemID` (`itemID`));"
+		"CREATE TABLE IF NOT EXISTS `dir_items_photos` (  `ID` int(6) NOT NULL AUTO_INCREMENT,  `itemID` int(6) DEFAULT NULL,  `photo` varchar(50) DEFAULT NULL,  PRIMARY KEY (`ID`),  KEY `itemID` (`itemID`));",
+		"ALTER TABLE  `dir_categories` ADD  `relationship` VARCHAR( 250 ) NULL DEFAULT NULL AFTER  `photo`;"
 
 
 

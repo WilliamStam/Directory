@@ -11,7 +11,7 @@ class categories extends _ {
 		
 		
 		
-		
+		$categories = models\categories::getInstance()->getAll("","category ASC");
 		
 		
 		$tmpl = new \template("template.twig","app/admin/");
@@ -25,6 +25,7 @@ class categories extends _ {
 			"css"=>"",
 			"js"=>"",
 		);
+		$tmpl->categories = $categories;
 		$tmpl->output();
 	}
 }

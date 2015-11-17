@@ -39,13 +39,15 @@ class list_category extends _ {
 		
 		
 		
+		$relationships = array();
+		
+		if ($category['relationship']){
+			$relationships =  models\categories::getInstance()->getAll("dir_categories.ID in ({$category['relationship']}) OR parentID='{$category['ID']}'");
+		} 
 		
 		
 		
-		
-		
-		
-		
+	//	test_array($relationships); 
 		
 		
 		
@@ -67,7 +69,7 @@ class list_category extends _ {
 		);
 		$tmpl->breadcrumb = $this->breadcrumb;
 		$tmpl->category = $category;
-		$tmpl->related = $category['children'];
+		$tmpl->related = $relationships;
 		$tmpl->items = $items;
 		$tmpl->output();
 	}

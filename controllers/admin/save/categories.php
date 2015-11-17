@@ -28,11 +28,12 @@ class categories extends _ {
 				"category" => $this->post("category","Required"),
 				"text" => $this->post("text"),
 				"photo" => $this->post("photo"),
+				"relationship" => implode(",",$this->post("relationship")),
 		);
 		$errors = $this->errors;
 		
 		
-		
+		//test_array($values); 
 		
 		
 		$result = array();
