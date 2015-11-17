@@ -11,8 +11,18 @@ class home extends _ {
 		
 		
 		
+		$recent = models\items::format(models\items::getInstance()->getAll("",'datein DESC', '0,5'));
+		$items = models\items::format(models\items::getInstance()->getAll("recommended='1' and dir_items.photo != ''"));
+		$rand = array_rand($items,10);
 		
+		$n = array();
+		foreach ($rand as $i){
+			$n[] = $items[$i];
+		}
+		$suggested = $n;
+		//test_array(($n));
 		
+		//test_array($suggested);
 		
 		$tmpl = new \template("template.twig");
 		$tmpl->page = array(
@@ -25,6 +35,8 @@ class home extends _ {
 			"css"=>"",
 			"js"=>"",
 		);
+		$tmpl->suggested = $suggested;
+		$tmpl->recent = $recent;
 		$tmpl->output();
 	}
 }

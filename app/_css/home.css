@@ -10,3 +10,70 @@
 #inline-search-block {
   margin: 50px 0px;
 }
+.carousel-control.right {
+  background: none !important;
+}
+.carousel-control.left {
+  background: none !important;
+}
+.carousel-caption {
+  color: #444;
+  background-color: rgba(250, 250, 250, 0.8);
+  text-shadow: none;
+  left: 0;
+  right: 0;
+  padding: 10px 0;
+  text-align: justify;
+}
+.carousel-caption h3 {
+  margin-top: 9px;
+}
+.carousel-inner a.item .img-thumbnail {
+  margin-top: 10px;
+}
+.carousel-inner a.item:hover h3 {
+  color: #91170a;
+  text-decoration: underline;
+}
+.carousel-inner a.item:hover .img-thumbnail {
+  box-shadow: 0 0 10px #ccc;
+}
+article.directory-item {
+  border-bottom: 1px solid #ccc;
+  margin-right: -2px;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+}
+article.directory-item h4 {
+  color: #444;
+}
+article.directory-item .item-sub span[class^="item-sub-"] {
+  border-left: 1px solid #ccc;
+  padding-left: 10px;
+  margin-right: 10px;
+  white-space: nowrap;
+}
+article.directory-item .item-sub span[class^="item-sub-"] i[class^="icon-"] {
+  color: #999;
+  margin-right: 5px;
+}
+article.directory-item .item-sub span[class^="item-sub-"]:first-child {
+  padding-left: 0px;
+  border-left: none;
+}
+article.directory-item .item-text {
+  border-top: 1px solid #e1e1e1;
+  padding: 5px;
+  margin-top: 5px;
+}
+article.directory-item img {
+  margin-top: 10px;
+}
+h3 {
+  font-variant: small-caps;
+  margin-bottom: 20px;
+}
+.photo-image {
+  border: 1px solid #ccc;
+  box-shadow: 0 0 15px rgba(100, 100, 100, 0.5);
+}

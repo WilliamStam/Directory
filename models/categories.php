@@ -56,15 +56,6 @@ class categories extends _ {
 		if ($limit) {
 			$limit = " LIMIT " . $limit;
 		}
-		
-		$sql = "
-			SELECT *, (SELECT count(ID) FROM dir_items INNER JOIN dir_item_category ON dir_item_category.itemID = dir_items.ID WHERE catID = dir_categories.ID) AS itemCount
-			 FROM dir_categories
-			 
-			WHERE $where
-			$orderby
-			$limit
-		";
 		$sql = "
 			SELECT  dir_categories.*, COUNT(dir_items.ID) as itemCount
 			FROM (dir_categories LEFT JOIN dir_item_category ON dir_categories.ID = dir_item_category.catID) INNER JOIN dir_items ON dir_item_category.itemID = dir_items.ID
@@ -87,8 +78,6 @@ class categories extends _ {
 		return ($return);
 		
 	}
-	
-	
 	
 	
 	static function save($ID,$values){

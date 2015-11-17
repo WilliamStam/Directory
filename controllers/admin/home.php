@@ -10,8 +10,7 @@ class home extends _ {
 		$user = $this->f3->get("user");
 		
 		
-		
-		
+	
 		
 		
 		$tmpl = new \template("template.twig","app/admin/");
