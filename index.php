@@ -132,7 +132,8 @@ $f3->route('GET|POST /list/@catID/@url', 'controllers\list_category->page');
 $f3->route('GET|POST /item/@ID/@url', 'controllers\item_details->page');
 
 
-
+$f3->route('GET|POST /about', 'controllers\about->page');
+$f3->route('GET|POST /contact', 'controllers\contact->page');
 
 
 
