@@ -109,7 +109,7 @@ var ckeditor_config_small = {
 	
 	
 	
-	$.fn.keepAlive();
+	//$.fn.keepAlive();
 	
 	$("#footer-nav-bar-red").removeClass("navbar-fixed-bottom")
 

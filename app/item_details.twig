@@ -80,7 +80,7 @@
 				{% if details['gps_long']!="" and details['gps_lat']!="" %}
 				<h4>Location Map</h4>
 				<section id="details-map">
-					<div id="map-canvas"></div>
+					<div id="map-canvas" data-lng="{{ details['gps_long'] }}" data-lat="{{ details['gps_lat'] }}" title="{{ details['name'] }}"></div>
 				</section>
 				{% endif %}
 			</section>

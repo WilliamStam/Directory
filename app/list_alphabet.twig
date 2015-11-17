@@ -3,6 +3,37 @@
 		<section id="left-area-content" class="content">
 			<h1><small>Starts with:</small>
 				{{ letter }}</h1>
+			
+			
+			
+			
+			
+			<h4 style="margin-top:50px;">
+				Categories
+			</h4>
+			
+			{% if categories|length %}
+				
+				
+				<ul class="nav nav-pills nav-stacked">
+					{% for row in categories %}
+						<li  data-trigger="hover" data-container="body" data-toggle="popover" data-placement="right" data-content="{% if row['photo'] %}<div class='c'><img src='/thumbnail/200/200?crop=false&file=/categories/{{ row['photo'] }}'  class='img-thumbnail' /></div>{% endif %}<div class='text-justify s'>{{ row['text'] }}</div>" data-html="true"  data-placement="left" title="{{ row['category'] }} ">
+							<a href="/list/{{ row['ID'] }}/{{ row['url'] }}">
+								
+								{{ row['category'] }}
+							</a>
+						</li>
+					{% endfor %}
+				</ul>
+				{% else %}
+				<div class="g c" style="margin:50px;">
+					No categories starting with <strong>{{ letter }}</strong>
+				</div>
+			{% endif %}
+			
+			
+			
+			
 		</section>
 	</div>
 	<div class="col-md-7 col-md-offset-5 row-offcanvas row-offcanvas-left match-height" id="right-area">
@@ -11,7 +42,115 @@
 		</div>
 		<section id="right-area-content-area">
 			<section id="right-area-content" class="content">
-				right
+				<h3>Our Recommendations:</h3>
+				{% for row in items['suggested'] %}
+					<article class="directory-item" data-title="{{ row['name'] }}" data-id="{{ row['ID'] }}" data-gps-lat="{{ row['gps_lat'] }}" data-gps-lng="{{ row['gps_lng'] }}">
+						<div >
+							
+							
+							<div class="" style=" float:left;margin-right:10px;" >
+								{% if row["photo"] %}
+									<img alt="" src="/thumbnail/110/90?crop=false&file=/files/{{ row['photo'] }}" style="margin-left:10px; margin-top:0px;" class="img-thumbnail" />
+								{% endif %}
+								<div>&nbsp;</div>
+							</div>
+							<div  style="padding-left:10px;" >
+								<h4>
+									{% if row['recommended']=='1' %}
+										<a href="/item/{{ row['ID'] }}/{{ row['url'] }}">{{ row['name'] }}</a>
+									{% else %}
+										{{ row['name'] }}
+									{% endif %}
+								</h4>
+								<div class="item-sub">
+									{% if row['phone']!="" %}
+										<span class="item-sub-phone">
+								<i class="fa fa-phone" ></i> {{ row['phone'] }}
+							</span>
+									{% endif %}
+									{% if row['website']!="" %}
+										<span class="item-sub-website">
+								<a href="{{ row['website'] }}" target="_blank">{{ row['website'] }}</a> 
+							</span>
+									{% endif %}
+								
+								</div>
+								{% if row['synopsis'] %}
+									<div class="item-text">
+										{{ row['synopsis']|raw }}
+									</div>
+								{% endif %}
+							</div>
+						</div>
+						<div class="clearfix"></div>
+					</article>
+				{% endfor %}
+				
+				{% if related|length %}
+					<div class="well well-lg" style="margin-top:50px;">
+						<h4 style="margin:0 0 20px 0;">
+							You might also be interested in these categories:
+						</h4>
+						<ul class="nav nav-pills">
+							{% for row in related %}
+								<li><a href="/list/{{ row['ID'] }}/{{ row['url'] }}">{{ row['category'] }}</a></li>
+							{% endfor %}
+						</ul>
+					
+					</div>
+				
+				
+				{% endif %}
+				
+				{% if items['other']|length %}
+					<h3 style="margin-top:50px;">Also Try These:</h3>
+					{% for row in items['other'] %}
+						<article class="directory-item" data-title="{{ row['name'] }}" data-id="{{ row['ID'] }}" data-gps-lat="{{ row['gps_lat'] }}" data-gps-lng="{{ row['gps_lng'] }}">
+							<div >
+								
+								
+								<div class="" style=" float:left;margin-right:10px;" >
+									{% if row["photo"] %}
+										<img alt="" src="/thumbnail/110/90?crop=false&file=/files/{{ row['photo'] }}" style="margin-left:10px; margin-top:0px;" class="img-thumbnail" />
+									{% endif %}
+									<div>&nbsp;</div>
+								</div>
+								<div  style="padding-left:10px;" >
+									<h4>
+										{% if row['recommended']=='1' %}
+											<a href="/item/{{ row['ID'] }}/{{ row['url'] }}">{{ row['name'] }}</a>
+										{% else %}
+											{{ row['name'] }}
+										{% endif %}
+									</h4>
+									<div class="item-sub">
+										{% if row['phone']!="" %}
+											<span class="item-sub-phone">
+								<i class="icon-phone" ></i> {{ row['phone'] }}
+							</span>
+										{% endif %}
+										{% if row['website']!="" %}
+											<span class="item-sub-website">
+								<i class="icon-cloud"></i> <a href="{{ row['website'] }}" target="_blank">{{ row['website'] }}</a> 
+							</span>
+										{% endif %}
+										{% if row['comment_count']>0 %}
+											<span class="item-sub-comment">
+								<i class="icon-comment-alt"></i> {{ row['comment_count'] }}
+							</span>
+										{% endif %}
+									</div>
+									{% if row['synopsis'] %}
+										<div class="item-text">
+											{{ row['synopsis']|raw }}
+										</div>
+									{% endif %}
+								</div>
+							</div>
+							<div class="clearfix"></div>
+						</article>
+					{% endfor %}
+				{% endif %}
 			</section>
 			
 		</section>
