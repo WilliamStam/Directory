@@ -11,7 +11,7 @@
 		<div  style="padding-left:10px;" >
 			<h4>
 				{% if row['recommended']|scrub=='1' %}
-					<a href="/item/{{ row['ID'] }}/{{ row['url'] }}?highlight={{ search }}">{{ row['name']|raw }}</a>
+					<a href="/item/{{ row['ID'] }}/{{ row['url'] }}{% if search %}?highlight={{ search }}{% endif %}">{{ row['name']|raw }}</a>
 				{% else %}
 					{{ row['name']|raw }}
 				{% endif %}
