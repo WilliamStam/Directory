@@ -171,7 +171,8 @@ class template {
 		));
 		
 		$twig->addFilter(new Twig_SimpleFilter('scrub', function ($string) {
-			$string = $this->f3->scrub($string);
+			$f3 = \Base::instance();
+			$string = $f3->scrub($string);
 			return ($string);
 		}
 		));
