@@ -10,8 +10,41 @@ class map extends _ {
 		$user = $this->f3->get("user");
 		
 		
+		//$categories = $this->f3->get("categories");
+		//$categories = models\categories::format($categories,true);
+		
+		//test_array($categories); 
+		
+		$items = models\items::format(models\items::getInstance()->getAll("gps_long!='' AND gps_lat!=''"));
+		$item_json = array();
+		foreach ($items as $item){
+			
+			$photo = "";
+			if ($item['photo']){
+				$photo = "<img alt='' src='/thumbnail/110/90?crop=false&file=/files/{$item['photo'] }' class='img-thumbnail' />";
+			}
+			$str  = "";
+			if ($item['phone']){
+				$str = $str . "Phone: ".$item['phone']."<br>";
+			}
+			if ($item['website']){
+				$str = $str . "Website: ".$item['website']."<br>";
+			}
+			
+			
+			$item_json[] = array(
+				"ID"=>$item['ID'],
+				"placeTitle"=>$item['name'],	
+				"tooltip"=>'<div class="scrollFix"><strong>'.$item["name"].'</strong><br><div>
+<div class="c">'.$photo.'</div><div style="margin-top:10px;">'.$str.'</div></div>',	
+				"url"=>"/item/{$item['ID']}/{$item['url']}",	
+				"lat"=>$item['gps_lat'],	
+				"lng"=>$item['gps_long'],	
+			);
+		}
 		
 		
+	//	test_array($item_json); 
 		
 		
 		$tmpl = new \template("template.twig");
@@ -23,8 +56,10 @@ class map extends _ {
 				"title"=> "Directory | Map",
 			),
 			"css"=>"",
-			"js"=>"http://maps.google.com/maps/api/js?sensor=false",
+			"js"=>"http://maps.google.com/maps/api/js",
 		);
+		$tmpl->items = $items;
+		$tmpl->item_json = json_encode($item_json);
 		$tmpl->output();
 	}
 }

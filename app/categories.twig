@@ -11,7 +11,7 @@
 				{% if row['photo'] %}
 					<img alt="" src="/thumbnail/35/35?crop=false&file=/categories/{{ row['photo'] }}" style="margin-top:-10px;margin-bottom:-10px;"/>
 				{% endif %}
-				{{ row['category'] }}
+				<span class="badge" style="background-color: #{{ row['colour'] }}; color: #{{ row['colour'] }}"> - </span> {{ row['category'] }} 
 			</a>
 			
 			{% if row['children']|length %}

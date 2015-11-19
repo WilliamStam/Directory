@@ -108,10 +108,15 @@ $user = $userO->get($uID);
 
 
 
+$categories = models\categories::getInstance()->getAll("","category ASC");
 $f3->set('user', $user);
 $f3->set('session', $SID);
-$f3->set('categories', models\categories::getInstance()->getAll("","category ASC"));
-$f3->set('itemCount', count(models\items::getInstance()->getAll("")));
+$f3->set('categories', $categories);
+$f3->set('itemCount', count($categories));
+
+
+
+
 
 
 
@@ -258,6 +263,34 @@ $f3->route('GET|POST /logout', function ($f3, $params) use ($user) {
 });
 
 
+$f3->route('GET|POST /colours', function ($f3, $params) use ($user) {
+	$categories = models\categories::getInstance()->getAll("","ID ASC");
+	
+	
+	
+	
+	/*
+	$return = array(
+		"cats"=>count($categories),
+		"cols"	=>count($colours),
+		"cat_colours"=>$cats	
+	);
+	test_array($return); */
+});
+
+
+function get_websafe() {
+	$vals = array('00', '33', '66', '99', 'cc', 'ff');
+	$colors = array();
+	foreach ($vals as $r) {
+		foreach ($vals as $g) {
+			foreach ($vals as $b) {
+				$colors[] = $r.$g.$b;
+			}
+		}
+	}
+	return array_reverse($colors);
+}
 
 
 
