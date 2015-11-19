@@ -31,7 +31,7 @@ class item_details extends _ {
 				"title"=> "Directory | {$this->f3->scrub($title)}",
 			),
 			"css"=>"",
-				"js"=>"http://maps.google.com/maps/api/js?sensor=false",
+				"js"=>"http://maps.google.com/maps/api/js",
 		);
 		$tmpl->details = $details;
 		$tmpl->categories = $categories;
