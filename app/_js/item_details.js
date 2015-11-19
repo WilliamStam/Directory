@@ -42,27 +42,43 @@ function initialize() {
 		infowindow.open(map,marker);
 		
 		
-		var streetViewService = new google.maps.StreetViewService();
-		var STREETVIEW_MAX_DISTANCE = 100;
-		var latLng = location;
-		streetViewService.getPanoramaByLocation(latLng, STREETVIEW_MAX_DISTANCE, function (streetViewPanoramaData, status) {
-			if (status === google.maps.StreetViewStatus.OK) {
-				// ok
-				
-				var panorama = new google.maps.StreetViewPanorama(
-						document.getElementById('pano'), {
-							position: location,
-							
-						});
-				
-				
-				map.setStreetView(panorama);
+		var panoOptions = {
+			position: location,
+			panControl: false,
+			addressControl: false,
+			linksControl: false,
+			zoomControlOptions: false
+		};
+		// initialize a new panorama API object and point to the element with ID streetview as container
+		var pano = new  google.maps.StreetViewPanorama(document.getElementById('pano'),panoOptions);
+		// initialize a new streetviewService object
+		var service = new google.maps.StreetViewService;
+		// call the "getPanoramaByLocation" function of the Streetview Services to return the closest streetview position for the entered coordinates
+		service.getPanoramaByLocation(pano.getPosition(), 50, function(panoData) {
+			// if the function returned a result
+			if (panoData != null) {
+				// the GPS coordinates of the streetview camera position
+				var panoCenter = panoData.location.latLng;
+				// this is where the magic happens!
+				// the "computeHeading" function calculates the heading with the two GPS coordinates entered as parameters
+				var heading = google.maps.geometry.spherical.computeHeading(panoCenter, location);
+				// now we know the heading (camera direction, elevation, zoom, etc) set this as parameters to the panorama object
+				var pov = pano.getPov();
+				pov.heading = heading;
+				pano.setPov(pov);
+				// set a marker on the location we are looking at, to verify the calculations were correct
+				var marker = new google.maps.Marker({
+					map: pano,
+					position: location
+				});
 				$("#pano").show();
 			} else {
+				// no streetview found :(
 				$("#pano").hide();
-				// no street view available in this range, or some error occurred
 			}
 		});
+		
+		
 		
 		
 		
