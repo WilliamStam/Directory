@@ -22,6 +22,10 @@ $(document).ready(function () {
 		getData();
 	}).select2();
 });
+
+
+
+
 function getData() {
 	var catID = $.bbq.getState("catID");
 	

@@ -58,7 +58,6 @@ class map extends _ {
 			"css"=>"",
 			"js"=>"http://maps.google.com/maps/api/js",
 		);
-		$tmpl->items = $items;
 		$tmpl->item_json = json_encode($item_json);
 		$tmpl->output();
 	}

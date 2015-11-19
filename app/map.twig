@@ -1,7 +1,7 @@
 {% macro categorylist(data,level) %}
 	{% import _self as macro %}
 	{% for row in data %}
-		<option value="{{ row['ID'] }}">{% for i in 0..level %}&nbsp;&nbsp;&nbsp;-{% endfor %} {{ row['category'] }}</option>
+		<option value="{{ row['ID'] }}" data-count="{{ row['itemCount'] }}">{% for i in 0..level %}&nbsp;&nbsp;&nbsp;-{% endfor %} {{ row['category'] }}</option>
 		{{ macro.categorylist(row['children'],level+1) }}
 	{% endfor %}
 {% endmacro %}
