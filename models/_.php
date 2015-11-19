@@ -101,4 +101,25 @@ class _ {
 		}
 		return self::$instance;
 	}
+	
+	static function highlight($array,$highlight){
+		$n = array();
+		foreach($array as $key=>$value){
+			if (!in_array($key,array("photo","ID"))){
+				if (is_array($value)){
+					$n[$key] = self::highlight($value,$highlight);
+				} else {
+					$n[$key] = highlight($highlight, $value);
+				}
+			} else {
+				$n[$key] =  $value;
+			}
+			
+			
+			
+		}	
+		return $n;
+	}
+	
+	
 }

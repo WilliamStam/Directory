@@ -10,13 +10,14 @@ class item_details extends _ {
 		$user = $this->f3->get("user");
 		
 		$ID = $this->f3->get("PARAMS['ID']");
-		
+		$highlight = isset($_REQUEST['highlight'])?$_REQUEST['highlight']:false;
 		
 		$details = models\items::getInstance()->get($ID);
-		$details = models\items::format($details);
+		$details = models\items::format($details,$highlight);
 		
-		$categories = models\categories::format(models\categories::getInstance()->getAll("dir_items.ID='{$details['ID']}'","category ASC"));
+		$categories = models\categories::format(models\categories::getInstance()->getAll("dir_items.ID='{$details['ID']}'","category ASC"),false,$highlight);
 		
+		$title = $details['name'];
 		
 	//	test_array($category); 
 	//	test_array(array("breadcrumbs"=>$this->breadcrumb,"categories"=>$c)); 
@@ -27,7 +28,7 @@ class item_details extends _ {
 			"sub_section"=> "item-".$details['ID'],
 			"template"   => "item_details",
 			"meta"       => array(
-				"title"=> "Directory | {$details['name']}",
+				"title"=> "Directory | {$this->f3->scrub($title)}",
 			),
 			"css"=>"",
 				"js"=>"http://maps.google.com/maps/api/js?sensor=false",

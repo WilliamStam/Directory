@@ -21,13 +21,23 @@
 	</div>
 </section>
 <div class="navbar navbar-fixed-bottom">
+	
+	
 	<div class="container ">
+		<div id="search-results" class="row">
+			
+			
+			<div class="content"></div>
+			
+			
+			<div class="loadingmask wide"></div>
+		</div>
 		<div id="search-bar">
 			
 			
-			<form role="search" class=" ">
+			<form role="search" class=" " method="get" action="/search">
 				<div class="input-group input-group-lg">
-					<input type="text" class="form-control input-lg" id="search-church" placeholder="Lets find it">
+					<input type="text" class="form-control input-lg" id="search-box" name="search-box"  placeholder="Lets find it" value="{{ search }}">
       <span class="input-group-btn">
         <button class="btn btn-default btn-lg" type="submit">Search</button>
       </span>

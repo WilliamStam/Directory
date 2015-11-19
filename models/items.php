@@ -167,7 +167,7 @@ class items extends _ {
 	}
 	
 	
-	static function format($data) {
+	static function format($data,$highlight=false) {
 		$timer = new timer();
 		$single = false;
 		//	test_array($items); 
@@ -183,6 +183,9 @@ class items extends _ {
 		
 		
 		foreach ($data as $item) {
+			if ($highlight){
+				$item = parent::highlight($item,$highlight);
+			}
 			$item['url'] = toAscii($item['name']);
 			$n[] = $item;
 		}

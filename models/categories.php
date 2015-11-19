@@ -127,7 +127,7 @@ class categories extends _ {
 	
 	
 	
-	static function format($data,$childrenGrouping=false) {
+	static function format($data,$childrenGrouping=false,$highlight=false) {
 		$timer = new timer();
 		$single = false;
 		//	test_array($items); 
@@ -143,6 +143,9 @@ class categories extends _ {
 		
 		
 		foreach ($data as $item) {
+			if ($highlight){
+				$item = parent::highlight($item,$highlight);
+			}
 			$item['url'] = toAscii($item['category']);
 			$n[] = $item;
 		}

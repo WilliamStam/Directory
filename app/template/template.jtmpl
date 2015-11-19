@@ -1,4 +1,97 @@
-<script type="text/x-jqote-template" id="template-timers-tr">
+<script type="text/x-jqote-template" id="template-search-results">
+	<![CDATA[
+	<button type="button" class="close" ><span aria-hidden="true">&times;</span></button>
+	<div class="col-md-6">
+		<h4>Results</h4>
+		<ul class="nav nav-pills nav-stacked">
+			<li><a href="/">woof</a></li>
+			<li><a href="/">woof</a></li>
+			<li><a href="/">woof</a></li>
+			<li><a href="/">woof</a></li>
+		</ul>
+	</div>
+	<div class="col-md-6">
+		<h4>Categories</h4>
+		<section id="search-results-categories"  >
+			<ul class="nav nav-pills ">
+				<li>
+					<a href="/list/23/accommodation">
+						Accommodation
+					
+					</a>
+				</li>
+				<li>
+					<a href="/list/100/accountants-auditors">
+						Accountants / Auditors
+					
+					</a>
+				</li>
+				<li>
+					<a href="/list/94/agricultural">
+						Agricultural
+					
+					</a>
+				</li>
+				<li>
+					<a href="/list/73/air-conditioning-refrigeration">
+						Air-Conditioning &amp; Refrigeration
+					
+					</a>
+				</li>
+				<li><a href="/list/97/appliances-sales-repairs">
+						Appliances - Sales / Repairs
+					
+					</a></li>
+				<li><a href="/list/292/arms-ammunition-archery">
+						Arms, ammunition &amp; archery
+					
+					</a></li>
+				<li><a href="/list/52/auctioneers">
+						Auctioneers
+					
+					</a></li>
+				<li><a href="/list/120/baby-toddler-accessories">
+						Baby &amp; toddler accessories
+					
+					</a></li>
+				<li><a href="/list/110/bakeries">
+						Bakeries
+					
+					</a></li>
+				<li><a href="/list/78/banking">
+						Banking
+					
+					</a></li>
+				<li><a href="/list/87/beauticians-hairdressers">
+						Beauticians / Hairdressers
+					
+					</a></li>
+				<li><a href="/list/312/building-construction-diy-hardware">
+						Building &amp; Construction / DIY / Hardware
+					
+					</a></li>
+				<li><a href="/list/67/butcheries-cold-storage">
+						Butcheries &amp; Cold Storage
+					
+					</a></li>
+			</ul>
+			
+			
+			
+			
+			
+			
+			
+			
+			<div class="clearfix"></div>
+		</section>
+	</div>
+	
+	
+	
+	
+	]]>
+</script><script type="text/x-jqote-template" id="template-timers-tr">
 	<![CDATA[
 
 	<% if(this.msg!="Page Execute: "){ %>

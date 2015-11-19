@@ -168,6 +168,10 @@ class template {
 			$string = toAscii($string);
 			return ($string);
 		}
+		));$twig->addFilter(new Twig_SimpleFilter('scrub', function ($string) {
+			$string = $this->f3->scrub($string);
+			return ($string);
+		}
 		));
 
 

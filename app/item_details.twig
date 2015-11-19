@@ -3,7 +3,7 @@
 		<section id="left-area-content" class="content">
 			
 			
-			<h1>{{ details['name'] }}</h1>
+			<h1>{{ details['name']|raw }}</h1>
 			
 			<img alt="" src="/thumbnail/350/350?crop=false&file=/files/{{ details['photo'] }}" style="" class="img-thumbnail" />
 			
@@ -12,25 +12,25 @@
 			<p style="margin-top:20px; text-align: justify">
 			<address>
 				<strong>Phone:</strong><br>
-				{{ details['phone'] }}
+				{{ details['phone']|raw }}
 			</address>
 				
 			
 			<address>
 				<strong>Website:</strong><br>
-				{{ details['website'] }}
+				{{ details['website']|raw }}
 			</address>
 			
 			<address>
 				<strong>Address:</strong><br>
-				{{ details['address'] }}
+				{{ details['address']|raw }}
 			</address>
 			{% if details['gps_long']!="" and details['gps_lat']!="" %}
 			<address>
 				<strong>GPS:</strong><br>
 				<em>Lng:</em>
-				{{ details['gps_long'] }} &nbsp;&nbsp;&nbsp; <em>Lat:</em>
-				{{ details['gps_lat'] }}
+				{{ details['gps_long']|raw }} &nbsp;&nbsp;&nbsp; <em>Lat:</em>
+				{{ details['gps_lat']|raw }}
 			</address>
 				{% endif %}
 				
@@ -44,7 +44,7 @@
 					<li  data-trigger="hover" data-container="body" data-toggle="popover" data-placement="right" data-content="{% if row['photo'] %}<div class='c'><img src='/thumbnail/200/200?crop=false&file=/categories/{{ row['photo'] }}'  class='img-thumbnail' /></div>{% endif %}<div class='text-justify s'>{{ row['text'] }}</div>" data-html="true"  data-placement="left" title="{{ row['category'] }} ">
 						<a href="/list/{{ row['ID'] }}/{{ row['url'] }}">
 							
-							{{ row['category'] }}
+							{{ row['category']|raw }}
 						</a>
 					</li>
 				{% endfor %}
@@ -59,7 +59,7 @@
 		</div>
 		<section id="right-area-content-area">
 			<section id="right-area-content" class="content">
-				<h1 class="">{{ details['name'] }}</h1>
+				<h1 class="">{{ details['name']|raw }}</h1>
 				
 				
 			
@@ -80,7 +80,7 @@
 				{% if details['gps_long']!="" and details['gps_lat']!="" %}
 				<h4>Location Map</h4>
 				<section id="details-map">
-					<div id="map-canvas" data-lng="{{ details['gps_long'] }}" data-lat="{{ details['gps_lat'] }}" title="{{ details['name'] }}"></div>
+					<div id="map-canvas" data-lng="{{ details['gps_long']|scrub }}" data-lat="{{ details['gps_lat']|scrub }}" title="{{ details['name'] }}"></div>
 				</section>
 				{% endif %}
 			</section>

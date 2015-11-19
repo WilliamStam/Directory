@@ -100,8 +100,9 @@ var ckeditor_config_small = {
 			if (x.status == 403) {
 				alert("Sorry, your session has expired. Please login again to continue");
 				window.location.href ="/login";
-			}
-			else {
+			} else if (error === 'abort') {
+				
+			} else {
 				alert("An error occurred: " + status + "nError: " + error);
 			}
 		}
@@ -227,16 +228,43 @@ var ckeditor_config_small = {
 		}, //Default is 75px, set to 0 for demo so any distance triggers swipe
 		threshold: 75, allowPageScroll: "auto"
 	}).addClass("affix-bottom");
-
 	
+	//getSearchResults();
+	
+	$(document).on('click', '#search-results .close', function () {
+		$("#search-results").slideUp()
+	});
+	$(document).on('keyup', '#search-box', function () {
+		//getSearchResults()
+	});
 	
 });
+
+function getSearchResults() {
+	
+	var search = $("#search-box").val();
+	$("#search-results .loadingmask").show();
+	
+	$.getData("/data/search/data?r="+Math.random(), {"search":search}, function (data) {
+		
+		
+		
+		$("#search-results .content").jqotesub($("#template-search-results"), data).parent().slideDown();
+		$("#search-results .loadingmask").fadeOut(400);
+		
+		
+	},"search");
+	
+}
+
+
 
 function page_resize() {
 	if ($("#right-area").length&&$("#left-area").length){
 		$("#right-area").css({minHeight: $("#left-area").height() - 2 + "px"});
 	}
-
+	
+	$("#search-results").css({maxHeight:$(window).height()-100})
 	
 	scroll();
 	
