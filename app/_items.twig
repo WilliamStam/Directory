@@ -13,11 +13,19 @@
 				</thead>
 				<tbody>
 				{% for row in items %}
+				{% if  (row['gps_long'] > 27 and row['gps_long'] < 31) or  (row['gps_lat'] < -21 and row['gps_lat'] > -24) %}
+				
+				{% else %}
+					{% if row['gps_long'] == "" and row['gps_lat'] =="" %}
+						
+						{% else %}
 					<tr>
 						<td>{{ row['name'] }}</td>
 						<td  class="{% if row['gps_long']=='' or (row['gps_long'] > 27 and row['gps_long'] < 31)  %}{% else %}danger{% endif %}">{{ row['gps_long'] }}</td>
 						<td class="{% if row['gps_lat']=='' or (row['gps_lat'] < -21 and row['gps_lat'] > -24)  %}{% else %}danger{% endif %}">{{ row['gps_lat'] }}</td>
 					</tr>
+				{% endif %}
+				{% endif %}
 				{% endfor %}
 				</tbody>
 			</table>
