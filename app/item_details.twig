@@ -18,7 +18,7 @@
 			
 			<address>
 				<strong>Website:</strong><br>
-				{{ details['website']|raw }}
+				<a href="{{ details['website']|scrub }}" target="_blank">{{ details['website']|raw }}</a>
 			</address>
 			
 			<address>

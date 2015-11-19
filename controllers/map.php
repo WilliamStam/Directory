@@ -25,10 +25,10 @@ class map extends _ {
 			}
 			$str  = "";
 			if ($item['phone']){
-				$str = $str . "Phone: ".$item['phone']."<br>";
+				$str = $str . "<em class='dg'>Phone:</em> ".$item['phone']."<br>";
 			}
 			if ($item['website']){
-				$str = $str . "Website: ".$item['website']."<br>";
+				$str = $str . "<em class='dg'>Website:</em> ".$item['website']."<br>";
 			}
 			
 			
@@ -36,7 +36,7 @@ class map extends _ {
 				"ID"=>$item['ID'],
 				"placeTitle"=>$item['name'],	
 				"tooltip"=>'<div class="scrollFix"><strong>'.$item["name"].'</strong><br><div>
-<div class="c">'.$photo.'</div><div style="margin-top:10px;">'.$str.'</div></div>',	
+<div class="c" style="margin:10px;">'.$photo.'</div><div>'.$str.'</div></div>',	
 				"url"=>"/item/{$item['ID']}/{$item['url']}",	
 				"lat"=>$item['gps_lat'],	
 				"lng"=>$item['gps_long'],	

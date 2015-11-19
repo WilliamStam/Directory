@@ -69,10 +69,6 @@ function initialize() {
 	
 	var markers = [];
 	
-	var lat_min = 10000;
-	var lat_max = 0;
-	var lng_min = 10000;
-	var lng_max = 0;
 	
 	
 	for (var i in places){
@@ -83,24 +79,23 @@ function initialize() {
 			map: map,
 			url:places[i].url,
 			title: t,
-			tooltip: places[i].tooltip
+			tooltip: places[i].tooltip,
+			//icon: image
 		});
-		console.log(pos);
 		
-		//if (pos.lat() <= lat_min)lat_min = pos.lat()
-		//if (pos.lng() <= lng_min)lng_min = pos.lng()
 		
 	}
+	
 	
 	var infowindow = new google.maps.InfoWindow({
 		content: ''
 	});
 	
 	
-	console.log("lat min:"+lat_min+" | lng min:"+lng_min+" | ")
+	
+	
 	
 	/*
-	
 	map.setCenter(new google.maps.LatLng(
 			((lat_max + lat_min) / 2.0),
 			((lng_max + lng_min) / 2.0)
