@@ -42,7 +42,37 @@ function initialize() {
 		infowindow.open(map,marker);
 		
 		
+		var streetViewService = new google.maps.StreetViewService();
+		var STREETVIEW_MAX_DISTANCE = 100;
+		var latLng = location;
+		streetViewService.getPanoramaByLocation(latLng, STREETVIEW_MAX_DISTANCE, function (streetViewPanoramaData, status) {
+			if (status === google.maps.StreetViewStatus.OK) {
+				// ok
+				
+				var panorama = new google.maps.StreetViewPanorama(
+						document.getElementById('pano'), {
+							position: location,
+							
+						});
+				
+				
+				map.setStreetView(panorama);
+				$("#pano").show();
+			} else {
+				$("#pano").hide();
+				// no street view available in this range, or some error occurred
+			}
+		});
 		
+		
+		
+		
+		
+		
+		
+		
+		//console.log(google.maps.StreetViewStatus)
+			
 	}
 	
 	
