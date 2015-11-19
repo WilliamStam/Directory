@@ -1,8 +1,14 @@
+var map = null;
+var markers = [];
 
 $(document).ready(function () {
 	
 	resize()
-	getData();
+	if ($.bbq.getState("catID")){
+		getData();
+	} else {
+		initialize(places)
+	}
 	
 	$(window).resize(function () {
 		$.doTimeout(250, function () {
@@ -11,17 +17,19 @@ $(document).ready(function () {
 		});
 	});
 
+	$("#catlist").on("change",function(){
+		$.bbq.pushState({catID:$(this).val()})
+		getData();
+	}).select2();
 });
 function getData() {
-	var ID = $.bbq.getState("ID") || '';
-	var page = $.bbq.getState("page") || '1';
+	var catID = $.bbq.getState("catID");
 	
 	$(".loadingmask").show();
 	
+	$("#catlist").val(catID)
 	
-	
-	
-	$.getData("/data/home/data", {"page":page}, function (data) {
+	$.getData("/data/map/data", {"catID":catID}, function (data) {
 
 		
 
@@ -31,9 +39,9 @@ function getData() {
 		var geocoder = null;
 		var map = null;
 		
-		initialize();;
+		initialize(data);;
 
-		$("#loading-mask").fadeOut();
+		$(".loadingmask").fadeOut();
 
 
 		$.doTimeout(400,function(){
@@ -56,7 +64,7 @@ function resize(){
 	$("#map-area").css({"height":h})
 }
 
-function initialize() {
+function initialize(places) {
 	var mapOptions = {
 		zoom  :14,
 		center:new google.maps.LatLng(-23.043528 , 29.905191),
@@ -67,10 +75,10 @@ function initialize() {
 	map = new google.maps.Map(document.getElementById("map-area"), mapOptions);
 	
 	
-	var markers = [];
 	
 	
 	
+	var bounds = new google.maps.LatLngBounds();
 	for (var i in places){
 		var t = $('<div></div>').html(places[i].placeTitle).text();
 		var pos = new google.maps.LatLng(places[i].lat, places[i].lng);
@@ -82,7 +90,7 @@ function initialize() {
 			tooltip: places[i].tooltip,
 			//icon: image
 		});
-		
+		bounds.extend(pos );
 		
 	}
 	
@@ -93,7 +101,7 @@ function initialize() {
 	
 	
 	
-	
+	map.fitBounds(bounds);
 	
 	/*
 	map.setCenter(new google.maps.LatLng(
@@ -129,5 +137,16 @@ function initialize() {
 	
 	
 	
+	
+}
+function fitBoundsToVisibleMarkers() {
+	
+	var bounds = new google.maps.LatLngBounds();
+	
+	for (var i=0; i<markers.length; i++) {
+		bounds.extend( markers[i].getPosition() );
+	}
+	
+	map.fitBounds(bounds);
 	
 }

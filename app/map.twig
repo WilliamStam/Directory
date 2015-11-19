@@ -1,6 +1,24 @@
+{% macro categorylist(data,level) %}
+	{% import _self as macro %}
+	{% for row in data %}
+		<option value="{{ row['ID'] }}">{% for i in 0..level %}&nbsp;&nbsp;&nbsp;-{% endfor %} {{ row['category'] }}</option>
+		{{ macro.categorylist(row['children'],level+1) }}
+	{% endfor %}
+{% endmacro %}
+	
+{% import _self as macro %}
+
+
 <div class="row">
 	<div class="" id="whole-area">
 		<section id="whole-area-content" class="content">
+			<div style=" width: 350px; box-shadow: 0 0 10px #ccc; z-index: 100;" data-spy="affix">
+				<select name="catlist" id="catlist" style="width: 350px;">
+					<option value="">All Records</option>
+					{{ macro.categorylist(_categories,0) }}
+					
+				</select>
+			</div>
 			<div style="background-color: #fff; width: 100%; height: 200px; margin-top:20px;" id="map-area" ></div>
 		</section>
 	</div>

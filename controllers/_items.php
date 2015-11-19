@@ -2,7 +2,7 @@
 namespace controllers;
 use \timer as timer;
 use \models as models;
-class categories extends _ {
+class _items extends _ {
 	function __construct(){
 		parent::__construct();
 	}
@@ -16,15 +16,16 @@ class categories extends _ {
 		
 		$tmpl = new \template("template.twig");
 		$tmpl->page = array(
-			"section"    => "categories",
-			"sub_section"=> "categories",
-			"template"   => "categories",
+			"section"    => "items",
+			"sub_section"=> "items",
+			"template"   => "_items",
 			"meta"       => array(
-				"title"=> "Directory | Categories",
+				"title"=> "Directory | Items",
 			),
 			"css"=>"",
 			"js"=>"",
 		);
+		$tmpl->items = models\items::format(models\items::getInstance()->getAll());
 		$tmpl->output();
 	}
 }

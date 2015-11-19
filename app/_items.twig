@@ -1,0 +1,28 @@
+
+<div class="row">
+	<div class="" id="whole-area">
+		<ul class="nav">
+			
+			<table class="table table-condensed">
+				<thead>
+				<tr>
+					<th>Name</th>
+					<th>Lng</th>
+					<th>Lat</th>
+				</tr>
+				</thead>
+				<tbody>
+				{% for row in items %}
+					<tr>
+						<td>{{ row['name'] }}</td>
+						<td  class="{% if row['gps_long']=='' or (row['gps_long'] > 27 and row['gps_long'] < 31)  %}{% else %}danger{% endif %}">{{ row['gps_long'] }}</td>
+						<td class="{% if row['gps_lat']=='' or (row['gps_lat'] < -21 and row['gps_lat'] > -24)  %}{% else %}danger{% endif %}">{{ row['gps_lat'] }}</td>
+					</tr>
+				{% endfor %}
+				</tbody>
+			</table>
+		</ul>
+	</div>
+</div>
+
+

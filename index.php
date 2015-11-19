@@ -130,7 +130,7 @@ $f3->route('GET /txt', function ($f3) {
 
 $f3->route('GET|POST /login', 'controllers\login->page');
 $f3->route('GET|POST /', 'controllers\home->page');
-$f3->route('GET|POST /list', 'controllers\categories->page');
+
 $f3->route('GET|POST /map', 'controllers\map->page');
 $f3->route('GET|POST /list/@letter', 'controllers\list_alphabet->page');
 $f3->route('GET|POST /list/@catID/@url', 'controllers\list_category->page');
@@ -152,6 +152,9 @@ $f3->route('GET|POST /admin/categories', 'controllers\admin\categories->page');
 $f3->route('GET|POST /admin/users', 'controllers\admin\users->page');
 
 
+
+$f3->route('GET|POST /list', 'controllers\_categories->page');
+$f3->route('GET|POST /items', 'controllers\_items->page');
 
 
 $f3->route("GET|POST /admin/save/@function", function ($app, $params) {
@@ -262,21 +265,6 @@ $f3->route('GET|POST /logout', function ($f3, $params) use ($user) {
 	$f3->reroute("/login");
 });
 
-
-$f3->route('GET|POST /colours', function ($f3, $params) use ($user) {
-	$categories = models\categories::getInstance()->getAll("","ID ASC");
-	
-	
-	
-	
-	/*
-	$return = array(
-		"cats"=>count($categories),
-		"cols"	=>count($colours),
-		"cat_colours"=>$cats	
-	);
-	test_array($return); */
-});
 
 
 function get_websafe() {
