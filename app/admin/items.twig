@@ -19,8 +19,9 @@
 	<div class="col-md-5" style="position:relative;">
 		<div style="position: fixed; top:50px; width: 350px; margin-left:40px; box-shadow: 0 0 10px #ccc;">
 			<select name="catlist" id="catlist" style="width: 350px;">
-				{{ macro.categorylist(_categories,0) }}
 				<option value="">All Records</option>
+				{{ macro.categorylist(_categories,0) }}
+				
 			</select>
 		</div>
 	
