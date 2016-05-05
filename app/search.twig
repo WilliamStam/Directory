@@ -43,6 +43,7 @@
 		</div>
 		<section id="right-area-content-area">
 			<section id="right-area-content" class="content">
+				{% include "_mobile_instruction.twig" %}
 				<h3>Our Recommendations:</h3>
 				{% for row in items['suggested'] %}
 					{% include '_record.twig' with row %}
