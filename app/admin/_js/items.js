@@ -27,6 +27,7 @@ $(document).ready(function () {
 	});
 	$(document).on("click", "#lookup-coords-btn", function (e) {
 		e.preventDefault();
+		var marker = null;
 		getCoords();
 		return false;
 		
@@ -288,16 +289,18 @@ function getCoords(){
 	geocoder.geocode({
 		"address": address
 	}, function(results) {
-		var lng = results[0].geometry.location.lng();
-		var lat = results[0].geometry.location.lat();
-		//console.log(results[0].geometry.location); //LatLng
-		$("#gps_long").val(lng)
-		$("#gps_lat").val(lat)
-		initialize_map(results[0].geometry.location);
+		if (map){
+			placeMarker(results[0].geometry.location);
+		} else {
+			initialize_map(results[0].geometry.location);
+		}
+		
 	});
 	
-	console.log(address)
+	//console.log(address)
 }
+var marker;
+var map;
 function initialize_map(position) {
 	var mapOptions = {
 		zoom  :15,
@@ -308,15 +311,37 @@ function initialize_map(position) {
 	geocoder = new google.maps.Geocoder();
 	map = new google.maps.Map(document.getElementById("map-area"), mapOptions);
 	
-	var marker = new google.maps.Marker({
-		position: position,
-		map: map
+	
+	placeMarker(position);
+	
+	google.maps.event.addListener(map, 'click', function(event) {
+		placeMarker(event.latLng);
 	});
 	
 	
 	
 }
-
+function placeMarker(location) {
+		
+	if (marker == undefined){
+		marker = new google.maps.Marker({
+			position: location,
+			map: map,
+			animation: google.maps.Animation.DROP,
+		});
+	}
+	else{
+		marker.setPosition(location);
+	}
+	map.setCenter(location);
+	
+	var lng = location.lng();
+	var lat = location.lat();
+	//console.log(results[0].geometry.location); //LatLng
+	$("#gps_long").val(lng)
+	$("#gps_lat").val(lat)
+	
+}
 function gps_changes(){
 	var gps_long = $("#gps_long").val();
 	var gps_lat = $("#gps_lat").val();
