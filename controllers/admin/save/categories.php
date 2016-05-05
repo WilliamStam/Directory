@@ -28,7 +28,7 @@ class categories extends _ {
 				"category" => $this->post("category","Required"),
 				"text" => $this->post("text"),
 				"photo" => $this->post("photo"),
-				"relationship" => implode(",",$this->post("relationship")),
+				"relationship" => is_array($this->post("relationship"))?implode(",",$this->post("relationship")):"",
 		);
 		$errors = $this->errors;
 		
