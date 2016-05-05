@@ -85,7 +85,7 @@ class items extends _ {
 	function _delete() {
 		$ID = (isset($_GET['ID']) && $_GET['ID']) ? $_GET['ID'] : "";
 		
-		return $GLOBALS["output"]['data'] = models\categories::remove($ID);
+		return $GLOBALS["output"]['data'] = models\items::remove($ID);
 	}
 	
 	function upload(){
