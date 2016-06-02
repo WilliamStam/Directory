@@ -1,0 +1,276 @@
+{% import "_macros.tmpl" as macro %}
+<!DOCTYPE html>
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7" id="page_html_tag"> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8" id="page_html_tag"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>File Browser</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="../../vendor/components/font-awesome/css/font-awesome.css">
+	<link rel="stylesheet" href="plupload/js/jquery.plupload.queue/css/jquery.plupload.queue.css">
+	<link rel="stylesheet" href="css/style_main.css">
+	<link rel="stylesheet" href="css/styles.css">
+
+
+
+</head>
+<body id="front-end">
+<div id="top"></div>
+<!--[if lt IE 7]><p class="chromeframe">You are using an <strong>outdated</strong> browser. Please
+	<a href="http://browsehappy.com/">upgrade your browser</a> or
+	<a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.
+</p><![endif]-->
+
+<div class="navbar navbar-fixed-top" id="main-nav-bar">
+	<div class="navbar-inner">
+		<a class="brand" href="index.php" style="margin-right: 0; padding-left: 8px; margin-left:0; padding-right:18px">Files & Folders</a>
+		<ul class="nav pull-left" id="main-menu-left">
+
+			<li title="New Folder inside selected folder"><a href="#" id="btn-folder-new"><i class="icon-plus-sign"></i></a>
+			</li>
+
+			<li style="display: none;" title="Rename Selected Folder">
+				<a href="#" id="btn-folder-rename"><i class="icon-pencil"></i></a></li>
+			<li style="display: none;" title="Delete folder and all files inside it"><a href="#" id="btn-folder-delete"><i class="icon-trash"></i></a>
+			</li>
+
+		</ul>
+		<ul class="nav pull-right" id="main-menu-right">
+			<li class="divider-vertical"></li>
+
+			<li class="template-select " data-template="thumbnails">
+				<a href="javascript:void();"><i class="icon-picture"></i></a></li>
+			<li class="template-select" data-template="table"><a href="javascript:void();"><i class="icon-list"></i></a>
+			</li>
+			<li class="divider-vertical" style="margin-left:0;"></li>
+			<li>
+				<select style="width:140px; margin: 6px 0 0 0;" id="filebrowser-sort">
+					<option value="1">File Name</option>
+					<option value="3">File Size</option>
+					<option value="4">File Type</option>
+					<optgroup label="Dates">
+						<option value="20">Modified Date</option>
+						<option value="21">Accessed Date</option>
+						<option value="22">Changed Date</option>
+					</optgroup>
+				</select>
+			</li>
+			<li id="filebrowser-order" style="width:40px;" data-order="ASC"></li>
+		</ul>
+	</div>
+</div>
+<section class="" id="page-content">
+	<section id="folder-list">
+
+		<ol class="tree">
+			{{ macro.folderview(folders) }}
+		</ol>
+	</section>
+	<section id="details-pane">
+		<div id="details-pane-menu" class="navbar">
+			<div class="navbar-inner" style="padding-left: 0; padding-right:0;">
+				<div class="pull-left" id="path-heading">
+					<ul class="breadcrumb" style="margin:0;">
+					</ul>
+				</div>
+				<ul class="nav pull-right">
+					<li title="Refresh the file list"><a href="#" class="reload"><i class="icon-refresh"></i></a></li>
+					<li class="divider-vertical"></li>
+
+					<li title="Upload a file to the current folder"><a href="#" class="upload-btn"><i class="icon-upload-alt "></i></a>
+					</li>
+
+				</ul>
+			</div>
+		</div>
+		<div id="details-pane-content">
+			<img src="/app/_images/loading-wide.gif" class="loading_wide" width="208" alt=""/>
+		</div>
+
+	</section>
+
+</section>
+
+
+
+<footer id="page-footer">
+
+</footer>
+<script type="text/javascript">
+	var CKEditorFuncNum = "{{ CKEditorFuncNum }}";
+	var media_dir = "{{ media }}";
+</script>
+
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="js/jquery.ba-bbq.js"></script>
+<script src="js/jquery.jqote2.js"></script>
+<script type="text/javascript" src="plupload/js/plupload.full.js"></script>
+<script type="text/javascript" src="plupload/js/jquery.plupload.queue/jquery.plupload.queue.js"></script>
+<script src="js/script.js"></script>
+
+
+<script type="text/x-jqote-template" id="template-files-thumbnails">
+	<![CDATA[
+	<ul id="thumbnail-area">
+		<% for (var i in this.files) { %>
+		<li data-fb-dim-y="<%= this.files[i].image_h %>" data-fb-dim-x="<%= this.files[i].image_w %>" data-fb-perms="<%= this.files[i].perms %>" data-fb-c_time="<%= this.files[i].c_time %>" data-fb-a_time="<%= this.files[i].a_time %>" data-fb-m_time="<%= this.files[i].m_time %>" data-fb-raw_size="<%= this.files[i].raw_size %>" data-fb-size="<%= this.files[i].size %>" data-fb-type="<%= this.files[i].type %>" data-fb-name="<%= this.files[i].name %>" data-fb-folder="<%= this.folder %>">
+			<a class="file" href="index.php?section=download&file=<%= this.folder %>/<%= this.files[i].name %>">
+				<div class="img">
+					<% if ($.inArray( this.files[i].type, ["jpg","png","gif","jpeg"] )!=-1) { %>
+					<img border="0" src="index.php?section=thumbnail&file=<%= this.folder %>/<%= this.files[i].name %>&w=100&h=90">
+					<% } else { %>
+					<i class="icon-file" style="font-size: 60px; color: #ccc"></i>
+					<% } %>
+				</div>
+				<h3><%= this.files[i].name %></h3>
+			</a>
+		</li>
+		<% } %>
+
+	</ul>
+	]]>
+</script>
+<script type="text/x-jqote-template" id="template-files-table">
+	<![CDATA[
+
+	<table class="table table-compact s">
+		<thead>
+		<tr>
+			<th>&nbsp;</th>
+			<th>Name</th>
+			<th>Size</th>
+			<th>Date</th>
+			<th>Type</th>
+			<th>Dimentions</th>
+		</tr>
+		</thead>
+		<tbody id="filelist">
+		<% for (var i in this.files) { %>
+
+		<tr class="" data-fb-dim-y="<%= this.files[i].image_h %>" data-fb-dim-x="<%= this.files[i].image_w %>" data-fb-perms="<%= this.files[i].perms %>" data-fb-c_time="<%= this.files[i].c_time %>" data-fb-a_time="<%= this.files[i].a_time %>" data-fb-m_time="<%= this.files[i].m_time %>" data-fb-raw_size="<%= this.files[i].raw_size %>" data-fb-size="<%= this.files[i].size %>" data-fb-type="<%= this.files[i].type %>" data-fb-name="<%= this.files[i].name %>" data-fb-folder="<%= this.folder %>">
+			<td style="width:30px; padding-left:5px; text-align:right; padding:0;">
+				<% if ($.inArray( this.files[i].type, ["jpg","png","gif","jpeg"] )!=-1) { %>
+				<img border="0" src="index.php?section=thumbnail&file=<%= this.folder %>/<%= this.files[i].name %>&w=24&h=24">
+				<% } else { %>
+				<i class="icon-file" style="font-size: 20px; color: #ccc"></i>
+				<% } %>
+
+			</td>
+			<td><%= this.files[i].name %></td>
+			<td><%= this.files[i].size %></td>
+			<td><%= this.files[i].m_time %></td>
+			<td><%= this.files[i].type %></td>
+			<td>
+				<% if ($.inArray( this.files[i].type, ["jpg","png","gif","jpeg"] )!=-1) { %>
+				<%= this.files[i].image_w %> x <%= this.files[i].image_h %>
+				<% } %>
+			</td>
+		</tr>
+		<% } %>
+
+
+		</tbody>
+	</table>
+
+
+
+	]]>
+</script>
+
+<script type="text/x-jqote-template" id="template-file-selected">
+	<![CDATA[
+
+	<table id="fileinfo" class="table s">
+		<tbody>
+		<tr>
+			<td style="width:30px;" class="btncell">
+				<% if ($.inArray( this.type, ["jpg","png","gif","jpeg"] )!=-1) { %>
+				<img border="0" src="index.php?section=thumbnail&file=<%= this.folder %>/<%= this.name %>&w=30&h=30">
+				<% } else { %>
+				<i class="icon-file" style="font-size: 25px; color: #ccc; margin-left:6px;"></i>
+				<% } %>
+
+			</td>
+			<td><%= this.name %></td>
+			<td style="width:100px;"><i>Size:</i> <%= this.size %></td>
+			<td style="width:100px;">
+				<% if ($.inArray( this.type, ["jpg","png","gif","jpeg"] )!=-1) { %>
+				<%= this.dim_x %> x <%= this.dim_y %>
+				<% } else { %>
+				<i>Type:</i> <%= this.type %>
+				<% } %>
+
+			</td>
+
+			<td class="span1 btncell">
+				<button class="btn span1" type="button" id="btn-file-rename" title="Rename file" style="width:50px;">
+					<i class="icon-pencil"></i></button>
+			</td>
+			<td class="span1 btncell">
+				<button class="btn span1" type="button" id="btn-file-delete" title="Remove file" style="width:50px;">
+					<i class="icon-trash"></i></button>
+			</td>
+
+			<!--
+			<% if ($.inArray( this.type, ["jpg","png","gif","jpeg"] )!=-1) { %>
+			<td class="span1 btncell">
+				<a class="btn span1" href="index.php?section=thumbnail&file=<%= this.folder %>/<%= this.name %>&w=<%= this.dim_x %>&h=<%= this.dim_y %>" style="width:24px;"><i class="icon-fullscreen"></i></a>
+			</td>
+			<% } %>
+			-->
+			<td class="span2 btncell">
+				<button id="cancel-btn" class="btn span2 btn-link cancel-selected">Cancel</button>
+			</td>
+			<td class="span2 btncell">
+				<button id="select-btn" data-fb-image_h="305" data-fb-image_w="340" class="btn btn-primary span2">Select File</button>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+
+
+
+
+
+	]]>
+</script>
+
+<script type="text/x-jqote-template" id="template-no-file-selected">
+	<![CDATA[
+	<table class="table s">
+		<tbody>
+		<tr>
+			<td></td>
+			<td class="span2 btncell">
+				<button class="btn span2" type="button" id="close-btn" >Close</button>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+
+	]]>
+</script>
+
+<div id="upload-modal" class="modal hide fade" tabindex="-1" role="dialog"  aria-hidden="true">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="position: absolute; top: 8px; right:8px; z-index:200;">×</button>
+	<div class="modal-body" style="padding: 0 0 10px 0;">
+
+		<div id="uploader">
+
+
+		</div>
+	</div>
+	
+</div>
+
+
+</body>
+</html>

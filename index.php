@@ -150,6 +150,8 @@ $f3->route('GET|POST /admin', 'controllers\admin\items->page');
 $f3->route('GET|POST /admin/items', 'controllers\admin\items->page');
 $f3->route('GET|POST /admin/categories', 'controllers\admin\categories->page');
 $f3->route('GET|POST /admin/users', 'controllers\admin\users->page');
+$f3->route('GET|POST /admin/pages/@pageID', 'controllers\admin\pages->page');
+$f3->route('GET|POST /admin/pages/save', 'controllers\admin\pages->save');
 
 
 

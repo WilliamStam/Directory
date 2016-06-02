@@ -1,0 +1,248 @@
+body {
+  overflow: hidden;
+}
+#page-content {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  right: 0;
+  bottom: 40px;
+}
+#page-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 34px;
+  z-index: 20;
+  padding: 4px 2px 2px 2px;
+}
+#page-footer table {
+  border: none!important;
+}
+#page-footer table td {
+  border: none!important;
+}
+#page-footer table td.btncell {
+  margin: 0;
+  padding: 1px;
+}
+#folder-list {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 30%;
+  -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+  overflow: auto;
+  z-index: 10;
+}
+#folder-list ol {
+  margin: 0;
+}
+#folder-list ol li {
+  list-style: none;
+}
+#folder-list ol li .icon-folder-close-alt {
+  margin-right: 5px;
+  font-size: 15px;
+}
+#folder-list ol li a {
+  display: block;
+  padding: 3px;
+  text-decoration: none;
+}
+#folder-list ol li a:hover {
+  background-color: #eeeeee;
+}
+#folder-list ol li.active > a {
+  background-color: #0088CC;
+  color: #ffffff;
+}
+#folder-list ol li.active > a > .icon-folder-close-alt:before {
+  content: "\f07c" !important;
+}
+#folder-list ol li > ol a {
+  padding-left: 20px;
+}
+#folder-list ol li > ol ol > li a {
+  padding-left: 40px;
+}
+#folder-list ol li > ol ol > li ol > li a {
+  padding-left: 60px;
+}
+#folder-list ol li > ol ol > li ol > li ol > li a {
+  padding-left: 80px;
+}
+#folder-list ol li > ol ol > li ol > li ol > li ol > li a {
+  padding-left: 100px;
+}
+#folder-list ol li > ol ol > li ol > li ol > li ol > li ol > li a {
+  padding-left: 120px;
+}
+#folder-list ol li > ol ol > li ol > li ol > li ol > li ol > li ol > li a {
+  padding-left: 140px;
+}
+#folder-list ol li > ol ol > li ol > li ol > li ol > li ol > li ol > li ol > li a {
+  padding-left: 160px;
+}
+#folder-list ol li > ol ol > li ol > li ol > li ol > li ol > li ol > li ol > li ol > li a {
+  padding-left: 180px;
+}
+#folder-list ol li > ol ol > li ol > li ol > li ol > li ol > li ol > li ol > li ol > li ol > li a {
+  padding-left: 200px;
+}
+#details-pane {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 70%;
+}
+#details-pane-menu {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  margin: 0;
+}
+#details-pane-menu .navbar-inner {
+  border-left: none;
+  border-right: none;
+}
+#details-pane-menu .breadcrumb {
+  background-color: none;
+  line-height: 18px;
+  padding-top: 11px;
+  padding-bottom: 11px;
+}
+#details-pane-menu .breadcrumb li > a {
+  line-height: 18px;
+  padding-top: 11px;
+  padding-bottom: 11px;
+}
+#details-pane-content {
+  position: absolute;
+  top: 39px;
+  right: 0;
+  bottom: 0;
+  left: 0px;
+  overflow: auto;
+  padding-top: 5px;
+}
+#details-pane-content ul {
+  list-style: none outside none;
+  margin: 5px;
+  padding: 0;
+}
+#details-pane-content ul li {
+  border: 1px solid #F1F1F1;
+  border-radius: 6px;
+  cursor: pointer;
+  float: left;
+  margin: 3px;
+  overflow: hidden;
+  padding: 4px;
+  transition: all 0.5s ease 0s;
+  width: 120px;
+}
+#details-pane-content ul li:hover {
+  background-color: #F1F1F1;
+  border: 1px solid #CCCCCC;
+  box-shadow: 0 0 5px rgba(100, 100, 100, 0.4);
+  transition: all 0.5s ease 0s;
+}
+#details-pane-content ul li.selected {
+  border: 1px solid #CCCCCC;
+  box-shadow: 0 0 5px rgba(100, 100, 100, 0.3) inset;
+}
+#details-pane-content ul li.selected:hover {
+  box-shadow: 0 0 7px rgba(100, 100, 100, 0.4) inset;
+}
+#details-pane-content ul li h3 {
+  display: block;
+  font-size: 10px;
+  font-weight: normal;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+#details-pane-content ul li a {
+  border: medium none;
+  color: #444444;
+  outline: medium none;
+}
+#details-pane-content table {
+  border: medium none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+#details-pane-content table tr td,
+#details-pane-content table tr th {
+  -moz-border-bottom-colors: none;
+  -moz-border-left-colors: none;
+  -moz-border-right-colors: none;
+  -moz-border-top-colors: none;
+  border-color: -moz-use-text-color -moz-use-text-color #cccccc;
+  border-image: none;
+  border-style: none none dotted;
+  border-width: medium medium 1px;
+  margin: 0;
+  padding: 5px;
+}
+#details-pane-content table tr th {
+  text-align: left;
+}
+#details-pane-content table thead th {
+  background: -moz-linear-gradient(center top, #f1f1f1, #e1e1e1) repeat scroll 0 0 rgba(0, 0, 0, 0);
+}
+#details-pane-content table tbody tr {
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+}
+#details-pane-content table tbody tr:hover {
+  background-color: #E4EAFF;
+}
+#details-pane-content table tbody tr.selected {
+  background-color: #0088CC;
+  color: #fff;
+  border: medium none rgba(0, 0, 0, 0);
+}
+#details-pane-content table tbody tr.selected:hover {
+  color: #444;
+  background-color: #DDDDFF;
+}
+#details-pane-content .img {
+  display: table-cell;
+  height: 100px;
+  padding-bottom: 5px;
+  text-align: center;
+  vertical-align: bottom;
+  width: 120px;
+}
+#details-pane-content .img img {
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4);
+}
+#details-pane-content .img img.noshadow {
+  box-shadow: none;
+  margin-bottom: 10px;
+}
+.loading_wide {
+  left: 50%;
+  margin-left: -104px;
+  margin-top: -7px;
+  position: absolute;
+  top: 50%;
+}
+.no_records_found {
+  margin-top: -7px;
+  position: absolute;
+  top: 50%;
+  text-align: center;
+  left: 0;
+  right: 0;
+}

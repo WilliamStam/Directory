@@ -65,23 +65,10 @@ class template {
 
 		$this->vars['_user'] = $this->f3->get('user');
 		$this->vars['_isAjax'] = is_ajax();
-		
-		
-		$pageContent = models\pages::getInstance()->getAll();
-		$p = array();
-		foreach ($pageContent as $item){
-			$p[$item['ID']] = $item['content'];
-		}
-		
-		
-		
-		$this->vars['_page_content'] = $p;
-		
-		
-		$this->vars['_categories'] = models\categories::format($this->f3->get('categories'),true);;
-		$this->vars['_itemCount'] = $this->f3->get('itemCount');;
 
-		//test_array($categories); 
+
+		
+		
 		
 
 	}

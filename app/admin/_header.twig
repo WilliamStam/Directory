@@ -21,6 +21,15 @@
 				<li{% if page['section']=="users" %} class="active"{% endif %}>
 					<a href="/admin/users">Users</a>
 				</li>
+				<li{% if page['section']=="pages" and page['sub_section'] =="page1" %} class="active"{% endif %}>
+					<a href="/admin/pages/1">Home Page</a>
+				</li>
+				<li{% if page['section']=="pages" and page['sub_section'] =="page2" %} class="active"{% endif %}>
+					<a href="/admin/pages/2">About Page</a>
+				</li>
+				<li{% if page['section']=="pages" and page['sub_section'] =="page3" %} class="active"{% endif %}>
+					<a href="/admin/pages/3">Contact Page</a>
+				</li>
 			</ul>
 	
 		</div>

@@ -1,0 +1,17 @@
+<div class="row">
+	<div class="col-md-12">
+		<form action="/admin/pages/save?ID={{ pageID }}" method="post">
+		<textarea id="page-text" name="page-text" placeholder="Page Content">
+			{{ data['content'] }}
+		</textarea>
+		
+			<div class="clearfix"></div>
+			<div>
+				
+				<button class="btn btn-primary pull-right" style="width:200px;" type="submit">Save</button>
+			</div>
+		
+		</form>
+	</div>
+	
+</div>

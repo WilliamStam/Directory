@@ -1,0 +1,17 @@
+{% macro folderview(data) %}
+	{% import _self as macro %}
+	
+	{% for row in data %}
+		<li ><a href="#" data-path="{{ row['path'] }}" class="path_link"><i class="icon-folder-close-alt"></i>{{ row['text'] }}</a>
+
+			{% if row['children'] %}
+				
+				<ol>
+					{{ macro.folderview(row['children']) }}
+				</ol>
+			{% endif %}
+
+		</li>
+	{% endfor %}
+
+{% endmacro %}
